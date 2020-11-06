@@ -1,0 +1,210 @@
+<div class="container">
+    <h4>Material Form Novo</h4>
+    <form (ngSubmit)="save()" #materialForm="ngForm">
+      <fieldset [disabled]="fieldsetDisabled">
+        <div class="form-group row">
+            <label for="nome" class="col-md-2 col-form-label">Nome</label>
+            <div class="col-md-6 ">
+                <input [(ngModel)]="material.nome" [typeahead]="materiais$ | async" typeaheadOptionField="nome"  (typeaheadNoResults)="typeaheadNoResults($event)"
+                    (typeaheadOnSelect)="onSelect($event)" class="form-control" name="nome" id="nome" #nome="ngModel"
+                    required autocomplete="off" autofocus >
+                <div [hidden]="nome.valid || nome.pristine" class="alert alert-danger">
+                    Nome e obrigatório
+                </div>
+                <div class="alert alert-success" *ngIf="noResult">
+                    Novo Material
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" (change)="changeTemDevolucao($event)" class="custom-control-input" name="customCheck1" id="customCheck1" [(ngModel)]="material.temDevolucao" >
+                    <label class="custom-control-label" for="customCheck1">
+                        <strong>Develução deste Material é obrigatória ?</strong>
+                    </label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" (change)="changeTemCodigoBarras($event)" class="custom-control-input" name="temCodigoBarras" id="temCodigoBarras" [(ngModel)]="material.temCodigobarras" >
+                    <label class="custom-control-label" for="temCodigoBarras">
+                        <strong>Este material tem código de barras ?</strong>
+                    </label>
+                </div>           
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
+            <div class="col-5 col-md-3">
+              <select class="form-control" [disabled]="material.temDevolucao" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo"
+                 id="tipo" name="tipo" [(ngModel)]="material.tipo">
+                 <option>...</option>
+                 <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo.id">{{materialTipo.nome}}</option>
+              </select>
+            </div>
+            <label for="status" class="col-md-2 col-form-label">Status</label>
+            <div class="col-5 col-md-5">
+                <select class="form-control" [disabled]="!material.temDevolucao"  name="status" id="status" [(ngModel)]="material.status">
+                    <option >...</option>
+                    <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
+                 </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
+            <div class="col-5 col-md-3">
+                <select class="form-control" id="categoria" name="categoria" placeholder="Categoria">
+                 <option>...</option>
+                 <option>Categoria 1</option>
+                 <option>Categoria 2</option>
+              </select>
+            </div>
+            <label for="modelo" class="col-12 col-md-2 col-form-label">Modelo</label>
+            <div class="col-5 col-md-5">
+                <input type="text" [(ngModel)]="material.modelo" class="form-control" id="modelo" name="modelo" placeholder="Modelo"
+                    autocomplete="off">
+            </div>
+        </div>
+
+        <div class="form-group row" *ngIf="material.temCodigobarras" >    
+            <label for="codbarra" class="col-md-2 col-form-label">Código de barra</label>
+            <div class="form-group col-md-3 ">
+                <input type="text" [(ngModel)]="material.codigobarras" class="form-control" id="codbarra" name="codbarra"
+                    required placeholder="Informe o código de barras" autocomplete="off">
+            </div>
+            <label for="codbarra" *ngIf="!material.id " class="col-md-1 col-form-label"> <strong> ou </strong> </label>
+             <div class="col-md-6">
+                <button type="button" *ngIf="!material.id " class="btn btn-outline-success mb-1 btn-sm" (click)="openModal(fileTemplate, material); fileContent = []">
+                    Ler um arquivo .txt vários códigos de barras
+                </button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="descricao" class="col-md-2 col-form-label">Descricao</label>
+            <div class="col-md-10">
+                <textarea class="form-control" id="descricao" name="descricao" rows="2" [(ngModel)]="material.descricao"></textarea>
+            </div>
+        </div>
+    </fieldset>
+        <div class="form-group row">
+            <div class="offset-md-2 col-md-10">
+                <button [routerLink]="['/materialEdit', material.id]" *ngIf="fieldsetDisabled" class="btn btn-outline-warning mb-1 mr-2 btn-sm" >Editar</button>
+                <button (click)="limpar()" *ngIf="fieldsetDisabled" class="btn btn-outline-warning mb-1 btn-sm" >Limpar</button>
+                <button type="button" class="btn btn-outline-danger mb-1 mr-2 btn-sm" *ngIf=" !material.id " [disabled]="!materialForm.form.valid" (click)="openModal(template, material)">
+                    Próximo
+               </button>
+               <button type="button" class="btn btn-outline-success ml-2 mb-1 btn-sm" (click)="openModal(fileTemplate, material); fileContent = []" *ngIf="material.id " >
+                    Ler e adicionar itens em arquivo .txt
+                </button>
+             </div>
+        </div>
+    </form>
+
+    <ng-template #fileTemplate >
+        <div class="col-md-12 modal-header">
+            <h4 class="modal-title pull-left">Código de barras em arquivo </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="container">
+
+         <h5>OBS: Para cada código de barra será gerado um registro com os dados abaixo </h5>  
+        <form (ngSubmit)="onSubmitMaterialCodBarrasArquivo()" #ngFormItem="ngForm">
+            <div class="modal-body">
+                <div class="form-group">
+                    <span>Nome : </span>{{materialselect.nome}}<br>
+                </div>
+                <div class="form-group">
+                    <span>Modelo : </span>{{materialselect.modelo}}<br>
+                </div>
+
+                <!-- <div class="col-md-6 text-center">
+                        <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+                              <i class="fa fa-image fa-4x align-middle"></i>
+                        </button>
+                        <input 
+                          hidden
+                          #fileInput
+                          formControlName="file" 
+                          type="file" 
+                          (click)=" fileContent = [] " 
+                          accept="text/plain"
+                          (change)="onChengeFile($event)"
+                        >
+                </div> -->
+                <div class="form-group">
+                    <label name="fileLabel" id="fileLabel" for="file"><strong>Selecione o arquivo</strong></label>
+                    <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+                        <i class="fa fa-barcode fa-2x align-middle"></i>
+                    </button>
+                    <input id="file" name="file" hidden  #fileInput  type="file" (change)="onChengeFile($event)" (click)=" fileContent = [] " accept="text/plain" >
+                </div>
+                <!-- <div class="col-md-8">
+                    <div class="custom-file mb-3">
+                        <input type="file"  class="custom-file-input"  id="file" name="file" (change)="onChengeFile($event)" (click)=" fileContent = [] "  accept="text/plain">
+                        <label class="custom-file-label" name="fileLabel" id="fileLabel" for="file">Selecione o arquivo</label>
+                    </div>
+                </div> -->
+            </div>
+
+            <table id='tb' class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>index</th>
+                        <th>Código barras </th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let codigoBarras of fileContent | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index  ">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ codigoBarras.codigo }}</td>
+                        <!-- <td><button class="btn btn-warning">Update <i class="fa fa-cog" aria-hidden="true"></i></button></td> -->
+                        <td><button class="btn ink-reaction btn-danger">Remover <i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <pagination-controls (pageChange)=" currentPage = $event"></pagination-controls>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary mb-1 btn-sm" (click)="voltar(); modalRef.hide();">Cancelar</button>
+                <button type="submit" class="btn btn-outline-danger mb-1 btn-sm" (click)="modalRef.hide();">
+                    Salva
+                </button>
+            </div>
+        </form>
+    </div>
+    </ng-template>
+
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Material</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form (ngSubmit)="onSubmitItemMaterial()" #ngFormItem="ngForm">
+            <div class="modal-body">
+                <span>Nome : </span>{{materialselect.nome}}<br>
+                <label for="quantidade" class="col-12 col-md-2 col-form-label">Quantidade</label>
+                <div class="col-5 col-md-5">
+                    <input name="quantidade" id="quantidade" [disabled]='!materialselect.codigobarras == "" ' maxlength="5" Material type="number" [(ngModel)]="itemMaterial.quantidade" placeholder="quantidade" autocomplete="off">
+                </div>
+                <input *ngIf="false" name="unidade" id="unidade" value="{{user.unidade}}" [(ngModel)]="itemMaterial.unidade" >
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary mb-1 btn-sm" (click)="voltar(); modalRef.hide();">Cancelar</button>
+                <button type="submit" class="btn btn-outline-danger mb-1 btn-sm" (click)="modalRef.hide();">
+                    Salva
+                  </button>
+            </div>
+        </form>
+    </ng-template>
+
+</div>

@@ -1,0 +1,57 @@
+<div class="container col-12" >
+  <div *ngIf=" estoques$ | async as estoques_async; else loading " >
+
+<div class="card">
+    <div class="card-header">
+      <div class="float-left" >
+        <h4>Materiais em estoque na unidade : </h4>
+      </div>
+      <div class="float-center" >
+        <select id="unidade" name="unidade"  [(ngModel)]="unidadeId" (change)="onChangeUnidade( )" >
+            <option>...</option>
+            <option *ngFor="let unidade of unidades$ | async" [ngValue]="unidade.id">{{unidade.sigla}}</option>
+        </select>
+      </div>
+ <div class="card-body" >
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">Unidade</th>
+          <th scope="col">Nome material</th>
+          <th scope="col">Código de barras</th>
+          <th scope="col">Alterado</th>
+          <th scope="col">Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estoque of estoques$ | async " >
+        <td>{{estoque.unidadeSigla}}</td>
+        <td>{{estoque.materialNome}}</td>
+        <td>{{estoque.codigoBarras}}</td>
+        <td>{{estoque.dataAlteracao | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+        <td> 
+            <span class="badge badge-warning" >{{ estoque.quantidade }}</span>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+<ng-template #loading >
+    <span>Carregando ... </span>
+    <div class="spinner-border spinner-border-lg"></div>
+    <div class="spinner-grow spinner-grow-lg"></div>
+</ng-template >
+
+</div>
+
+</div>
+
+    <ng-template #loading >
+      <span>Carregando ... </span>
+      <div class="spinner-border spinner-border-lg"></div>
+      <div class="spinner-grow spinner-grow-lg"></div>
+    </ng-template >
+
+</div>

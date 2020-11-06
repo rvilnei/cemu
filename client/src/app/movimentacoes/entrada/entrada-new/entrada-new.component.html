@@ -1,0 +1,56 @@
+<button type="button" [disabled]="movimentacao.status == 'MOVI_CONCLUIDA'" class="btn btn-outline-success"
+*ngIf="movimentacao.guia.matriculaRecebiemnto && movimentacao.status != 'MOVI_CONCLUIDA'" (click)="openModal(template)">Receber itens</button>
+
+<ng-template #template>
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Recebimento de Material</h4>
+      <button type="button" class="close pull-right" 
+              aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body">
+      <div class="row col-sm-12" >
+        <div class="col-sm-1" ></div>
+        <div>
+           <H3> {{movimentacao.unidadeOrigem }} enviou para {{movimentacao.unidadeDestino }} os materiais abaixo </H3>
+        </div>
+        <div class="col-sm-1" ></div>
+      </div>
+        <table class="table table-sm">
+                <thead>
+                  <tr >
+                    <th scope="col">#</th>
+                    <th scope="col">Código Barras</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Situação</th>
+                    <th scope="col">Açöes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of movimentacao.itens" >
+                    <th scope="row">1</th>
+                    <td>{{ item.material.codigobarras }}</td>
+                    <td>{{item.material.nome}}</td>
+                    <td> <span class="badge badge-dark"> {{item.quantidadeItem}}  </span>  </td>
+                    <td>{{item.situacao}}</td>
+                    <td>
+                      <button class="btn btn-outline-danger mb-1 btn-sm" [disabled]="item.situacao != 'ITEM_PENDENTE'" (click)="itemNaoRecebido(movimentacao, item);"> 
+                            <i class="fa fa-arrow-left"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+</div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning mb-1 btn-sm" (click)="modalRef.hide();">Cancelar</button>
+        <button type="submit" [disabled]="movimentacao.status == 'MOVI_CONCLUIDA'" class="btn btn-outline-primary mb-1 btn-sm" (click)="receberItens( movimentacao ); modalRef.hide(); ">
+            Receber Pendentes
+          </button>
+</div>
+</ng-template>

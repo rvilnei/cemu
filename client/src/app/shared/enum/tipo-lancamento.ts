@@ -1,0 +1,5 @@
+export enum TipoLancamento {
+  CADASTRO = "CADASTRO",
+  LANCAMENTO = "LANCAMENTO",
+  DEVOLUCAO = "DEVOLUCAO"
+}

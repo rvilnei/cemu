@@ -1,0 +1,58 @@
+
+<ng-scrollbar class="my-scrollbar mb-3" thumbClass="white-scrollbars">
+
+  <div class="page-title">
+    <h3>Estoque [ {{usuario.unidade}} ]</h3>
+  </div>
+
+  <div style="padding: 0em">
+    <div class="row row-cols-1 row-cols-md-4">
+      <div class="col mb-2" *ngFor="let material of materiaisEstoque" >
+        <div class="card" >
+          <div class="card-body"> 
+            <h5 class="card-title" #qtd> <span class="badge badge-dark"> {{material.materialNome}} <span class="badge badge-light"> {{material.quantidade}}  </span> </span>
+            </h5>
+            <p class="card-text">Cód Barras: {{material.codigoBarras}}</p>
+            <p class="card-text">Quantidade : <input name="quantidadeItem" [(ngModel)]="material.quantidadeItem" (keyup)="verificaQuantidade($event, material.quantidade )" maxlength="5  " type="number" min="1" max="{{material.quantidade}}"> </p>
+            <button (click)="addItemMaterial(material)" *ngIf="material.quantidade >= 1 && material.quantidadeItem != null" class="btn btn-primary">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-scrollbar>
+
+<div class="row row-cols-12">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+            <thead>
+              <tr class="bg-success" >
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cod Barras</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itemMaterialLista " >
+                <th scope="row">{{item.materialId}}</th>
+                <td>{{item.materialNome}}</td>
+                <td>{{item.codigoBarras}}</td>
+                <td>{{item.quantidadeItem}}/{{item.quantidade}}</td>
+                <td>
+                    <span class="float-center">
+                      <button type="button" (click)="deleteItem(item)" class="btn btn-outline-danger mb-1 btn-sm">
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      </button>
+                    </span>
+                  </td>  
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+
+</div>

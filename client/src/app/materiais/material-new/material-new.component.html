@@ -1,0 +1,303 @@
+<div class="container col-12" >
+    <h5>Formulário de Material </h5>
+
+    <tabset type="pills" [justified]="true" #staticTabs>
+        <tab id="semCodBarras" class="mt-2" (selectTab)="onSelectTab($event);"  [disabled]="material.codigobarras != '' && isEdit ">
+            <ng-template tabHeading>
+               <span>  Material sem código de barras </span>
+            </ng-template>
+
+            <form (ngSubmit)="save()" #materialForm="ngForm">
+
+                <div class="form-group row">
+                    <label for="nome" class="col-md-2 col-form-label">Nome</label>
+                    <div class="col-md-10">
+                        <input [(ngModel)]="material.nome" [typeahead]="materiais$ | async" typeaheadOptionField="nome" (click)="onClick()" (typeaheadNoResults)="typeaheadNoResults($event)"
+                            (typeaheadOnSelect)="onSelect($event)" class="form-control" name="nome" id="nome" #nome="ngModel"
+                            required autocomplete="off" autofocus >
+                        <div [hidden]="nome.valid || nome.pristine" class="alert alert-danger">
+                            Nome e obrigatório
+                        </div>
+                        <div class="alert alert-success" *ngIf="noResult">
+                            Novo material
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
+                    <div class="col-5 col-md-3">
+                        <select [disabled]="isEdit" class="form-control" id="categoria" name="categoria" placeholder="Categoria">
+                     <option>...</option>
+                     <option>Categoria 1</option>
+                     <option>Categoria 2</option>
+                  </select>
+                    </div>
+                    <label for="modelo" class="col-12 col-md-2 col-form-label">Modelo</label>
+                    <div class="col-5 col-md-5">
+                        <input type="text" [disabled]="isEdit" [(ngModel)]="material.modelo" class="form-control" id="modelo" name=" n" placeholder="Modelo"
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tipo" class="col-12 col-md-2 col-form-label">Tipo</label>
+                    <div class="col-5 col-md-3">
+                        <select class="form-control" [disabled]="isEdit" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo"
+                            id="tipo" name="tipo" [(ngModel)]="material.tipo">
+                      <option>...</option>
+                      <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo.id">{{materialTipo.nome}}</option>
+                   </select>
+                    </div>
+                    <label for="status" class="col-12 col-md-2 col-form-label">Status</label>
+                    <div class="col-5 col-md-5">
+                        <select class="form-control" [disabled]="isEdit" name="status" id="status" [(ngModel)]="material.status">
+                        <option >...</option>
+                        <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
+                     </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 row">
+
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input type="checkbox" disabled class="form-check-input" name="devolucao" id="devolucao" [(ngModel)]="material.tem_devolucao">
+                            <label class="form-check-label" for="devolucao">
+                            <strong>Devolução obrigatória ?</strong>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="descricao" class="col-md-2 col-form-label">Descricao</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" [disabled]="isEdit" id="descricao" name="descricao" rows="2" [(ngModel)]="material.descricao"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-md-2 col-md-10">
+                            <button type="button" class="btn btn-outline-info mb-1 btn-sm" *ngIf="!isEdit && !material.id" [disabled]="!materialForm.form.valid" (click)="openModal(template, material)">
+                                    Próximo
+                               </button>
+                                <button type="submit" class="btn btn-outline-primary mb-1 btn-sm" *ngIf="!isEdit  && material.id " [disabled]="!materialForm.form.valid">Salvar edição</button>
+                        <button type="submit" class="btn btn-outline-warning mb-1 btn-sm" (click)="isEdit = !isEdit" *ngIf="isEdit">Editar Material</button>
+                        <button type="button" class="btn btn-outline-danger mb-1 btn-sm" *ngIf="isEdit" (click)="openModal(template, material)">
+                            Adicionar itens
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </tab>
+
+
+        <tab id="comCodBarras" class="mt-2" (selectTab)="onSelectTab($event); " [disabled]=" material.codigobarras == '' && isEdit" >
+
+            <ng-template tabHeading>
+                <span>  Material com código de barras <i class="fa fa-barcode" aria-hidden="true"></i> </span>
+            </ng-template>
+
+            <form (ngSubmit)="save()" #materialForm="ngForm">
+                <div class="form-group row">
+                    <label for="nome" class="col-md-2 col-form-label">Nome</label>
+                    <div class="col-md-10">
+                        <input [(ngModel)]="material.nome" [typeahead]="materiais$ | async" typeaheadOptionField="nome" (click)="onClick()" (typeaheadNoResults)="typeaheadNoResults($event)"
+                            (typeaheadOnSelect)="onSelect($event)" class="form-control" name="nome" id="nome" #nome="ngModel"
+                            required autocomplete="off" autofocus >
+                        <div [hidden]="nome.valid || nome.pristine" class="alert alert-danger">
+                            Nome e obrigatório
+                        </div>
+                        <div class="alert alert-success" *ngIf="noResult">
+                            Novo Material
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
+                    <div class="col-5 col-md-3">
+                        <select [disabled]="isEdit" class="form-control" id="categoria" name="categoria" placeholder="Categoria">
+                         <option>...</option>
+                         <option>Categoria 1</option>
+                         <option>Categoria 2</option>
+                      </select>
+                    </div>
+                    <label for="modelo" class="col-12 col-md-2 col-form-label">Modelo</label>
+                    <div class="col-5 col-md-5">
+                        <input type="text" [disabled]="isEdit" [(ngModel)]="material.modelo" class="form-control" id="modelo" name="modelo" placeholder="Modelo"
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
+                    <div class="col-5 col-md-3">
+                        <select class="form-control" [disabled]="isEdit || material.temCodigobarras" (change)="changeMaterialTipo($event)" id="tipo" name="tipo"
+                            [(ngModel)]="material.tipo">
+                          <option>...</option>
+                          <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo.id">{{materialTipo.nome}}</option>
+                       </select>
+                    </div>
+                    <label for="status" class="col-md-2 col-form-label">Status</label>
+                    <div class="col-5 col-md-5">
+                        <select class="form-control" [disabled]="isEdit" name="status" id="status" [(ngModel)]="material.status">
+                            <option >...</option>
+                            <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
+                         </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="codbarra" class="col-md-2 col-form-label">Código de barra</label>
+                    <div class="form-group col-md-4 ">
+                        <input type="text" [disabled]="isEdit" [(ngModel)]="material.codigobarras" class="form-control" id="codbarra" name="codbarra"
+                            placeholder="Informe o código de barras" autocomplete="off">
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-outline-success mb-1 btn-sm" (click)="openModal(fileTemplate, material); fileContent = []" [disabled]="!materialForm.form.valid"  >
+                            Ler um arquivo e cadastrar itens de {{material.nome | lowercase}}
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="descricao" class="col-md-2 col-form-label">Descricao</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" [disabled]="isEdit" id="descricao" name="descricao" rows="2" [(ngModel)]="material.descricao"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-md-2 col-md-10">
+                        <button type="submit" class="btn btn-outline-warning mb-1 btn-sm" (click)="isEdit = !isEdit" *ngIf="isEdit">Editar Material</button>
+                        <button type="button" class="btn btn-outline-danger mb-1 btn-sm" *ngIf="!isEdit && !material.id " [disabled]="!materialForm.form.valid" (click)="openModal(template, material)">
+                            Próximo
+                       </button>
+                        <button type="submit" class="btn btn-outline-primary mb-1 btn-sm" *ngIf="!isEdit  && material.id " [disabled]="!materialForm.form.valid">Salvar edição</button>
+                        <!-- <button type="button" class="btn btn-outline-danger mb-1 btn-sm" *ngIf="!isEdit && !material.id"  (click)="openModal(template, material)">
+                          Adicionar itens
+                        </button> -->
+                     </div>
+                </div>
+            </form>
+
+        </tab>
+    </tabset>
+
+    <ng-template #fileTemplate >
+        <div class="col-md-12 modal-header">
+            <h4 class="modal-title pull-left">Código de barras em arquivo </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="container">
+
+         <h5>OBS: Para cada código de barra será gerado um registro com os dados abaixo </h5>  
+        <form (ngSubmit)="onSubmitMaterialCodBarrasArquivo()" #ngFormItem="ngForm">
+            <div class="modal-body">
+                <div class="form-group">
+                    <span>Nome : </span>{{materialselect.nome}}<br>
+                </div>
+                <div class="form-group">
+                    <span>Modelo : </span>{{materialselect.modelo}}<br>
+                </div>
+                <div class="col-md-8">
+
+                <div class="custom-file mb-3">
+                    <input type="file"  class="custom-file-input"  id="file" name="file" (change)="onChengeFile($event)" (click)=" fileContent = [] "  accept="text/plain">
+                    <label class="custom-file-label" name="fileLabel" id="fileLabel" for="file">Selecione o arquivo</label>
+                </div>
+
+                </div>
+            </div>
+
+            <table id='tb' class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>index</th>
+                        <th>Código barras </th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let codigoBarras of fileContent | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index  ">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ codigoBarras.codigo }}</td>
+                        <!-- <td><button class="btn btn-warning">Update <i class="fa fa-cog" aria-hidden="true"></i></button></td> -->
+                        <td><button class="btn ink-reaction btn-danger">Remover <i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12">
+                <pagination-controls (pageChange)=" currentPage = $event"></pagination-controls>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary mb-1 btn-sm" (click)="voltar(); modalRef.hide();">Cancelar</button>
+                <button type="submit" class="btn btn-outline-danger mb-1 btn-sm" (click)="modalRef.hide();">
+                    Salva
+                </button>
+            </div>
+        </form>
+    </div>
+    </ng-template>
+
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Material</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+        </div>
+        <form (ngSubmit)="onSubmitItemMaterial()" #ngFormItem="ngForm">
+            <div class="modal-body">
+                <span>Nome : </span>{{materialselect.nome}}<br>
+                <label for="quantidade" class="col-12 col-md-2 col-form-label">Quantidade</label>
+                <div class="col-5 col-md-5">
+                    <input name="quantidade" id="quantidade" [disabled]='!materialselect.codigobarras == "" ' type="number" [(ngModel)]="itemMaterial.quantidade" placeholder="quantidade" autocomplete="off">
+                </div>
+                    <input *ngIf="false" name="unidade" id="unidade" value="{{user.unidade}}" [(ngModel)]="itemMaterial.unidade" >
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary mb-1 btn-sm" (click)="voltar(); modalRef.hide();">Cancelar</button>
+                <button type="submit" class="btn btn-outline-danger mb-1 btn-sm" (click)="modalRef.hide();">
+                    Salva
+                  </button>
+            </div>
+        </form>
+    </ng-template>
+
+    <!-- <div *ngIf="material.lancamentos" class="row row-content">
+        <div class="col-12 col-sm=9">
+            <h4> Histórico de lançamentos em estoque do material </h4>
+            <div class="table-responsive">
+                <table class="table table-striped ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Origem</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Matricula</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-hover">
+                        <tr *ngFor="let item of material.lancamentos ">
+                            <th scope="row"> {{ item.id }} </th>
+                            <td> {{ item.data }} </td>
+                            <td> {{ item.tipo }} </td>
+                            <td> {{ item.unidadeOrigem }} </td>
+                            <td> {{ item.unidadeDestino }} </td>
+                            <td> {{ item.quantidade }} </td>
+                            <td> {{ item.matricula }} </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> -->
+
+</div>

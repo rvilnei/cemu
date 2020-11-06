@@ -1,0 +1,113 @@
+
+<div class="container col-12" ></div>
+    <div *ngIf=" movimentacoes$ | async as movimentacoes_async; else loading " >
+    
+      <div class="card col-12 ">
+          <div class="card-header">
+            <div class="float-left" >
+            <h4>Lista de movimentações de {{tipMovimentacao}}</h4>
+            </div>
+            <div *ngIf="tipMovimentacao == 'saida'" class="float-right" >
+                <button type="button" class="btn btn-primary" (click)=" newMaterial = true "  [routerLink]="'/movimentacao-new'"  >Saída de material</button>
+            </div>
+            <div class="card-body" >
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Origem</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Data criacção</th>
+                        <th scope="col">Recebedor</th>
+                        <th scope="col">Status</th>
+                        <th>Itns de materiais da movimentação</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr  *ngFor="let movimentacao of movimentacoes_async 
+                                            | paginate: {  id: 'listing_pagination',
+                                            itemsPerPage: itemsPerPage,
+                                            currentPage: currentPage,
+                                            totalItems: movimentacoes_async.lenght }">
+                        <th scope="row">{{movimentacao.id}}</th>
+                        <!-- <td> <a [routerLink]="['/materialDetail', material.id]" > {{material.nome}}</a></td> -->
+                        <td>{{movimentacao.unidadeOrigem}}</td>
+                        <td>{{movimentacao.unidadeDestino}}</td>
+                        <td>{{movimentacao.datacriacao | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+                        <td>{{movimentacao?.guia?.matriculaRecebiemnto}}</td>
+                        <td>
+                            {{movimentacao.status}}
+                        </td>
+                        <td>
+                          
+                        <!-- <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let item of movimentacao.itens" >{{item.material.nome}}, <span class="badge badge-info"> {{item.quantidadeItem}}  </span> UNIDADE(S), {{item.situacao}}  </li>
+                        </ul> -->
+
+                        <div class="row" *ngFor="let item of movimentacao.itens"   >
+                            <div class="col-sm">
+                                {{item.material.nome}}   
+                            </div>
+                            <div class="col-sm">
+                                <span class="badge badge-info"> {{item.quantidadeItem}}  </span> UNIDADE(S)
+                            </div>
+                            <div class="col-sm">
+                                {{item.situacao}} 
+                            </div>
+                          </div>
+
+
+                        </td>
+                        <td>
+                        
+                         <!--  <span class="float-right">
+                            <button class="btn btn-outline-primary mb-1 btn-sm" (click)="openModal(templateMaterialSelect, material);"> 
+                              <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="['/materialEdit', material.id]">
+                              <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger mb-1 btn-sm"
+                            (click)="openModal(template, material)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                          </span> -->
+                        </td>
+                        <td *ngIf="tipMovimentacao == 'entrada' "  > 
+                          <!-- {{ movimentacao.guia | json }} -->
+                          <app-movimentacao-entrada-new [movimentacao]="movimentacao" ></app-movimentacao-entrada-new>
+                          <button [routerLink]="['/guiaDetail', movimentacao.guia.id, true]" *ngIf="!movimentacao.guia.matriculaRecebiemnto" type="button" class="btn btn-outline-info mb-1 btn-sm">Assinar guia</button>
+                        </td>
+                        <td *ngIf="tipMovimentacao == 'saida' "  >
+                          <guia-new-modal [movimentacao]="movimentacao" ></guia-new-modal>
+                          <!-- <button *ngIf="movimentacao.guia.id"  type="button" class="btn btn-outline-primary mb-1 btn-sm">Guia</button> -->
+                          <button [routerLink]="['/guiaDetail', movimentacao.guia.id, false]"  *ngIf="movimentacao.guia" type="button" class="btn btn-outline-success mb-1 btn-sm">Exibir Guia</button>
+                          
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="col-md-12">
+                    <pagination-controls  id="listing_pagination" previousLabel="Anterior" nextLabel="Próximo" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
+                  </div>
+
+    
+            </div>
+          </div>
+      </div>
+    
+    
+        
+    </div>
+    
+      <ng-template #loading >
+          <span>Carregando ... </span>
+          <div class="spinner-border spinner-border-lg"></div>
+          <div class="spinner-grow spinner-grow-lg"></div>
+      </ng-template >
+    
+ 
+    

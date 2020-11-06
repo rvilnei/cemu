@@ -1,0 +1,58 @@
+<div class="row mt-5">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-header">
+           <h5>Movimentação da <a [routerLink]="['/guiaDetail', movimentacao.guia.id, false ]" >  guia {{movimentacao.guia.numeroGuia}} </a> </h5>
+        </div>
+        <div class="card-body">
+                <div class="row">
+                        
+                    <dt class="col-6">Unidade de origem</dt>
+                    <dd class="col-6">{{movimentacao.unidadeOrigem}}</dd>
+    
+                    <dt class="col-6">Unidade de destino</dt>
+                    <dd class="col-6">{{movimentacao.unidadeDestino}}</dd>
+    
+                    <dt class="col-6">Data da criação</dt>
+                    <dd class="col-6">{{movimentacao.datacriacao}}</dd>
+                    <dt class="col-6">Data do recebimento</dt>
+                    <dd class="col-6">{{movimentacao.datarecebimento}}</dd>
+                    <dt class="col-6">Status da movimentação</dt>
+                    <dd class="col-6">{{movimentacao.status}}</dd>
+                    <dt class="col-6">Observação</dt>
+                    <dd class="col-6">{{movimentacao.observacao}}</dd>
+
+                    </div>               
+   <hr/>
+                        <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Material</th>
+                                    <th scope="col">Unidades</th>
+                                    <th scope="col">Situação</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of movimentacao.itens" >
+                                    <th scope="row">#</th>
+                                    <td>{{item.material.nome}}</td>
+                                    <td>{{item.quantidadeItem}}</td>
+                                    <td>{{item.situacao}}</td>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+
+        </div>
+
+        <div class="card-footer text-muted">
+          <div class="row" >
+            <button class="btn btn-primary" (click)="voltar()" >Voltar</button>      
+      </div>
+    </div>
+      </div>
+    </div>
+</div>

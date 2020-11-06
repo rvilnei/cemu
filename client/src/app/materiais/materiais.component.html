@@ -1,0 +1,135 @@
+
+<div class="container col-12" >
+<div *ngIf=" materiais$ | async as materiais_async; else loading " >
+
+  <div class="card">
+      <div class="card-header">
+        <div class="float-left" >
+          <h4>Lista de materiais</h4>
+        </div>
+       
+        <!-- <div class="float-right" >
+            <button type="button" class="btn btn-primary" (click)=" newMaterial = true "  [routerLink]="'/materialNew'"  >New</button>
+        </div> -->
+        <div class="float-right" >
+          <button type="button" class="btn btn-primary" (click)=" newMaterial = true "  [routerLink]="'/materialNovo'"  >Novo</button>
+        </div> 
+        <div class="card-body" >
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Cód. barra</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col" >Devolução</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let material of materiais_async | paginate: {  id: 'listing_pagination',
+                                                                              itemsPerPage: itemsPerPage,
+                                                                              currentPage: currentPage,
+                                                                              totalItems: materiais_async.lenght }">
+                    <th scope="row">{{material.id}}</th>
+                    <td> <a [routerLink]="['/materialDetail', material.id]" > {{material.nome}}</a></td>
+                    <td>{{material.tipoDescricao }}</td>
+                    <td>{{material.codigobarras}}</td>
+                    <td>{{material.modelo}}</td>
+                    <td  align="center" >  <input type="checkbox" [ngModel]="material.temDevolucao" disabled >  </td>
+                    <td>
+                      <span class="float-right">
+                        <button class="btn btn-outline-primary mb-1 btn-sm" (click)="openModal(templateMaterialSelect, material);"> 
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="['/materialEdit', material.id]">
+                          <i class="fa fa-edit" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger mb-1 btn-sm"
+                        (click)="openModal(template, material)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-12">
+                <pagination-controls  id="listing_pagination" previousLabel="Anterior" nextLabel="Próximo" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
+              </div>
+
+              <ng-template #templateMaterialSelect>
+                  <div class="modal-header">
+                      <h4 class="modal-title pull-left">Material</h4>
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                      <span aria-hidden="true">&times;</span>
+                              </button>
+                  </div>
+                  
+                  <form (ngSubmit)="onSubmitItemMaterial()" #ngFormItem="ngForm">
+                      <div class="modal-body">
+                          <span>Nome : </span>{{materialselect.nome}}<br>
+                          <label for="quantidade" class="col-12 col-md-2 col-form-label">Quantidade</label>
+                          <div class="col-5 col-md-5">
+                              <input name="quantidade" id="quantidade" [disabled]='materialselect.temCodigobarras' type="number" [(ngModel)]="itemMaterial.quantidade" placeholder="quantidade" min="1" max="100000" autocomplete="off"> 
+                          </div>
+                          <label for="codigobarras" *ngIf='materialselect.temCodigobarras' class="col-12 col-md-5 col-form-label">Código de barras</label>
+                          <div class="col-12 col-md-5">
+                              <input  name="codigobarras" id="codigobarras" *ngIf='materialselect.temCodigobarras' type="text" [(ngModel)]="materialselect.codigobarras" placeholder="codigo de barras" autocomplete="off"> 
+                          </div>
+                          <input *ngIf="false" name="unidade" id="unidade" value="{{user.unidade}}" [(ngModel)]="itemMaterial.unidade" >
+          
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-primary mb-1 btn-sm" (click)="voltar(); modalRef.hide();">Cancelar</button>
+                          <button type="submit" class="btn btn-outline-danger mb-1 btn-sm" (click)="modalRef.hide();">
+                              Salva
+                            </button>
+                      </div>
+                  </form>
+              </ng-template>
+          
+
+
+          <ng-template #template>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Material</h4>
+                    <button type="button" class="close pull-right" 
+                            aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+              </div>
+              <div class="modal-body">
+                   <span>Nome : </span>{{materialselect.nome}}<br>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary mb-1 btn-sm"  
+                  (click)="voltar(); modalRef.hide();" >Cancelar</button>
+                  <button type="button" class="btn btn-outline-danger mb-1 btn-sm"
+                  (click)="delete(materialselect); modalRef.hide();" >
+                    Confirma exlusão
+                  </button>
+              </div>
+          </ng-template>
+
+
+
+        </div>
+      </div>
+  </div>
+
+
+    
+</div>
+
+  <ng-template #loading >
+      <span>Carregando ... </span>
+      <div class="spinner-border spinner-border-lg"></div>
+      <div class="spinner-grow spinner-grow-lg"></div>
+  </ng-template >
+
+</div>
+
+    
+
+

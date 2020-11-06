@@ -1,0 +1,119 @@
+<div class="container">
+    <h4>Material Form Edit</h4>
+    <form (ngSubmit)="save()" #materialForm="ngForm">
+
+        <div class="form-group row">
+            <label for="nome" class="col-md-2 col-form-label">Nome</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="nome" required [(ngModel)]="material.nome" name="nome" #nome="ngModel" autocomplete="off">
+                <div [hidden]="nome.valid || nome.pristine" class="alert alert-danger">
+                    Nome e obrigatório
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group row">
+            <div class="col-md-3 ">
+                <label class="form-check-label" for="temDevolucao">
+                    Devolução obrigatória ?
+                </label>
+            </div>
+            <div class="col-md-1 form-check">
+                <input type="checkbox" class="form-check-input" name="temDevolucao" id="temDevolucao" [(ngModel)]="material.temDevolucao">
+            </div>
+        </div> -->
+        <div class="form-group row">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="customCheck1" id="customCheck1" [(ngModel)]="material.temDevolucao" >
+            <label class="custom-control-label" for="customCheck1">
+                <strong>Develução deste Material é obrigatória ?</strong>
+            </label>
+        </div>
+    </div>
+        <div class="form-group row">
+            <label for="tipo" class="col-12 col-md-2 col-form-label">Tipo</label>
+            <div class="col-5 col-md-3">
+                <select class="form-control" id="tipo" name="tipo" [(ngModel)]="material.tipo">
+                    <option>...</option>
+                    <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo.id">{{materialTipo.nome}}</option>
+                  </select>
+            </div>
+            <label for="status" class="col-12 col-md-2 col-form-label">Status</label>
+            <div class="col-5 col-md-5">
+                <select class="form-control" name="status" id="status" [(ngModel)]="material.status">
+                  <option >...</option>
+                  <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
+            <div class="col-5 col-md-3">
+                <select class="form-control" id="categoria" name="categoria" placeholder="Categoria">
+                    <option>...</option>
+                    <option>Categoria 1</option>
+                    <option>Categoria 2</option>
+                </select>
+            </div>
+            <label for="categoria" class="col-12 col-md-2 col-form-label">Modelo</label>
+            <div class="col-5 col-md-5">
+                <input type="text" [(ngModel)]="material.modelo" class="form-control" id="modelo" name="modelo" placeholder="Modelo" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="codbarras" class="col-md-2 col-form-label">Código de barras</label>
+            <div class="form-group col-md-4 ">
+                <input type="text" [(ngModel)]="material.codigobarras" class="form-control" id="codbarras"
+                    name="codbarras" placeholder="Código de barras" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="descricao" class="col-md-2 col-form-label">Descricao</label>
+            <div class="col-md-10">
+                <textarea class="form-control" id="descricao" name="descricao" rows="2" [(ngModel)]="material.descricao"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-md-2 col-md-10">
+                <button type="submit" class="btn btn-primary" [disabled]="!materialForm.form.valid">Salvar</button>
+                <button type="button" class="btn btn-default" (click)="newMaterial(); materialForm.reset()">Novo</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- <div *ngIf="material.lancamentos" class="row row-content">
+        <div class="col-12 col-sm=9">
+            <h4> lançamentos </h4>
+            <div class="table-responsive">
+                <table class="table table-striped ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Origem</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Matricula</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-hover">
+                        <tr *ngFor="let item of material.lancamentos ">
+                            <th scope="row"> {{ item.id }} </th>
+                            <td> {{ item.data | date: 'dd/MM/yyyy hh:mm:ss'  }} </td>
+                            <td> {{ item.tipo }} </td>
+                            <td> {{ item.unidadeOrigem }} </td>
+                            <td> {{ item.unidadeDestino }} </td>
+                            <td> 
+                                <i *ngIf="item.tipo != 'MOVI-SAÍDA'" class='fa fa-plus' style='color:green'></i>     
+                                <i *ngIf="item.tipo == 'MOVI-SAÍDA'" class='fa fa-minus' style='color:red'></i>                          
+                                <span class="badge badge-warning" >{{ item.quantidade }}</span> 
+                            </td>
+                            <td> {{ item.matricula }} </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+</div>

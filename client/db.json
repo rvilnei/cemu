@@ -1,0 +1,85 @@
+{
+  "materiais": [
+    {
+      "id": 2,
+      "nome": "FLASH CARD",
+      "codbarras": "44444444444",
+      "categoria": "1",
+      "modelo": "abc",
+      "descricao": "Atende a algumas configuracóes ",
+      "status": "4",
+      "tem_devolucao": false,
+      "tem_rfid": true,
+      "tipo": "1",
+      "lancamentos": [
+        {
+          "id": 1,
+          "data": "24/04/2019",
+          "quantidade": 6,
+          "matricula": "30925594"
+        },
+        {
+          "id": 2,
+          "data": "20/04/2019",
+          "quantidade": 4,
+          "matricula": "30925594"
+        },
+        {
+          "quantidade": "1"
+        }
+      ]
+    },
+    {
+      "nome": "MANGUEIRA",
+      "status": "1",
+      "tipo": "1",
+      "descricao": "SDFSDFSDF",
+      "tem_devolucao": true,
+      "tem_rfid": true,
+      "codbarras": "3333333333",
+      "id": 3
+    },
+    {
+      "nome": "XAMPU PET PERFUMADO",
+      "status": "1",
+      "tipo": "1",
+      "tem_rfid": true,
+      "tem_devolucao": true,
+      "codbarras": "33333",
+      "descricao": "SDFSDFSDFSDF",
+      "id": 4
+    },
+    {
+      "nome": "Fogos de artifícios 2",
+      "id": 5
+    }
+  ],
+  "tipo": [
+    {
+      "id": 1,
+      "nome": "PECA_REPOSICAO"
+    },
+    {
+      "id": 2,
+      "nome": "SUPRIMENTO"
+    }
+  ],
+  "status": [
+    {
+      "id": 1,
+      "nome": "ATIVO"
+    },
+    {
+      "id": 2,
+      "nome": "DEFEITUOSO"
+    },
+    {
+      "id": 3,
+      "nome": "EXTRAVIADO"
+    },
+    {
+      "id": 4,
+      "nome": "BAIXADO"
+    }
+  ]
+}

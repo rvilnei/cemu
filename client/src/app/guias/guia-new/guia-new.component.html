@@ -1,0 +1,60 @@
+<div class="container col-12" >
+
+<form  #guiaForm="ngForm" (ngSubmit)="onSubmit(guiaForm)">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="numeroGuia">Número da Guia</label>
+        <input type="text" class="form-control" disabled
+           [(ngModel)]="guia.numeroGuia" required
+          id="numeroGuia" name="numeroGuia" #numero>
+        <div>
+          {{ numero.className }}
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="nomeCondutor">Nome do Condutor</label>
+      <input type="text" class="form-control" 
+        name="nomeCondutor" id="nomeCondutor" 
+        [(ngModel)]="guia.nomeCondutor" placeholder="Condutor/Portador">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="rgCondutor">RG do Condutor</label>
+      <input type="text" class="form-control" name="rgCondutor" 
+      [(ngModel)]="guia.rgCondutor" id="rgCondutor"  placeholder="Rgndo Condutor">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="transportadora">Nome da Transportadora</label>
+      <select id="transportadora" name="transportadora" class="form-control" [(ngModel)]="guia.transportadoraId" >
+        <option selected [value]="null">Escolha...</option>
+        <option *ngFor="let transportadora of transportadoras$ | async" [value]="transportadora.id">{{transportadora.nome}}</option>
+      </select>
+    </div>
+      <div class="form-group col-md-6 ">
+        <label for="placaVeiculo">Placa do veículo</label>
+        <input type="text" class="form-control"
+        [(ngModel)]="guia.placaVeiculo" name="placaVeiculo" id="placaVeiculo">
+      </div>
+   </div>
+
+      <div class="form-group row">
+        <label for="observacao" class="col-md-2 col-form-label">Observacao</label>
+        <div class="col-md-10">
+            <textarea class="form-control"  id="observacao" name="observacao" rows="2" [(ngModel)]="guia.observacao"></textarea>
+        </div>
+    </div>
+    <!-- <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div> -->
+    <button type="submit" [disabled]="!guiaForm.valid" class="btn btn-primary">Salvar</button>
+    <button class="btn btn-info " (click)="voltar()" >Voltar</button>
+  </form>
+</div>

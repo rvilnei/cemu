@@ -1,0 +1,37 @@
+.my-scrollbar {
+    --scrollbar-border-radius: 7px;
+    --scrollbar-padding: 2px;
+    --scrollbar-viewport-margin: 0;
+    --scrollbar-track-color: transparent;
+    --scrollbar-wrapper-color: transparent;
+    --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb-hover-color: var(--scrollbar-thumb-color);
+    --scrollbar-size: 5px;
+    --scrollbar-hover-size: var(--scrollbar-size);
+    --scrollbar-thumb-transition: height ease-out 15ms, width ease-out 15ms;
+    --scrollbar-track-transition: height ease-out 15ms, width ease-out 15ms;
+
+    --scrollbar-size: 16px;
+    --scrollbar-thumb-color: #808080;
+    --scrollbar-hover-size: 12px;
+    --scrollbar-track-color: rgba(0, 0, 0, 0.05);
+    --scrollbar-border-radius: 10px;
+
+    height: 380px;
+    max-height: 400px;
+    border-radius: 3px;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+  }
+
+  
+
+
+
+.page-title {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  transition: 0.2s;
+  background: white;
+
+}

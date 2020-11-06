@@ -1,0 +1,28 @@
+<div class="container col-12" >   
+
+ <form [formGroup]="transportadoraForm" class="form mt-4" (submit)="salvar()">
+    <div class="form-group">
+        <label for="nome">Nome da Empresa Transportadora</label>
+        <input formControlName="nome" name="nome" #nomeInput class="form-control col-md-6" placeholder="Nome da transportadora"
+            autofocus>
+        </div>
+    <div class="form-group">
+        <label for="cgc">C.G.C.</label>
+        <input formControlName="cgc" name="cgc" type="text" class="form-control col-md-6" placeholder="CGC da transportadora">
+    </div>
+
+    <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input formControlName="telefone" name="telefone" type="text" class="form-control col-md-6" placeholder="telefone da transportadora">
+    </div>
+
+    <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <input formControlName="endereco" name="endereco" type="text" class="form-control col-md-6" placeholder="endereco da transportadora">
+     </div>
+
+    <div class="col-md-1 ">
+        <button [disabled]="transportadoraForm.invalid" type="submit" class="btn btn-primary btn-block">Salvar</button>
+    </div>
+</form>
+</div>

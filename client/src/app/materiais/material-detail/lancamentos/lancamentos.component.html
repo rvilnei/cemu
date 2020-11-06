@@ -1,0 +1,47 @@
+<div class="row row-content"> 
+        <div class="col-12 col-sm=9">
+            <div class="row" >
+            <h4> lançamentos : </h4>
+            <div class="float-center" >
+                <select id="unidade" name="unidade"  [(ngModel)]="unidadeId" (change)="onChangeUnidade()" >
+                    <option [ngValue]="0" >...</option>
+                    <option *ngFor="let unidade of unidades$ | async" [ngValue]="unidade.id">{{unidade.sigla}}</option>
+                </select>
+           </div>
+        </div>
+            <div *ngIf="material.lancamentos.length > 0 " class="table-responsive">
+                <table class="table table-striped ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Origem</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Matricula</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-hover">
+                        <tr *ngFor="let item of material.lancamentos ">
+                            <th scope="row"> {{ item.id }} </th>
+                            <td> {{ item.data | date: 'dd/MM/yyyy hh:mm:ss'  }} </td>
+                            <td> {{ item.tipo }} </td>
+                            <td> {{ item.unidadeOrigem }} </td>
+                            <td> {{ item.unidadeDestino }} </td>
+                            <td> 
+                                <i *ngIf="item.tipo != 'MOVI_ITEM_PENDENTE'" class='fa fa-plus' style='color:green'></i>     
+                                <i *ngIf="item.tipo == 'MOVI_ITEM_PENDENTE'" class='fa fa-minus' style='color:red'></i>                          
+                                <span class="badge badge-warning" >{{ item.quantidade }}</span> 
+                            </td>
+                            <td> {{ item.matricula }} </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="material.lancamentos.length == 0 " class="row row-content">
+         Não há itens lançados 
+    </div>

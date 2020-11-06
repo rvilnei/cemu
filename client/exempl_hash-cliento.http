@@ -1,0 +1,34 @@
+http://localhost:8080/materiais/1/lancamentos
+
+######
+http://localhost:3000/materiais
+
+######
+POST http://localhost:3000/materiais HTTP/1.1
+content-type: application/json
+
+  {
+    "nome": "Fogos de artifícios 2"
+  }
+
+
+POST  http://localhost:8080/materiais/1/lancamentos HTTP/1.1
+content-type: application/json
+  {
+    "qauntidade": "222"
+  }
+
+
+######
+PUT http://localhost:3000/materiais/5 HTTP/1.1
+content-type: application/json
+
+  {
+    "nome": "Fogos de artifícios COLORIDOS"
+  }
+
+######
+GET  http://localhost:3000/materiais/5
+
+######
+DELETE http://localhost:3000/materiais/5

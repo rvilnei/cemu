@@ -1,0 +1,80 @@
+<div class="container col-12">
+  <div *ngIf=" guias$ | async as guias_async; else loading ">
+
+    <div class="card col-12 ">
+      <div class="card-header">
+        <div class="float-left">
+          <h4>Lista de Gauis</h4>
+        </div>
+        <div class="float-right">
+          <button type="button" class="btn btn-primary" [routerLink]="'/guiaNew'">Nova Guia</button>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Número</th>
+                <th scope="col">Recebida</th>
+                <th scope="col">Movimentação</th>
+                <th scope="col">Data criação</th>
+                <th scope="col">Nome do Portador</th>
+                <th scope="col">Placa do Veículo</th>
+                <th scope="col">Empresa</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let guia of guias_async
+                                            | paginate: {  id: 'listing_pagination',
+                                            itemsPerPage: itemsPerPage,
+                                            currentPage: currentPage,
+                                            totalItems: guias_async.lenght }">
+                <th scope="row">{{guia.id}}</th> 
+                <!-- <td> <a [routerLink]="['/materialDetail', material.id]" > {{material.nome}}</a></td> -->
+                <td> <a [routerLink]="['/guiaDetail', guia.id, false ]"> {{guia.numeroGuia}}</a></td>
+                <td  align="center" >  <input type="checkbox"  [ngModel]="guia.dataRecebimento" disabled >  </td>
+                <td> <a [routerLink]="['/movimentacaoDetail', guia?.movimentacao?.id ]"> {{guia?.movimentacao?.id}}-{{guia?.movimentacao?.status}}  </a></td>
+                <td>{{guia.dataCriacao}}</td>
+                <td>{{guia.nomeCondutor}}</td> 
+                <td>{{guia.rgCondutor }}</td>
+                <td>{{guia.placaVeiculo }}</td>
+                <td> {{ guia.transportadora?.nome}} </td>
+                <td>
+                  <span class="float-right">
+                            <!-- <button class="btn btn-outline-primary mb-1 btn-sm" (click)="openModal(templateMaterialSelect, material);"> 
+                              <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button> -->
+                            <!-- <button class="btn btn-outline-warning mr-2 btn-sm" [routerLink]="['/guiaEdit', guia.id]">
+                              <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button> -->
+                            <edit-modal [guiaImput]="guia" ></edit-modal>
+                            <app-guia-delete (atualizaLista)="guias$ = $event" [guia]="guia" ></app-guia-delete>
+                          </span>
+
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <pagination-controls id="listing_pagination" previousLabel="Anterior" nextLabel="Próximo" maxSize="5" directionLinks="true"
+        (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+  </div>
+
+
+
+
+  <ng-template #loading>
+    <span>Carregando ... </span>
+    <div class="spinner-border spinner-border-lg"></div>
+    <div class="spinner-grow spinner-grow-lg"></div>
+  </ng-template>
+
+</div>

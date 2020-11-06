@@ -1,0 +1,64 @@
+    <header class="fixed-top" >
+    <nav class="navbar navbar-light bg-white" >
+        <a class="navbar-brand">
+            <i tabindex="0" (keyup.space)="menu.toggle()" (click)="menu.toggle()" class="fa fa-bars mr-2"></i>
+            Estoque
+        </a>
+
+        <app-menu #menu >
+            <ul class="list-unstyled" >
+                    <div showIfLogged class="nav-item" > <a class="nav-link" [routerLink]="['/home']" routerLinkActive >Home</a> </div>
+                    <div showIfLogged class="nav-item" > <a class="nav-link" [routerLink]="['/materiais']" >Materiais</a> </div>
+                    <div showIfLogged class="nav-item" > <a class="nav-link" [routerLink]="['/transportadoras']">Transportadoras</a> </div>
+                    <div showIfLogged class="nav-item" > <a class="nav-link" [routerLink]="['/guias']">Guias</a> </div>
+                    <!-- <div *ngIf=" ( user$ | async ) as user" class="nav-item" > <a class="nav-link" [routerLink]="['/movimentacoes', user.unidadeId, 'saida']" >Saída</a> </div> 
+                    <div *ngIf=" ( user$ | async ) as user" class="nav-item" > <a class="nav-link" [routerLink]="['/movimentacoes', user.unidadeId, 'entrada']" >Entrada</a> </div>   -->
+                   
+                    <div  showIfLogged class="nav-item" > 
+                       <span dropdown class="btn-group"  >
+                        <a href id="basic-link" class="nav-item"  dropdownToggle (click)="false"
+                            aria-controls="basic-link-dropdown">Movimentação</a>
+                        <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+                            role="menu" aria-labelledby="basic-link">
+                            <div *ngIf=" ( user$ | async ) as user" class="nav-item" > <a class="nav-link" [routerLink]="['/movimentacoes', user.unidadeId, 'saida']" >Saída</a> </div> 
+                            <div *ngIf=" ( user$ | async ) as user" class="nav-item" > <a class="nav-link" [routerLink]="['/movimentacoes', user.unidadeId, 'entrada']" >Entrada</a> </div> 
+                        </ul>
+                       </span>
+                    </div>
+          
+                    <div showIfLogged class="nav-item" > <a class="nav-link" [routerLink]="['/estoques']">Estoques</a> </div>
+                </ul>
+            </app-menu>
+
+            <div class="nav-item" > <a class="nav-link" [routerLink]="['/home']" routerLinkActive >Home</a> </div>
+            <div class="nav-item" > <a class="nav-link" [routerLink]="['/materiais']" >Materiais</a> </div>
+            
+            
+
+            <div class="nav-item" > 
+               <span dropdown class="btn-group"  >
+                <a href id="basic-link" class="nav-item"  dropdownToggle (click)="false"
+                    aria-controls="basic-link-dropdown">Movimentação</a>
+                <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="basic-link">
+                    <div *ngIf=" ( user$ | async ) as user" class="nav-item" > <a class="nav-link" [routerLink]="['/movimentacoes', user.unidadeId, 'saida']" >Saída</a> </div> 
+                    <div *ngIf=" ( user$ | async ) as user" class="nav-item" > <a class="nav-link" [routerLink]="['/movimentacoes', user.unidadeId, 'entrada']" >Entrada</a> </div> 
+                </ul>
+               </span>
+            </div>
+            <div class="nav-item" > <a class="nav-link" [routerLink]="['/guias']">Guias</a> </div>
+            <div class="nav-item" > <a class="nav-link" [routerLink]="['/estoques']">Estoques</a> </div>
+            <div class="nav-item" > <a class="nav-link" [routerLink]="['/transportadoras']">Transportadoras</a> </div>
+            <div *ngIf=" ( user$ | async ) as user; else login " >  
+            <i class="fa fa-user-circle mr-1" ></i>
+            <a class="mr-1" >{{user.email}}</a>
+            <a (click)="logout()">(Logout)</a>
+            </div>
+        <ng-template #login>
+            <span class="navbar-text" >
+                <a [routerLink]="['/login']" >Please, login</a>
+            </span>
+        </ng-template>
+    </nav>
+
+</header>
