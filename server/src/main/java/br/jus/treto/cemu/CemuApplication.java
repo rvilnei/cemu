@@ -7,14 +7,14 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @SpringBootApplication
-@EnableSpringDataWebSupport //  war tradicional
-public class CemuApplication   extends SpringBootServletInitializer {
+@EnableSpringDataWebSupport  // Habilita Pagenable
+public class CemuApplication   extends SpringBootServletInitializer {  // tomcat provided  - .war
 
 	public static void main(String[] args) {
 		SpringApplication.run(CemuApplication.class, args);
 	}
 	
-	@Override
+	@Override  // tomcat provided - .war
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(CemuApplication.class);
 	}

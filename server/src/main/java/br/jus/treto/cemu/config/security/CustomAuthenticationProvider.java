@@ -38,11 +38,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     	List<Perfil> perfis = usuario.getPerfis();
     	
 	  	if( usuario.getEmail() != null ) {
-	       // User userAuth = new User(usuario);
-	  		//Optional<User> user = usuarioRepository.findByEmail( usuario.getEmail()  ) ;
-	  		//User userAuth = user.get();
-	  		
-	  	//	User userAuth = usuarioRepository.findByEmail( usuario.getEmail()  ) ;
 	  		Optional<User> user = usuarioRepository.findByEmail( usuario.getEmail()  ) ;
 	  		User userAuth ;
 	  		if( user.isPresent() ) {
