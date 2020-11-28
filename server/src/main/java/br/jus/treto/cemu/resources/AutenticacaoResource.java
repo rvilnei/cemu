@@ -42,6 +42,7 @@ public class AutenticacaoResource {
 			UsernamePasswordAuthenticationToken dadosLogin = form.converter();
 
 			try {
+					// chama CustomAuthenticationProvider.authenticate(Authentication authentication) () //
 					Authentication authentication = autManager.authenticate(dadosLogin);
 					String token = tokenService.gerarToken( authentication );
 					return ResponseEntity.ok( new TokenDto( token, "Bearer" ));

@@ -38,38 +38,27 @@ public  class AutenticacaoViaTokenFilter extends OncePerRequestFilter  {
 		
 		String token = recuperarRequestToken(request);
 		boolean valido = tokenService.istokenValido(token);
-
 		if(valido) {
 			autenticaarCliente(token);
 		}else { 
 			System.out.println("Token invalido ... ");
 		}
-		
 		filterChain.doFilter(request, response);
 	}
 
 	private void autenticaarCliente(String token) {
-		     Long idUsuario = tokenService.getIdUsuario(token);
-		     User userAuth;
-		     Optional<User> user =  repository.findById(idUsuario);
-		     if ( user.isPresent() ) {
-			 		userAuth = user.get();
-		     } else {
-		    	 	userAuth = new User();
-		     }
+		    Long idUsuario = tokenService.getIdUsuario(token);
+		    User userAuth =  repository.findById(idUsuario).get();
 			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userAuth, null, userAuth.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 
 	private String recuperarRequestToken(HttpServletRequest request) {
 	String token = request.getHeader("Authorization") ;		
-	//String token = request.getHeader("x-access-token") ;	
-
 		if(token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
 			return null;
-		}
-		
-		return token.substring(7, token.length());
+		}		
+	return token.substring(7, token.length());
 	}
 
 }
