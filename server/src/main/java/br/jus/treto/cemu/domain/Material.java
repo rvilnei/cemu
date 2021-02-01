@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,7 +30,8 @@ public class Material {
 	//@GeneratedValue( strategy = GenerationType.IDENTITY )
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_MATERIAL")
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_MATERIAL", sequenceName = "SEQ_MATERIAL")
-	private Long id;				
+	private Long id;		
+	@NotNull @NotEmpty  @Length( min = 2 )
 	private String nome;
 	private String descricao;
 	private Long tipo;

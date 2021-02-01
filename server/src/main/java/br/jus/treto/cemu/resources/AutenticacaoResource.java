@@ -27,7 +27,7 @@ import br.jus.treto.cemu.resources.dto.TokenDto;
 @RestController
 @RequestMapping( "user/login" )
 //@Profile("prod")
-//@Profile("dev")
+@Profile("dev")
 public class AutenticacaoResource {
 	
 	@Autowired

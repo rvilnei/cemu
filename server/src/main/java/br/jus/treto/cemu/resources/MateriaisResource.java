@@ -8,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.jus.treto.cemu.domain.Lancamento;
 import br.jus.treto.cemu.domain.Material;
@@ -32,30 +37,28 @@ public class MateriaisResource {
 	@Autowired
 	private MateriaisService materiaisService ;
 
-	@RequestMapping( method = RequestMethod.GET, produces = "application/json"  )
+	@GetMapping
 	public ResponseEntity<List<MaterialDto>> listar() {
 		List<Material> materiais = materiaisService.listar();
 		List<MaterialDto> listMaterialDto =  MaterialDto.converter( materiais, materiaisService );
-//		List<MaterialDto> listMaterialDto =  MaterialDto.converter( materiais);
 		 return ResponseEntity.status(HttpStatus.OK).body( listMaterialDto );
 	}
 	  
-	@RequestMapping( method = RequestMethod.POST  )
-	public ResponseEntity<?> salvar( @RequestBody Material material ) {
+	@PostMapping 
+	public ResponseEntity<?> salvar( @RequestBody Material material, UriComponentsBuilder uriBuilder ) {
 		material = materiaisService.salvar(material);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-					.path("/{id}").buildAndExpand(material.getId()).toUri();
+		URI uri = uriBuilder.path("/materiais/{id}").buildAndExpand(material.getId()).toUri();
 		return ResponseEntity.created(uri).body(material);
 	}
-
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE) 
+ 
+	@DeleteMapping("/{id}") 
 	public  ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
 		/** exception está sendo tratada no inteceptor ResourceExceptionHandler **/
 		materiaisService.delete(id);
 		return ResponseEntity.noContent().build();	
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	@PutMapping("/{id}") 
 	public ResponseEntity<Void> atualizar (@RequestBody Material material, @PathVariable("id") Long id ) {
 		material.setId(id); // para garantir q o recurso q será atualizado é o do id xxx
 		materiaisService.atualizar(material);
@@ -63,14 +66,14 @@ public class MateriaisResource {
 	}
 	
 	//poderia criar outro resource e service para Lancamento 
-	@RequestMapping( value = "/{id}/lancamentos", 	method = RequestMethod.POST)
+	@PostMapping ("/{id}/lancamentos")
 	public ResponseEntity<Void> adicionarLancamento( @PathVariable("id") Long materialId, @RequestBody Lancamento lancamento){
 		materiaisService.salvaLancamento(materialId, lancamento);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 		return ResponseEntity.created(uri).build(); 
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping("/{id}")
 	public ResponseEntity<?> buscar(@PathVariable("id") Long id) {
 		/** exception está sendo tratada no inteceptor ResourceExceptionHandler **/
 		Material material =  materiaisService.buscar(id);
@@ -80,7 +83,7 @@ public class MateriaisResource {
 		return  ResponseEntity.status(HttpStatus.OK).body( materialDto );
 	}
 	 
-	@RequestMapping( value= "/{id}/lancamentos", method = RequestMethod.GET )
+	@RequestMapping("/{id}/lancamentos")
 	public ResponseEntity< List<LancamentoDto>> listarLancamentos( @PathVariable("id") long materialId ){
 		List<Lancamento> lancamentos = materiaisService.listarLancamentos(materialId);
 	
@@ -100,8 +103,6 @@ public class MateriaisResource {
 		return  lancamentos;
 	}
 
- 
-	
 	@RequestMapping( value = "/tipos" )
 	public ResponseEntity<List <Tipo>> tipos(){
 		List<Tipo> tipos = materiaisService.listarTipos();
