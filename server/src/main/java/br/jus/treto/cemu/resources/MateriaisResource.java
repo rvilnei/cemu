@@ -4,6 +4,8 @@ import java.net.URI;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +47,7 @@ public class MateriaisResource {
 	}
 	  
 	@PostMapping 
-	public ResponseEntity<?> salvar( @RequestBody Material material, UriComponentsBuilder uriBuilder ) {
+	public ResponseEntity<?> salvar( @RequestBody @Valid Material material, UriComponentsBuilder uriBuilder ) {
 		material = materiaisService.salvar(material);
 		URI uri = uriBuilder.path("/materiais/{id}").buildAndExpand(material.getId()).toUri();
 		return ResponseEntity.created(uri).body(material);
