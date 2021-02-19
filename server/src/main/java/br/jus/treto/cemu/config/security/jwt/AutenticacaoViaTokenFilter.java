@@ -18,14 +18,18 @@ import br.jus.treto.treauth.Autenticacao;
 import br.jus.treto.treauth.model.Unidade;
 import br.jus.treto.treauth.model.Usuario;
 import br.jus.treto.cemu.config.security.jwt.TokenService;
-import br.jus.treto.cemu.domain.LoginForm;
 import br.jus.treto.cemu.domain.User;
 import br.jus.treto.cemu.repository.UsuarioRepository;
+import br.jus.treto.cemu.resources.form.LoginForm;
 
+/** Lógica para qdo chegar uma requisiçao com um TOKEN
+ recuperar,  validar e autenticar o usuário **/
 public  class AutenticacaoViaTokenFilter extends OncePerRequestFilter  {
 	
 	private TokenService tokenService;
 	private UsuarioRepository repository;
+	
+	
 	
 	public AutenticacaoViaTokenFilter(TokenService tokenService, UsuarioRepository repository) {
 		this.tokenService = tokenService;

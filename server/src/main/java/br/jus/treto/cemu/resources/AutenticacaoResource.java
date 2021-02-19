@@ -20,14 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.jus.treto.cemu.config.security.jwt.TokenService;
-import br.jus.treto.cemu.domain.LoginForm;
 import br.jus.treto.cemu.resources.dto.TokenDto;
+import br.jus.treto.cemu.resources.form.LoginForm;
 
 @CrossOrigin
 @RestController
 @RequestMapping( "user/login" )
-//@Profile("prod")
-@Profile("dev")
+@Profile("prod")
 public class AutenticacaoResource {
 	
 	@Autowired
