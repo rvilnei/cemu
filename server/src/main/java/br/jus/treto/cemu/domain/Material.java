@@ -10,9 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,14 +31,18 @@ public class Material {
 	//@GeneratedValue( strategy = GenerationType.IDENTITY )
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_MATERIAL")
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_MATERIAL", sequenceName = "SEQ_MATERIAL")
-	private Long id;				
+	private Long id;		
+	@NotNull @NotEmpty  @Length( min = 2 )
 	private String nome;
 	private String descricao;
-	private Long tipo;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "TIPO_ID")
+	private Tipo tipo;
 	private String codigobarras;
 	private Long categoria;
 	private String modelo;
-	private Long status;
+	@ManyToOne
+	private Status status;
 	private Boolean temDevolucao;
 	@Transient
 	private Boolean temCodigobarras;
@@ -45,6 +54,9 @@ public class Material {
 	@JsonIgnore // 
   	private  List<ItemMovimentacao> itens = new ArrayList<>()	;
 	
+	 public Material() {}
+	
+	
 	public List<ItemMovimentacao> getItens() {
 		return itens;
 	}
@@ -53,11 +65,11 @@ public class Material {
 		this.itens = itens;
 	}
 
-	public Long getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Long tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
@@ -85,11 +97,11 @@ public class Material {
 		this.modelo = modelo;
 	}
 
-	public Long getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(Long status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
@@ -121,8 +133,6 @@ public class Material {
 	public void setLancamentos(List<Lancamento> lancamentos) {
 		this.lancamentos = lancamentos;
 	}
-
-	public Material( ){}
 	
 	public Material(String nome, String descricao ) {
 		this.nome = nome;

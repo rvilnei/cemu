@@ -14,19 +14,22 @@ import br.jus.treto.cemu.domain.ItemMovimentacao;
 import br.jus.treto.cemu.domain.Lancamento;
 import br.jus.treto.cemu.domain.Material;
 import br.jus.treto.cemu.domain.Movimentacao;
+import br.jus.treto.cemu.domain.Status;
+import br.jus.treto.cemu.domain.Tipo;
 import br.jus.treto.cemu.services.MateriaisService;
+
 
 public class MaterialDto {
 	
 	private Long id;				
 	private String nome;
 	private String descricao;
-	private Long tipo;
+	private Tipo tipo;
 	private String tipoDescricao;
 	private String codigobarras;
 	private Long categoria;
 	private String modelo;
-	private Long status;
+	private Status status;
 	private String statusDescricao;
 	private Boolean temDevolucao;
 	private Boolean temCodigobarras;
@@ -59,12 +62,15 @@ public class MaterialDto {
 		this.nome = material.getNome() ;
 		this.descricao = material.getDescricao() ;
 		this.tipo  = material.getTipo();
-		this.tipoDescricao  = materiaisService.buscarTipo(  material.getTipo() ).getNome();
+		this.tipoDescricao  = material.getTipo().getNome();
+		//this.tipoDescricao  = materiaisService.buscarTipo(  material.getTipo() ).getNome();
 		this.codigobarras  = material.getCodigobarras();
 		this.categoria  = material.getCategoria();
 		this.modelo  = material.getModelo();
+		//this.status = material.getStatus();
 		this.status = material.getStatus();
-		this.statusDescricao  = materiaisService.buscarStatus(  material.getTipo() ).getNome();
+		this.statusDescricao  =  this.status.getNome();
+		//this.statusDescricao  = materiaisService.buscarStatus(  material.getTipo() ).getNome();
 		this.temDevolucao = material.getTemDevolucao();
 		this.temCodigobarras = material.getTemCodigobarras();
 		this.lancamentos = LancamentoDto.converter( material.getLancamentos() );	
@@ -95,7 +101,7 @@ public class MaterialDto {
 		return descricao;
 	}
 
-	public Long getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
@@ -114,7 +120,7 @@ public class MaterialDto {
 	public String getTipoDescricao() {
 		return tipoDescricao;
 	}
-	public Long getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 	public String getStatusDescricao() {
@@ -145,7 +151,7 @@ public class MaterialDto {
 		this.itens = itens;
 	}
 
-	public void setStatus(Long status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

@@ -20,13 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter;
 import br.jus.treto.cemu.config.security.jwt.TokenService;
-import br.jus.treto.cemu.domain.LoginForm;
 import br.jus.treto.cemu.domain.User;
 import br.jus.treto.cemu.repository.UsuarioRepository;
+import br.jus.treto.cemu.resources.form.LoginForm;
 
 @EnableWebSecurity
 @Configuration
-@Profile("dev")
+@Profile("prod")
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -54,6 +54,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers("/console/**").permitAll()
 		// A ROLE CADASTRADA NA TABELA PERFIS SEGUE O PADRÃO ROLE_XXXX EX: ROLE_USUARIO, ROLE_TESTE //
 		//.antMatchers(HttpMethod.GET, "/materiais").hasRole("USUARIO")	
+		//.antMatchers(HttpMethod.DELETE, "/materiais/*").hasRole("ADMINITRADOR")	
 		.antMatchers("/h2-console/**").permitAll()
 	    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Habilitar crossOrigin
 		.anyRequest().authenticated()
