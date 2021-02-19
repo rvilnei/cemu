@@ -11,15 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 @Configuration
-@Profile( "prod" )
+@Profile( "dev" )
 public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
-	
-	@Override
-	@Bean
-	protected AuthenticationManager authenticationManager() throws Exception  {
-		return super.authenticationManager();
-	}
-	
+
 	//Configuracoes de autorizacao
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -27,7 +21,6 @@ public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 			.antMatchers("/**").permitAll() 
 			.antMatchers("/h2-console/**").permitAll()
 			.antMatchers("/console/**").permitAll()
-				
 			.and().csrf().disable();
 			//habilita h2-console
 		//	.headers().frameOptions().disable();

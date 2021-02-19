@@ -1,4 +1,4 @@
-package br.jus.treto.cemu.domain;
+package br.jus.treto.cemu.resources.form;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
