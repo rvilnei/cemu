@@ -34,15 +34,14 @@
         <div class="form-group row">
             <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
             <div class="col-5 col-md-3">
-              <select class="form-control" [disabled]="material.temDevolucao" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo"
-                 id="tipo" name="tipo" [(ngModel)]="material.tipo">
+              <select class="form-control" [disabled]="material.temDevolucao" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo.id">
                  <option>...</option>
-                 <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo">{{materialTipo.nome}}</option>
+                 <option *ngFor="let tipo of materialTipo$ | async" [value]="tipo.id">{{tipo.nome}}</option>
               </select>
             </div>
             <label for="status" class="col-md-2 col-form-label">Status</label>
             <div class="col-5 col-md-5">
-                <select class="form-control" [disabled]="!material.temDevolucao"  name="status" id="status" [(ngModel)]="material.status">
+                <select class="form-control" [disabled]="!material.temDevolucao"  name="status" id="status" [(ngModel)]="material.status.id">
                     <option >...</option>
                     <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
                  </select>

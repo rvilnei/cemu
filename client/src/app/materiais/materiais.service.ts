@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, map, catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Tipo } from './tipo';
+import { Material } from './material';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,7 +33,7 @@ export class MateriaisService {
     constructor( private http: HttpClient ) { }
 
     /** GET materiais from the server */
-    getMateriais (): Observable<any[]> {
+    getMateriais (): Observable<Material[]> {
         return this.http.get<any[]>(this.API+'materiais')
           .pipe( delay(200) ,
             tap(materiais => this.log('fetched materiais'))//,
@@ -40,7 +42,7 @@ export class MateriaisService {
       }
 
     /** GET material by id. Will 404 if id not found */
-    getMaterial(id: number): Observable<any> {
+    getMaterial(id: number): Observable<Material> {
         const url = `${this.API}materiais/${id}`;
         return this.http.get<any>(url).pipe(
             tap(_ => this.log(`fetched material id=${id}`)),
@@ -102,8 +104,8 @@ export class MateriaisService {
       );
     }
 
-    getTipo(): Observable<any[]> {
-      return this.http.get<any[]>(this.API+'materiais/tipos').pipe( delay(20));
+    getTipo(): Observable<Tipo[]> {
+      return this.http.get<Tipo[]>(this.API+'materiais/tipos').pipe( delay(20));
     }
     
     getStatus(): Observable<any> {

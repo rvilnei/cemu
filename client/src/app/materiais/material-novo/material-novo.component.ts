@@ -10,6 +10,9 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
+import { Tipo } from '../tipo';
+import { Material } from '../material';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-material-novo',
@@ -18,14 +21,15 @@ import { FormGroup } from '@angular/forms';
 })
 export class MaterialNovoComponent implements OnInit {
 
-  material: any = {};
-  materialTipo$: Observable<any[]>; // para usar | async
+  material: Material = new Material() ;
+  materialTipo$: Observable<Tipo[]>; // para usar | async
+  materialTipo: Tipo[];
   materialStatu$: Observable<any[]>;
-  materiais$: Observable<any[]>;
+  materiais$: Observable<Material[]>;
   noResult: any;
   public modalRef: BsModalRef;
   materialselect: any;
-  itemMaterial: any = {};
+  itemMaterial: any = {} ;
   user: User;
   materialForm: FormGroup;
   fieldsetDisabled: boolean = false;
@@ -53,7 +57,7 @@ export class MaterialNovoComponent implements OnInit {
     this.userService.getUser()
       .subscribe(user => {
         this.user = user;
-      });
+      });  
   }
 
   save(): void {
@@ -77,7 +81,7 @@ export class MaterialNovoComponent implements OnInit {
 
   limpar() {
     this.fieldsetDisabled = false;
-    this.material = {};
+    this.material = new Material();
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -140,27 +144,27 @@ export class MaterialNovoComponent implements OnInit {
             });
         })
     }
-    this.material = {};
+    this.material = new Material();
     this.router.navigate(['/materiais']);
   }
 
   changeMaterialTipo(e) {
-    this.tipoMaterial = this.material.tipo == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
-    if (this.tipoMaterial == 'PECA_REPOSICAO') {
+    this.tipoMaterial = this.material.tipo.nome;
+    if ( this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
       this.material.temDevolucao = false;
-    } else if (this.tipoMaterial == 'SUPRIMENTO') {
+    } else if ( this.tipoMaterial == 'SUPRIMENTO') {
       this.material.temDevolucao = true;
     }
   }
 
   changeTemDevolucao(e) {
-    this.tipoMaterial = this.material.tipo == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
     if (this.material.temDevolucao) {
-      this.material.tipo = 2; // SUPRIMENTO
+      this.material.tipo.id = 2; // SUPRIMENTO
     } else {
-      this.material.tipo = 1; // PEÇA_REPOSIÇÃO
-      this.material.status = null;
+      this.material.tipo.id = 1; // PEÇA_REPOSIÇÃO
+      this.material.status.id = null;
       this.material.temCodigobarras = false;
     }
   }
@@ -168,7 +172,7 @@ export class MaterialNovoComponent implements OnInit {
   changeTemCodigoBarras(e) {
     if (e.value = true) {
       this.material.temDevolucao = true;
-      this.material.tipo = 2; // SUPRIMENTO
+      this.material.tipo.id = 2; // SUPRIMENTO
     }
   }
 
