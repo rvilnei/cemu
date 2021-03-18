@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
  
 @Entity
@@ -35,6 +37,7 @@ public class Guia {
 	private Long transportadoraId;
 
 	@OneToOne
+	@NotNull
 	@JoinColumn(name="MOVIMENTACAO_ID")
 	private Movimentacao movimentacao;
 
