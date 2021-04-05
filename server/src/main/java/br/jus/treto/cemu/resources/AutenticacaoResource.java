@@ -26,7 +26,7 @@ import br.jus.treto.cemu.resources.form.LoginForm;
 @CrossOrigin
 @RestController
 @RequestMapping( "user/login" )
-@Profile("prod")
+//@Profile("prod")
 public class AutenticacaoResource {
 	
 	@Autowired

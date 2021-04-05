@@ -111,6 +111,21 @@ public class MateriaisResource {
 		return ResponseEntity.status(HttpStatus.OK).body(tipos);
 	}
 	
+//	@GetMapping("/{id}/tipo")
+//	public ResponseEntity<Tipo> getTipo( @PathVariable("id") Long id ){
+//		System.out.println("**********  "+id);
+//		Tipo tipo = materiaisService.getTipo(id);
+//		return ResponseEntity.status(HttpStatus.OK).body(tipo);
+//	}
+	
+	@RequestMapping( value = "/{id}/tipo", method = RequestMethod.GET, produces = "application/json"  )
+	public ResponseEntity<Tipo> getTipo(  @PathVariable("id") Long id  ) {
+		System.out.println("**********  "+id);
+		Tipo tipo = materiaisService.getTipo(id);
+		return ResponseEntity.status(HttpStatus.OK).body(tipo);
+	}
+	
+	
 	@RequestMapping(value= "/status")
 	public ResponseEntity<List<Status>> status(){
 		List<Status> status = materiaisService.listarStatus();

@@ -3,6 +3,7 @@ package br.jus.treto.cemu.services;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -90,6 +91,10 @@ public class MateriaisService {
 	
 	public List<Tipo> listarTipos(){
 		return tipoRepository.findAll();
+	}
+	
+	public  Tipo getTipo(Long id){
+		return tipoRepository.findById(id).orElse(null)  ;
 	}
 	
 	public List<Status> listarStatus(){

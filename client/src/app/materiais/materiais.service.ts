@@ -104,10 +104,14 @@ export class MateriaisService {
       );
     }
 
-    getTipo(): Observable<Tipo[]> {
+    getTipos(): Observable<Tipo[]> {
       return this.http.get<Tipo[]>(this.API+'materiais/tipos').pipe( delay(20));
     }
     
+    getTipo( id: number): Observable<Tipo> {
+      return this.http.get<Tipo>(this.API+`materiais/${id}/tipo`);
+    }
+
     getStatus(): Observable<any> {
       return this.http.get<any[]>( this.API+'materiais/status' ).pipe( delay(20) );
     }

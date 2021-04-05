@@ -13,6 +13,7 @@ import { FormGroup } from '@angular/forms';
 import { Tipo } from '../tipo';
 import { Material } from '../material';
 import { tap } from 'rxjs/internal/operators/tap';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-material-novo',
@@ -22,9 +23,9 @@ import { tap } from 'rxjs/internal/operators/tap';
 export class MaterialNovoComponent implements OnInit {
 
   material: Material = new Material() ;
-  materialTipo$: Observable<Tipo[]>; // para usar | async
+  materialTipos$: Observable<Tipo[]>; // para usar | async
   materialTipo: Tipo[];
-  materialStatu$: Observable<any[]>;
+  materialStatus$: Observable<any[]>;
   materiais$: Observable<Material[]>;
   noResult: any;
   public modalRef: BsModalRef;
@@ -51,8 +52,8 @@ export class MaterialNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.materialTipo$ = this.service.getTipo();
-    this.materialStatu$ = this.service.getStatus();
+    this.materialTipos$ = this.service.getTipos();
+    this.materialStatus$ = this.service.getStatus();
     this.materiais$ = this.service.getMateriais();
     this.userService.getUser()
       .subscribe(user => {
@@ -149,7 +150,15 @@ export class MaterialNovoComponent implements OnInit {
   }
 
   changeMaterialTipo(e) {
-    this.tipoMaterial = this.material.tipo.nome;
+   // this.tipoMaterial = this.material.tipo.nome;
+   
+   this.service.getTipo(this.material.tipo.id)
+   .pipe(
+     tap( tipo => console.log(tipo) ),
+     map( tipo => tipo.nome )
+   ).subscribe( tipo => {
+      this.tipoMaterial  = tipo;
+    } );
     if ( this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
       this.material.temDevolucao = false;

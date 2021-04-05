@@ -16,8 +16,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Número</th>
                 <th scope="col">Recebida</th>
-                <th scope="col">Movimentação</th>
-                <th scope="col">Status</th>
+                <th scope="col">Movimentação/Status</th>
                 <th scope="col">Data criação</th>
                 <th scope="col">Nome do Portador</th>
                 <th scope="col">Placa do Veículo</th>
@@ -36,7 +35,7 @@
                 <!-- <td> <a [routerLink]="['/materialDetail', material.id]" > {{material.nome}}</a></td> -->
                 <td> <a [routerLink]="['/guiaDetail', guia.id, false ]"> {{guia.numeroGuia}}</a></td>
                 <td  align="center" >  <input type="checkbox"  [ngModel]="guia.dataRecebimento" disabled >  </td>
-                <td> <a [routerLink]="['/movimentacaoDetail', guia?.movimentacao?.id ]"> {{guia?.movimentacao?.id}}-{{guia?.movimentacao?.status}}  </a></td>
+                <td> <a [routerLink]="['/movimentacaoDetail', guia?.movimentacao?.id ]"> {{guia?.movimentacao?.id}} / {{guia?.movimentacao?.status}}  </a></td>
                 <td>{{guia.dataCriacao | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
                 <td>{{guia.nomeCondutor}}</td> 
                 <td>{{guia.rgCondutor }}</td>

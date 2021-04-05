@@ -1,5 +1,6 @@
 <div class="container">
     <h4>Material Form Novo</h4>
+    {{material | json}}
     <form (ngSubmit)="save()" #materialForm="ngForm">
       <fieldset [disabled]="fieldsetDisabled">
         <div class="form-group row">
@@ -36,14 +37,14 @@
             <div class="col-5 col-md-3">
               <select class="form-control" [disabled]="material.temDevolucao" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo.id">
                  <option>...</option>
-                 <option *ngFor="let tipo of materialTipo$ | async" [value]="tipo.id">{{tipo.nome}}</option>
+                 <option *ngFor="let tipo of materialTipos$ | async" [value]="tipo.id">{{tipo.nome}}</option>
               </select>
             </div>
             <label for="status" class="col-md-2 col-form-label">Status</label>
             <div class="col-5 col-md-5">
                 <select class="form-control" [disabled]="!material.temDevolucao"  name="status" id="status" [(ngModel)]="material.status.id">
                     <option >...</option>
-                    <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
+                    <option *ngFor="let status of materialStatus$ | async " [value]="status.id" >{{status.nome}}</option>
                  </select>
             </div>
         </div>
