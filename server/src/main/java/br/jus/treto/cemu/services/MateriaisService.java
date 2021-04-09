@@ -51,6 +51,8 @@ public class MateriaisService {
 	
 	public Material salvar(Material material) {
 		material.setId(null);
+		//System.out.println( "**Status****   "+material.getStatus().getId());
+	//	material.setStatus(buscarStatus(material.getStatus().getId()));
 		return materiaisRepository.save(material);
 	}
 	
@@ -107,6 +109,14 @@ public class MateriaisService {
 
 	public Tipo buscarTipo(Long id) {
 		Tipo tipo = tipoRepository.findById(id).orElse(null);
+		if(tipo == null) {
+			throw new MaterialNaoEncontradoException("O tipo não foi encontrado");
+		}
+		return tipo;
+	}
+	
+	public Tipo getTipoPorNome(String nome) {
+		Tipo tipo = tipoRepository.findByNome(nome).orElse(null);
 		if(tipo == null) {
 			throw new MaterialNaoEncontradoException("O tipo não foi encontrado");
 		}

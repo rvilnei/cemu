@@ -14,6 +14,7 @@ import { Tipo } from '../tipo';
 import { Material } from '../material';
 import { tap } from 'rxjs/internal/operators/tap';
 import { map } from 'rxjs/operators';
+import { Status } from 'src/app/materiais/status';
 
 @Component({
   selector: 'app-material-novo',
@@ -22,10 +23,10 @@ import { map } from 'rxjs/operators';
 })
 export class MaterialNovoComponent implements OnInit {
 
-  material: Material = new Material() ;
-  materialTipos$: Observable<Tipo[]>; // para usar | async
-  materialTipo: Tipo[];
-  materialStatus$: Observable<any[]>;
+material: Material = new Material();
+  materialTipos$: Observable<any[]>; // para usar | async
+  materialTipo: any[];
+  materialStatus$: Observable<Status[]>;
   materiais$: Observable<Material[]>;
   noResult: any;
   public modalRef: BsModalRef;
@@ -61,7 +62,8 @@ export class MaterialNovoComponent implements OnInit {
       });  
   }
 
-  save(): void {
+  onSubmit(fromMaterial): void {
+    console.log(" Dados do form ngForm:  ", fromMaterial.value );
     if (this.material.id) {
       this.service.updateMaterial(this.material)
         .subscribe(() => {
@@ -149,15 +151,11 @@ export class MaterialNovoComponent implements OnInit {
     this.router.navigate(['/materiais']);
   }
 
-  changeMaterialTipo(e) {
-   // this.tipoMaterial = this.material.tipo.nome;
-   
-   this.service.getTipo(this.material.tipo.id)
-   .pipe(
-     tap( tipo => console.log(tipo) ),
-     map( tipo => tipo.nome )
-   ).subscribe( tipo => {
-      this.tipoMaterial  = tipo;
+  changeMaterialTipo(e) {  
+   this.service.getTipo(this.material.tipoId)
+    .subscribe( tipo => {
+      this.tipoMaterial  = tipo.nome;
+      this.material.tipoId = tipo.id
     } );
     if ( this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
@@ -168,20 +166,28 @@ export class MaterialNovoComponent implements OnInit {
   }
 
   changeTemDevolucao(e) {
-    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+   // this.tipoMaterial = this.material.tipoId == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
     if (this.material.temDevolucao) {
-      this.material.tipo.id = 2; // SUPRIMENTO
+      this.getTipoNome("SUPRIMENTO" );
     } else {
-      this.material.tipo.id = 1; // PEÇA_REPOSIÇÃO
-      this.material.status.id = null;
+      this.getTipoNome("PEÇA_REPOSIÇÃO" );
+      this.material.statusId = null;
       this.material.temCodigobarras = false;
     }
+  }
+
+  getTipoNome( nome:string){
+   return this.service.getTipoPorNome(nome)
+      .subscribe( tipo => 
+          {this.material.tipoId = tipo.id;
+      });
   }
 
   changeTemCodigoBarras(e) {
     if (e.value = true) {
       this.material.temDevolucao = true;
-      this.material.tipo.id = 2; // SUPRIMENTO
+     // this.material.tipo.id = 2; // SUPRIMENTO
+      this.getTipoNome("SUPRIMENTO" );
     }
   }
 

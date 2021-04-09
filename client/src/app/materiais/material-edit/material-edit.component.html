@@ -32,14 +32,14 @@
         <div class="form-group row">
             <label for="tipo" class="col-12 col-md-2 col-form-label">Tipo</label>
             <div class="col-5 col-md-3">
-                <select class="form-control" id="tipo" name="tipo" [(ngModel)]="material.tipo.id">
+                <select class="form-control" id="tipo" name="tipo" [(ngModel)]="material.tipoId">
                     <option>...</option>
                     <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo.id">{{materialTipo.nome}}</option>
                   </select>
             </div>
             <label for="status" class="col-12 col-md-2 col-form-label">Status</label>
             <div class="col-5 col-md-5">
-                <select class="form-control" name="status" id="status" [(ngModel)]="material.status.id">
+                <select class="form-control" name="status" id="status" [(ngModel)]="material.statusId">
                   <option >...</option>
                   <option *ngFor="let status of materialStatu$ | async " [value]="status.id" >{{status.nome}}</option>
                 </select>

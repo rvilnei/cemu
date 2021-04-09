@@ -35,14 +35,17 @@ public class Material {
 	@NotNull @NotEmpty  @Length( min = 2 )
 	private String nome;
 	private String descricao;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "TIPO_ID")
-	private Tipo tipo;
+//	@ManyToOne(  optional= true ,   fetch = FetchType.EAGER)
+//	@JoinColumn(name = "TIPO_ID", nullable= true)
+//	private Tipo tipo;
+	private Long tipoId;
 	private String codigobarras;
 	private Long categoria;
 	private String modelo;
-	@ManyToOne
-	private Status status;
+//	@ManyToOne( optional= true , fetch = FetchType.EAGER)
+//	@JoinColumn(name = "STATUS_ID" , nullable= true )
+//	private Status status;
+	private Long statusId;
 	private Boolean temDevolucao;
 	@Transient
 	private Boolean temCodigobarras;
@@ -65,12 +68,12 @@ public class Material {
 		this.itens = itens;
 	}
 
-	public Tipo getTipo() {
-		return tipo;
+	public Long getTipoId() {
+		return tipoId;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+	public void setTipo(Long tipo) {
+		this.tipoId = tipo;
 	}
 
 	public String getCodigobarras() {
@@ -97,12 +100,12 @@ public class Material {
 		this.modelo = modelo;
 	}
 
-	public Status getStatus() {
-		return status;
+	public Long getStatusId() {
+		return statusId;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setStatus(Long status) {
+		this.statusId = status;
 	}
 
 	public Boolean getTemDevolucao() {

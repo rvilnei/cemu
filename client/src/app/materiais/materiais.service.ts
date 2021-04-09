@@ -5,6 +5,7 @@ import { delay, map, catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Tipo } from './tipo';
 import { Material } from './material';
+import { Status } from 'src/app/materiais/status';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -104,16 +105,20 @@ export class MateriaisService {
       );
     }
 
-    getTipos(): Observable<Tipo[]> {
-      return this.http.get<Tipo[]>(this.API+'materiais/tipos').pipe( delay(20));
+    getTipos(): Observable<any[]> {
+      return this.http.get<any[]>(this.API+'materiais/tipos');
     }
     
     getTipo( id: number): Observable<Tipo> {
       return this.http.get<Tipo>(this.API+`materiais/${id}/tipo`);
     }
 
-    getStatus(): Observable<any> {
-      return this.http.get<any[]>( this.API+'materiais/status' ).pipe( delay(20) );
+    getTipoPorNome( nome: string): Observable<Tipo> {
+      return this.http.get<Tipo>(this.API+`materiais/${nome}/nomeTipo`);
+    }
+
+    getStatus(): Observable<Status[]> {
+      return this.http.get<Status[]>( this.API+'materiais/status' );
     }
 
     getUnidades(): Observable<any[]> {
