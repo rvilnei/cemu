@@ -52,6 +52,7 @@ public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()	
 		.antMatchers("/user/login").permitAll()
 		.antMatchers("/console/**").permitAll()
+		 .antMatchers("/reports/**").permitAll()
 		// A ROLE CADASTRADA NA TABELA PERFIS SEGUE O PADRÃO ROLE_XXXX EX: ROLE_USUARIO, ROLE_TESTE //
 		//.antMatchers(HttpMethod.GET, "/materiais").hasRole("USUARIO")	
 		//.antMatchers(HttpMethod.DELETE, "/materiais/*").hasRole("ADMINITRADOR")	
