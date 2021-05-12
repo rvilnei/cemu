@@ -5,12 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.jus.treto.cemu.domain.Guia;
 import br.jus.treto.cemu.domain.ItemMovimentacao;
 import br.jus.treto.cemu.domain.Movimentacao;
+import br.jus.treto.cemu.domain.Unidade;
+import br.jus.treto.cemu.services.GuiasService;
+
+
 
 public class MovimentacaoDto {
-
+	
+	@Autowired
+	GuiasService guiasService;
+	
 	private Long id;
 //	private Long guiaId;
 	private Long unidadeorigemId;
@@ -38,6 +47,11 @@ public class MovimentacaoDto {
 		 this.itens = movimentacao.getItens() ;
 		 this.guia = movimentacao.getGuia();
 		 
+//		 if  (  movimentacao.getUnidadeorigemId()  != null )
+//			 this.unidadeOrigem  = guiasService.getUnidade(  movimentacao.getUnidadeorigemId() ).getSigla();
+//		 if  ( movimentacao.getUnidadedestinoId()  != null )
+//			 this.unidadeDestino = guiasService.getUnidade( movimentacao.getUnidadedestinoId() ).getSigla();
+//		 
 	}
 	
 	public static List<MovimentacaoDto> converter(List<Movimentacao> movimentacoes) {
