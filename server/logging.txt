@@ -7663,3 +7663,122 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: The database is open in excl
 2021-05-18 19:18:55.256  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2021-05-18 19:18:55.261  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.384 seconds (JVM running for 733.26)
 2021-05-18 19:18:55.263  INFO 1672 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-18 19:24:59.530  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 1672 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
+2021-05-18 19:24:59.531  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
+2021-05-18 19:24:59.814  INFO 1672 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-18 19:24:59.850  INFO 1672 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36ms. Found 11 JPA repository interfaces.
+2021-05-18 19:24:59.986  INFO 1672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-18 19:24:59.987  INFO 1672 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-18 19:24:59.987  INFO 1672 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-05-18 19:24:59.994  INFO 1672 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-18 19:24:59.995  INFO 1672 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 458 ms
+2021-05-18 19:25:00.010  INFO 1672 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2021-05-18 19:25:00.013  INFO 1672 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2021-05-18 19:25:00.014  INFO 1672 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-05-18 19:25:00.042  INFO 1672 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-18 19:25:00.052  INFO 1672 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-18 19:25:00.058  INFO 1672 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-18 19:25:00.158  WARN 1672 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-18 19:25:00.271  INFO 1672 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-18 19:25:00.272  INFO 1672 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-18 19:25:00.311  INFO 1672 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
+2021-05-18 19:25:00.367  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2021-05-18 19:25:00.368  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
+2021-05-18 19:25:00.371  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32816cee, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e8dede1, org.springframework.security.web.header.HeaderWriterFilter@327443e8, org.springframework.security.web.authentication.logout.LogoutFilter@47d5b8a7, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@19cf710c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5099e8df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40e29a27, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@753685da, org.springframework.security.web.session.SessionManagementFilter@bfbb539, org.springframework.security.web.access.ExceptionTranslationFilter@1cfe5087, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4cd30d0]
+2021-05-18 19:25:00.448  INFO 1672 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2021-05-18 19:25:00.506  INFO 1672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-18 19:25:00.507  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-05-18 19:25:00.730  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-18 19:25:00.733  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.405 seconds (JVM running for 1098.741)
+2021-05-18 19:25:00.736  INFO 1672 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-18 19:25:12.736  INFO 1672 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-18 19:25:12.736  INFO 1672 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-18 19:25:12.737  INFO 1672 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-05-18 19:26:00.249  WARN 1672 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
+2021-05-18 19:26:09.615  INFO 1672 --- [Thread-26] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-18 19:26:09.616  INFO 1672 --- [Thread-26] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-18 19:26:09.823  WARN 1672 --- [Thread-26] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-05-18 19:26:09.823  INFO 1672 --- [Thread-26] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2021-05-18 19:26:09.826  INFO 1672 --- [Thread-26] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2021-05-18 19:26:10.135  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 1672 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
+2021-05-18 19:26:10.136  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
+2021-05-18 19:26:10.360  INFO 1672 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-18 19:26:10.394  INFO 1672 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33ms. Found 11 JPA repository interfaces.
+2021-05-18 19:26:10.531  INFO 1672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-18 19:26:10.532  INFO 1672 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-18 19:26:10.532  INFO 1672 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-05-18 19:26:10.540  INFO 1672 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-18 19:26:10.540  INFO 1672 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 400 ms
+2021-05-18 19:26:10.556  INFO 1672 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2021-05-18 19:26:10.559  INFO 1672 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2021-05-18 19:26:10.559  INFO 1672 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-05-18 19:26:10.591  INFO 1672 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-18 19:26:10.600  INFO 1672 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-18 19:26:10.607  INFO 1672 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-18 19:26:10.740  WARN 1672 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-18 19:26:10.851  INFO 1672 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-18 19:26:10.851  INFO 1672 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-18 19:26:10.884  INFO 1672 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-18 19:26:10.935  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-18 19:26:10.935  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-18 19:26:10.935  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
+2021-05-18 19:26:10.935  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
+2021-05-18 19:26:10.935  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
+2021-05-18 19:26:10.936  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
+2021-05-18 19:26:10.936  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
+2021-05-18 19:26:10.936  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2021-05-18 19:26:10.936  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
+2021-05-18 19:26:10.940  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ea802d8, org.springframework.security.web.context.SecurityContextPersistenceFilter@77d6907f, org.springframework.security.web.header.HeaderWriterFilter@e5088f7, org.springframework.security.web.authentication.logout.LogoutFilter@3650d280, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@50faf758, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@722f5e74, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@783277f6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d6fa57d, org.springframework.security.web.session.SessionManagementFilter@4938882f, org.springframework.security.web.access.ExceptionTranslationFilter@575a54cd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@721735d8]
+2021-05-18 19:26:11.009  INFO 1672 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2021-05-18 19:26:11.068  INFO 1672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-18 19:26:11.069  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-05-18 19:26:11.326  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-18 19:26:11.330  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.22 seconds (JVM running for 1169.34)
+2021-05-18 19:26:11.332  INFO 1672 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-18 19:29:59.698  INFO 1672 --- [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-18 19:29:59.699  INFO 1672 --- [Thread-31] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-18 19:29:59.900  WARN 1672 --- [Thread-31] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-05-18 19:29:59.901  INFO 1672 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2021-05-18 19:29:59.903  INFO 1672 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2021-05-18 19:30:00.496  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 1672 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
+2021-05-18 19:30:00.497  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
+2021-05-18 19:30:00.721  INFO 1672 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-18 19:30:00.766  INFO 1672 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 11 JPA repository interfaces.
+2021-05-18 19:30:00.915  INFO 1672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-18 19:30:00.916  INFO 1672 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-18 19:30:00.916  INFO 1672 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-05-18 19:30:00.924  INFO 1672 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-18 19:30:00.924  INFO 1672 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 424 ms
+2021-05-18 19:30:00.940  INFO 1672 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2021-05-18 19:30:00.942  INFO 1672 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2021-05-18 19:30:00.943  INFO 1672 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-05-18 19:30:00.985  INFO 1672 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-18 19:30:00.993  INFO 1672 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-18 19:30:00.999  INFO 1672 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-18 19:30:01.038  WARN 1672 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-18 19:30:01.214  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-18 19:30:01.214  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-18 19:30:01.214  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
+2021-05-18 19:30:01.214  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
+2021-05-18 19:30:01.214  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
+2021-05-18 19:30:01.215  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
+2021-05-18 19:30:01.215  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
+2021-05-18 19:30:01.215  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2021-05-18 19:30:01.215  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
+2021-05-18 19:30:01.227  INFO 1672 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7fb1dfb6, org.springframework.security.web.context.SecurityContextPersistenceFilter@68deaa4b, org.springframework.security.web.header.HeaderWriterFilter@502d864e, org.springframework.security.web.authentication.logout.LogoutFilter@1707922, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@343898a7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@26f9a8a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a5a55c6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@44837ec0, org.springframework.security.web.session.SessionManagementFilter@1002c7f5, org.springframework.security.web.access.ExceptionTranslationFilter@4195e17, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@72c5063a]
+2021-05-18 19:30:01.241  INFO 1672 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-18 19:30:01.241  INFO 1672 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-18 19:30:01.265  INFO 1672 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-18 19:30:01.325  INFO 1672 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2021-05-18 19:30:01.398  INFO 1672 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-18 19:30:01.399  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-05-18 19:30:01.628  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-18 19:30:01.631  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.342 seconds (JVM running for 1399.645)
+2021-05-18 19:30:01.632  INFO 1672 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
