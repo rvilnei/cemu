@@ -2,6 +2,7 @@ package br.jus.treto.cemu.resources.dto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,8 +46,10 @@ public class GuiaReportDto {
 	private Long unidadedestinoId;
 	private String unidadeorigem;
 	private String unidadedestino;
+	private LocalDateTime datacriacaoMovimentacao;
+	private String statusMovimentacao;
 	
- 	private  List<ItemMovimentacao> ItensMovimentacao = new ArrayList<>()	;
+ 	private  List<ItemMovimentacao> itensMovimentacao = new ArrayList<ItemMovimentacao>()	;
 	
 	public GuiaReportDto() {}
 	
@@ -62,18 +65,33 @@ public class GuiaReportDto {
 		this.dataRecebimento = guia.getDataRecebimento() ;
 		this.matriculaRecebiemnto = guia.getMatriculaRecebiemnto() ;
 		this.transportadoraId = guia.getTransportadoraId() ;
-		//this. movimentacao =  guia.getMovimentacao() ;
+		this. movimentacao =  guia.getMovimentacao() ;
 		
 		this.movimentacaoId = guia.getMovimentacao().getId() ;
 		this.unidadeorigemId = guia.getMovimentacao().getUnidadedestinoId() ;
 		this.unidadedestinoId = guia.getMovimentacao().getUnidadeorigemId();
-		
-		this.ItensMovimentacao = guia.getMovimentacao().getItens();
+		this.statusMovimentacao = guia.getMovimentacao().getStatus();
+		this.datacriacaoMovimentacao = guia.getMovimentacao().getDatacriacao();
+		this.itensMovimentacao = guia.getMovimentacao().getItens();
 		
 	}
 	
+	
+	
+	public GuiasService getGuiasService() {
+		return guiasService;
+	}
+
+	public LocalDateTime getDatacriacaoMovimentacao() {
+		return datacriacaoMovimentacao;
+	}
+
+	public String getStatusMovimentacao() {
+		return statusMovimentacao;
+	}
+
 	public List<ItemMovimentacao> getItensMovimentacao() {
-		return this.ItensMovimentacao;
+		return this.itensMovimentacao;
 	}
 
 	
@@ -176,6 +194,5 @@ public class GuiaReportDto {
 	}
 	
 	
-	
-	
+	 
 }

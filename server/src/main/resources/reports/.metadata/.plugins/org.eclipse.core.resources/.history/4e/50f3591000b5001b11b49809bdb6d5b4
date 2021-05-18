@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-05-14T18:59:06 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="itensMovimentacao" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0a9aa19-6690-4307-a35c-a899c1c18364">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="material.nome" class="java.lang.String"/>
+	<field name="quantidadeItem" class="java.lang.Integer"/>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement x="11" y="3" width="100" height="18" uuid="d2998078-36b0-4762-977c-6b88b41b04e4"/>
+				<text><![CDATA[material.nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="4" width="99" height="15" uuid="13689c1f-e047-4ff2-8981-c93c2b49caf8"/>
+				<text><![CDATA[situacao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="4" width="100" height="13" uuid="40a9f3a7-2784-47dd-9b6d-6842a49021e2"/>
+				<text><![CDATA[quantidadeItem]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="340" y="2" width="119" height="20" uuid="0c3e31d3-e013-4ba7-9123-481278880663"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="1" width="151" height="21" uuid="1f73d4a5-c8a2-4470-a3c5-ff5d9d260239"/>
+				<textFieldExpression><![CDATA[$F{material.nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="2" width="92" height="20" uuid="d0141a1b-7b4f-44c5-9dea-e9d1bc220eaa"/>
+				<textFieldExpression><![CDATA[$F{quantidadeItem}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

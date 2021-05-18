@@ -23,6 +23,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import br.jus.treto.cemu.domain.Guia;
+import br.jus.treto.cemu.domain.ItemMovimentacao;
+import br.jus.treto.cemu.resources.dto.GuiaReportDto;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -62,18 +64,17 @@ public class ReportsService {
 		return guiasService.listar();
 	}
 	
-   	public void generateReportGuia( Long id, Map<String, Object> parametros, String format, String  arquivoJxml, HttpServletResponse response  ) throws JRException, IOException {
-		Guia guia = guiasService.buscar(id) ;
-		List<Guia> list = new ArrayList<Guia>();
-		list.add(guia);
-		JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( list );
+   	public void generateReportGuia(  List<GuiaReportDto> guiasReportDto,Map<String, Object> parametros, String format, String  arquivoJxml, HttpServletResponse response  ) throws JRException, IOException {
+		List<GuiaReportDto> listGuiaReportDto = guiasReportDto;
+		JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( listGuiaReportDto );
         JasperPrint rJasperPrintRsult = generator( arquivoJxml, parametros, datasource );
         generateOut( rJasperPrintRsult, format, response );
     }
 	
-	public void generateReporGuias( Map<String, Object> parametros, String format, String  arquivoJxml, HttpServletResponse response  ) throws JRException, IOException {
-		List<Guia> guias = guiasService.listar();
-		JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( guias );
+	public void generateReporGuias( List<GuiaReportDto> guiasReportDto, Map<String, Object> parametros, String format, String  arquivoJxml, HttpServletResponse response  ) throws JRException, IOException {
+	//	List<Guia> guias = guiasService.listar();
+		List<GuiaReportDto> listGuiaReportDto = guiasReportDto;
+		JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( listGuiaReportDto );
         JasperPrint rJasperPrintRsult = generator( arquivoJxml, parametros, datasource );
         generateOut( rJasperPrintRsult, format, response );
     }
@@ -189,6 +190,14 @@ public class ReportsService {
 		response.setHeader("Content-disposition", "inline; filename="+arquivoNome);
 		OutputStream outputStream = response.getOutputStream();
 		return outputStream;
+	}
+
+	public void generateReporItemMovimentacao(List<ItemMovimentacao> listItemMovimentacao,
+			Map<String, Object> parametros, String format, String arquivoJxml, HttpServletResponse response) throws IOException, JRException {
+			JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( listItemMovimentacao );
+	        JasperPrint rJasperPrintRsult = generator( arquivoJxml, parametros, datasource );
+	        generateOut( rJasperPrintRsult, format, response );
+		
 	}
 
 }
