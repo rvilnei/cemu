@@ -7782,6 +7782,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: The database is open in excl
 2021-05-18 19:30:01.628  INFO 1672 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2021-05-18 19:30:01.631  INFO 1672 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.342 seconds (JVM running for 1399.645)
 2021-05-18 19:30:01.632  INFO 1672 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+<<<<<<< HEAD
 2021-05-18 19:43:51.642  INFO 1672 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-05-18 19:43:51.643  INFO 1672 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2021-05-18 19:43:51.654 ERROR 1672 --- [HikariPool-7 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Error thrown while acquiring connection from data source
@@ -7894,3 +7895,5 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: The database is open in excl
 2021-05-18 19:45:10.845  INFO 2171 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2021-05-18 19:45:10.850  INFO 2171 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.523 seconds (JVM running for 75.794)
 2021-05-18 19:45:10.854  INFO 2171 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+=======
+>>>>>>> 84fe38f1272296e58e1a0112187cc646c688b91c
