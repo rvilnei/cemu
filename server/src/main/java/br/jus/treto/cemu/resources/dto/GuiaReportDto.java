@@ -25,9 +25,8 @@ import br.jus.treto.cemu.services.MateriaisService;
 import br.jus.treto.cemu.services.ReportsService;
 
 public class GuiaReportDto {
-	
-	@Autowired
-	GuiasService guiasService;
+
+	private static GuiasService guiasService;;
 	
 	private Long id;
 	private String numeroGuia;
@@ -40,6 +39,8 @@ public class GuiaReportDto {
 	private String matriculaRecebiemnto;
 	private Long transportadoraId;
 	private Movimentacao movimentacao;
+	private List<ItemMovimentacao> itensMovimentacao;
+		
 
 	private Long movimentacaoId;
 	private Long unidadeorigemId;
@@ -49,7 +50,7 @@ public class GuiaReportDto {
 	private LocalDateTime datacriacaoMovimentacao;
 	private String statusMovimentacao;
 	
- 	private  List<ItemMovimentacao> itensMovimentacao = new ArrayList<ItemMovimentacao>()	;
+ //	private  List<ItemMovimentacao> itensMovimentacao = new ArrayList<ItemMovimentacao>()	;
 	
 	public GuiaReportDto() {}
 	
@@ -70,18 +71,16 @@ public class GuiaReportDto {
 		this.movimentacaoId = guia.getMovimentacao().getId() ;
 		this.unidadeorigemId = guia.getMovimentacao().getUnidadedestinoId() ;
 		this.unidadedestinoId = guia.getMovimentacao().getUnidadeorigemId();
+		if ( this.unidadeorigemId  != null )
+			this.unidadeorigem  = guiasService.getUnidade(unidadeorigemId).getSigla();
+		if ( this.unidadedestinoId  != null )
+			this.unidadedestino  = guiasService.getUnidade(unidadedestinoId).getSigla();
 		this.statusMovimentacao = guia.getMovimentacao().getStatus();
 		this.datacriacaoMovimentacao = guia.getMovimentacao().getDatacriacao();
 		this.itensMovimentacao = guia.getMovimentacao().getItens();
 		
 	}
 	
-	
-	
-	public GuiasService getGuiasService() {
-		return guiasService;
-	}
-
 	public LocalDateTime getDatacriacaoMovimentacao() {
 		return datacriacaoMovimentacao;
 	}
@@ -108,8 +107,6 @@ public class GuiaReportDto {
 	}
 	
 	public String getUnidadeorigem() {
-//		if ( this.unidadeorigemId  != null )
-//			this.unidadeorigem  = guiasService.getUnidade(unidadeorigemId).getSigla();
 		return this.unidadeorigem;
 	}
 	
@@ -125,13 +122,6 @@ public class GuiaReportDto {
 		this.unidadedestino = destino;
 	}
 	
-	public static ReportsService getGuiasReportService() {
-		return guiasReportService;
-	}
-
-	//private  List<ItemMovimentacao> itens = new ArrayList<>()	;
-	private static ReportsService guiasReportService;
-	
 	public static GuiaReportDto  transformaEmDTO( Guia guia ) {
 		return new GuiaReportDto( guia );
 	}
@@ -140,8 +130,8 @@ public class GuiaReportDto {
 		return guias.stream().map(GuiaReportDto::new).collect( Collectors.toList() ) ;
 	}
 	
-	public static List<GuiaReportDto> converter(List<Guia> guias, ReportsService service ) {
-		guiasReportService = service;
+	public static List<GuiaReportDto> converter(List<Guia> guias, GuiasService service ) {
+		guiasService = service;
 		return guias.stream().map(GuiaReportDto::new).collect( Collectors.toList() ) ;
 	}
 
@@ -188,11 +178,5 @@ public class GuiaReportDto {
 	public Movimentacao getMovimentacao() {
 		return movimentacao;
 	}
-
-	public static ReportsService getGuiaReportsService() {
-		return guiasReportService;
-	}
-	
-	
 	 
 }
