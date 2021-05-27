@@ -81,3 +81,76 @@ org.osgi.framework.BundleException: Unable to acquire the state change lock for 
 
 !ENTRY com.jaspersoft.studio 1 0 2021-05-17 14:51:55.180
 !MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-19 07:49:11.635
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2021-05-19 17:41:44.461 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data @noDefault -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-19 17:41:46.913
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2021-05-19 17:41:47.299
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.jaspersoft.studio 1 0 2021-05-19 17:41:50.196
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-21 14:56:26.966
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2021-05-25 15:03:16.398 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data @noDefault -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-25 15:03:19.016
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2021-05-25 15:03:19.417
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.jaspersoft.studio 1 0 2021-05-25 15:03:22.215
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-26 08:02:53.622
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2021-05-26 18:53:55.962 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data @noDefault -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-26 18:53:58.771
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2021-05-26 18:53:59.132
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.jaspersoft.studio 1 0 2021-05-26 18:54:01.773
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final
+!SESSION 2021-05-27 09:19:00.931 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data @noDefault -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-27 09:19:08.782
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2021-05-27 09:19:09.553
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.jaspersoft.studio 1 0 2021-05-27 09:19:13.572
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final

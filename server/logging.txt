@@ -1,158 +1,55 @@
-2021-05-18 15:04:29.455  WARN 860 --- [HikariPool-14 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-14 - Thread starvation or clock leap detected (housekeeper delta=16h38m52s742ms).
-2021-05-18 15:15:56.641  INFO 860 --- [Thread-71] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-05-18 15:15:56.644  INFO 860 --- [Thread-71] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-05-18 15:15:56.644  INFO 860 --- [Thread-71] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown initiated...
-2021-05-18 15:15:56.674  INFO 860 --- [Thread-71] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown completed.
-2021-05-18 15:15:57.933  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 860 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
-2021-05-18 15:15:57.933  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
-2021-05-18 15:15:58.136  INFO 860 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-05-18 15:15:58.166  INFO 860 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30ms. Found 11 JPA repository interfaces.
-2021-05-18 15:15:58.333  INFO 860 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-05-18 15:15:58.334  INFO 860 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-05-18 15:15:58.334  INFO 860 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
-2021-05-18 15:15:58.341  INFO 860 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-05-18 15:15:58.341  INFO 860 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 405 ms
-2021-05-18 15:15:58.360  INFO 860 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Starting...
-2021-05-18 15:15:58.368  INFO 860 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Start completed.
-2021-05-18 15:15:58.369  INFO 860 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2021-05-18 15:15:58.407  INFO 860 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-05-18 15:15:58.417  INFO 860 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-05-18 15:15:58.428  INFO 860 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2021-05-18 15:15:58.449  WARN 860 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-05-18 15:15:58.662  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
-2021-05-18 15:15:58.663  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
-2021-05-18 15:15:58.663  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
-2021-05-18 15:15:58.663  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
-2021-05-18 15:15:58.663  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
-2021-05-18 15:15:58.663  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
-2021-05-18 15:15:58.664  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
-2021-05-18 15:15:58.664  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
-2021-05-18 15:15:58.664  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
-2021-05-18 15:15:58.675  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@80bf5b1, org.springframework.security.web.context.SecurityContextPersistenceFilter@44e79218, org.springframework.security.web.header.HeaderWriterFilter@514acf7d, org.springframework.security.web.authentication.logout.LogoutFilter@6e75f258, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@56c46128, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e96596e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@19a05ce6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6449608c, org.springframework.security.web.session.SessionManagementFilter@712fdf50, org.springframework.security.web.access.ExceptionTranslationFilter@216f7882, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6e736b4f]
-2021-05-18 15:15:58.733  INFO 860 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-05-18 15:15:58.734  INFO 860 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-05-18 15:15:58.740  INFO 860 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-05-18 15:15:58.821  INFO 860 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2021-05-18 15:15:58.899  INFO 860 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-05-18 15:15:58.899  INFO 860 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2021-05-18 15:15:59.183  INFO 860 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2021-05-18 15:15:59.188  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.44 seconds (JVM running for 8492.416)
-2021-05-18 15:15:59.190  INFO 860 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2021-05-18 15:19:12.201  INFO 860 --- [Thread-76] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-05-18 15:19:12.201  INFO 860 --- [Thread-76] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-05-18 15:19:12.201  INFO 860 --- [Thread-76] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
-2021-05-18 15:19:12.208  INFO 860 --- [Thread-76] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
-2021-05-18 15:19:12.857  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 860 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
-2021-05-18 15:19:12.858  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
-2021-05-18 15:19:12.997  INFO 860 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-05-18 15:19:13.030  INFO 860 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32ms. Found 11 JPA repository interfaces.
-2021-05-18 15:19:13.147  INFO 860 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-05-18 15:19:13.148  INFO 860 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-05-18 15:19:13.148  INFO 860 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
-2021-05-18 15:19:13.156  INFO 860 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-05-18 15:19:13.156  INFO 860 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 296 ms
-2021-05-18 15:19:13.174  INFO 860 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Starting...
-2021-05-18 15:19:13.183  INFO 860 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Start completed.
-2021-05-18 15:19:13.183  INFO 860 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2021-05-18 15:19:13.226  INFO 860 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-05-18 15:19:13.232  INFO 860 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-05-18 15:19:13.240  INFO 860 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2021-05-18 15:19:13.260  WARN 860 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-05-18 15:19:13.433  INFO 860 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-05-18 15:19:13.434  INFO 860 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-05-18 15:19:13.439  INFO 860 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
-2021-05-18 15:19:13.445  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
-2021-05-18 15:19:13.451  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7bc7ada7, org.springframework.security.web.context.SecurityContextPersistenceFilter@392dea28, org.springframework.security.web.header.HeaderWriterFilter@1ae5ba42, org.springframework.security.web.authentication.logout.LogoutFilter@678c76d1, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@321aada6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f7322d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31f7af1b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@473629a, org.springframework.security.web.session.SessionManagementFilter@2d25be8c, org.springframework.security.web.access.ExceptionTranslationFilter@30b1fa8a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2674e551]
-2021-05-18 15:19:13.527  INFO 860 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2021-05-18 15:19:13.619  INFO 860 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-05-18 15:19:13.620  INFO 860 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2021-05-18 15:19:13.826  INFO 860 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2021-05-18 15:19:13.829  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 0.996 seconds (JVM running for 8687.062)
-2021-05-18 15:19:13.830  INFO 860 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2021-05-18 15:19:30.206  INFO 860 --- [Thread-81] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-05-18 15:19:30.207  INFO 860 --- [Thread-81] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-05-18 15:19:30.208  INFO 860 --- [Thread-81] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown initiated...
-2021-05-18 15:19:30.214  INFO 860 --- [Thread-81] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown completed.
-2021-05-18 15:19:31.023  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 860 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
-2021-05-18 15:19:31.023  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
-2021-05-18 15:19:31.154  INFO 860 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-05-18 15:19:31.179  INFO 860 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24ms. Found 11 JPA repository interfaces.
-2021-05-18 15:19:31.277  INFO 860 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2021-05-18 15:19:31.278  INFO 860 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-05-18 15:19:31.278  INFO 860 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
-2021-05-18 15:19:31.282  INFO 860 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-05-18 15:19:31.282  INFO 860 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 256 ms
-2021-05-18 15:19:31.293  INFO 860 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Starting...
-2021-05-18 15:19:31.298  INFO 860 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Start completed.
-2021-05-18 15:19:31.298  INFO 860 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/test'
-2021-05-18 15:19:31.321  INFO 860 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-05-18 15:19:31.326  INFO 860 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-05-18 15:19:31.334  INFO 860 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2021-05-18 15:19:31.354  WARN 860 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
-2021-05-18 15:19:31.539  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
-2021-05-18 15:19:31.543  INFO 860 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-05-18 15:19:31.543  INFO 860 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-05-18 15:19:31.544  INFO 860 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@69c81215, org.springframework.security.web.context.SecurityContextPersistenceFilter@5a4dcf4c, org.springframework.security.web.header.HeaderWriterFilter@5bc846d6, org.springframework.security.web.authentication.logout.LogoutFilter@550c213, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@1246cd7b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55f9d208, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c1ec097, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61eda499, org.springframework.security.web.session.SessionManagementFilter@2dfedfb, org.springframework.security.web.access.ExceptionTranslationFilter@1e522d20, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3e7de92c]
-2021-05-18 15:19:31.548  INFO 860 --- [task-2] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-05-18 15:19:31.607  INFO 860 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
-2021-05-18 15:19:31.686  INFO 860 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2021-05-18 15:19:31.720  INFO 860 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2021-05-18 15:19:31.903  INFO 860 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2021-05-18 15:19:31.906  INFO 860 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 0.904 seconds (JVM running for 8705.139)
-2021-05-18 15:19:31.908  INFO 860 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2021-05-18 15:21:34.499  INFO 860 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-05-18 15:21:34.499  INFO 860 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-05-18 15:21:34.501  INFO 860 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2021-05-18 15:22:10.923  WARN 860 --- [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
-2021-05-18 15:22:35.929 ERROR 860 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is net.sf.jasperreports.engine.JRRuntimeException: net.sf.jasperreports.engine.JRException: Error opening input stream from URL: classpath:reports/MyReports/itensMovimentacao.jasper.] with root cause
+2021-05-27 18:00:05.601  INFO 1260 --- [main] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 1260 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
+2021-05-27 18:00:05.628  INFO 1260 --- [main] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
+2021-05-27 18:00:07.490  INFO 1260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-27 18:00:07.692  INFO 1260 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 173ms. Found 11 JPA repository interfaces.
+2021-05-27 18:00:08.616  INFO 1260 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-27 18:00:08.631  INFO 1260 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-27 18:00:08.631  INFO 1260 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-05-27 18:00:08.767  INFO 1260 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-27 18:00:08.772  INFO 1260 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2973 ms
+2021-05-27 18:00:08.875  INFO 1260 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-27 18:00:09.319  INFO 1260 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-27 18:00:09.331  INFO 1260 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-05-27 18:00:09.589  INFO 1260 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 18:00:09.674  INFO 1260 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-27 18:00:09.817  WARN 1260 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-27 18:00:09.839  INFO 1260 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2021-05-27 18:00:10.273  INFO 1260 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-05-27 18:00:10.412  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-27 18:00:10.412  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2021-05-27 18:00:10.413  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
+2021-05-27 18:00:10.500  INFO 1260 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b9a77c8, org.springframework.security.web.context.SecurityContextPersistenceFilter@100c8b75, org.springframework.security.web.header.HeaderWriterFilter@3aa41da1, org.springframework.security.web.authentication.logout.LogoutFilter@173a6728, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@7a81065e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@268cbb86, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2dc3271b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6cd3ad8a, org.springframework.security.web.session.SessionManagementFilter@3a26ec8d, org.springframework.security.web.access.ExceptionTranslationFilter@267dc982, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@d277579]
+2021-05-27 18:00:10.638  INFO 1260 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-27 18:00:11.042  INFO 1260 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2021-05-27 18:00:11.430  INFO 1260 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-27 18:00:11.433  INFO 1260 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-05-27 18:00:12.658  INFO 1260 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-27 18:00:12.823  INFO 1260 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-27 18:00:13.826  INFO 1260 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-27 18:00:13.838  INFO 1260 --- [main] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 8.837 seconds (JVM running for 9.544)
+2021-05-27 18:01:40.193  INFO 1260 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-27 18:01:40.195  INFO 1260 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-27 18:01:40.214  INFO 1260 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2021-05-27 18:02:42.013  WARN 1260 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
+2021-05-27 18:03:15.685 ERROR 1260 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : itensMovimentacao.jasper] with root cause
 
-java.io.FileNotFoundException: Unable to load the resource [classpath:reports/MyReports/itensMovimentacao.jasper] using the thread context class loader or the current class's class loader
-	at org.apache.catalina.webresources.ClasspathURLStreamHandler.openConnection(ClasspathURLStreamHandler.java:45) ~[tomcat-embed-core-9.0.38.jar:9.0.38]
-	at java.net.URL.openConnection(URL.java:979) ~[na:1.8.0_121]
-	at java.net.URL.openStream(URL.java:1045) ~[na:1.8.0_121]
-	at net.sf.jasperreports.engine.util.JRLoader.getInputStream(JRLoader.java:339) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.DefaultRepositoryService.getInputStream(DefaultRepositoryService.java:99) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.InputStreamPersistenceService.load(InputStreamPersistenceService.java:45) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.DefaultRepositoryService.getResource(DefaultRepositoryService.java:149) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.SerializedObjectPersistenceService.load(SerializedObjectPersistenceService.java:48) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.SerializedReportPersistenceService.load(SerializedReportPersistenceService.java:40) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.DefaultRepositoryService.getResource(DefaultRepositoryService.java:149) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.RepositoryUtil.getResourceFromLocation(RepositoryUtil.java:144) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.repo.RepositoryUtil.getReport(RepositoryUtil.java:112) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFillSubreport.loadReport(JRFillSubreport.java:398) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluateReport(JRFillSubreport.java:365) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluateSubreport(JRFillSubreport.java:427) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluate(JRFillSubreport.java:341) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:381) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:500) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2022) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:748) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:255) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:115) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:582) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:414) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:121) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667) ~[jasperreports-6.4.0.jar:6.4.0]
-	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983) ~[jasperreports-6.4.0.jar:6.4.0]
-	at br.jus.treto.cemu.services.ReportsService.generator(ReportsService.java:89) ~[classes/:na]
-	at br.jus.treto.cemu.services.ReportsService.generateReportGuia(ReportsService.java:70) ~[classes/:na]
-	at br.jus.treto.cemu.resources.ReportsResouce.generateReportGuia(ReportsResouce.java:116) ~[classes/:na]
+net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : itensMovimentacao.jasper
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:280) ~[jasperreports-6.4.0.jar:6.4.0]
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:152) ~[jasperreports-6.4.0.jar:6.4.0]
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357) ~[jasperreports-6.4.0.jar:6.4.0]
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:290) ~[jasperreports-6.4.0.jar:6.4.0]
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:575) ~[jasperreports-6.4.0.jar:6.4.0]
+	at br.jus.treto.cemu.services.ReportsService.generator(ReportsService.java:62) ~[classes/:na]
+	at br.jus.treto.cemu.services.ReportsService.generateReportGuia(ReportsService.java:46) ~[classes/:na]
+	at br.jus.treto.cemu.resources.ReportsResouce.generateReportGuia(ReportsResouce.java:101) ~[classes/:na]
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_121]
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_121]
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_121]
@@ -238,6 +135,7 @@ java.io.FileNotFoundException: Unable to load the resource [classpath:reports/My
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.38.jar:9.0.38]
 	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_121]
 
+<<<<<<< HEAD
 2021-05-18 15:24:15.221 ERROR 860 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is net.sf.jasperreports.engine.JRRuntimeException: net.sf.jasperreports.engine.JRException: Error opening input stream from URL: classpath:reports/MyReports/itensMovimentacao.jasper.] with root cause
 
 java.io.FileNotFoundException: Unable to load the resource [classpath:reports/MyReports/itensMovimentacao.jasper] using the thread context class loader or the current class's class loader
@@ -7897,3 +7795,91 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: The database is open in excl
 2021-05-18 19:45:10.854  INFO 2171 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
 =======
 >>>>>>> 84fe38f1272296e58e1a0112187cc646c688b91c
+=======
+2021-05-27 18:08:51.717  INFO 1260 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-27 18:08:51.720  INFO 1260 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-27 18:08:51.721  INFO 1260 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-05-27 18:08:51.724  INFO 1260 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-05-27 18:08:56.788  INFO 1297 --- [main] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 1297 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
+2021-05-27 18:08:56.792  INFO 1297 --- [main] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
+2021-05-27 18:08:57.972  INFO 1297 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-27 18:08:58.136  INFO 1297 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 148ms. Found 11 JPA repository interfaces.
+2021-05-27 18:08:59.000  INFO 1297 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-27 18:08:59.013  INFO 1297 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-27 18:08:59.014  INFO 1297 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-05-27 18:08:59.139  INFO 1297 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-27 18:08:59.140  INFO 1297 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2258 ms
+2021-05-27 18:08:59.218  INFO 1297 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-27 18:08:59.645  INFO 1297 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-27 18:08:59.653  INFO 1297 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-05-27 18:08:59.863  INFO 1297 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 18:08:59.929  INFO 1297 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-27 18:09:00.013  INFO 1297 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2021-05-27 18:09:00.065  WARN 1297 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-27 18:09:00.300  INFO 1297 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-05-27 18:09:00.500  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-27 18:09:00.501  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-27 18:09:00.501  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
+2021-05-27 18:09:00.501  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
+2021-05-27 18:09:00.501  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
+2021-05-27 18:09:00.501  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
+2021-05-27 18:09:00.502  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
+2021-05-27 18:09:00.502  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2021-05-27 18:09:00.502  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
+2021-05-27 18:09:00.510  INFO 1297 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-27 18:09:00.554  INFO 1297 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@512d6e60, org.springframework.security.web.context.SecurityContextPersistenceFilter@3aa41da1, org.springframework.security.web.header.HeaderWriterFilter@3b545206, org.springframework.security.web.authentication.logout.LogoutFilter@7afc4db9, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@1de9b505, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c83468e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17143b3b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b122839, org.springframework.security.web.session.SessionManagementFilter@267dc982, org.springframework.security.web.access.ExceptionTranslationFilter@68f0f72c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3b27b497]
+2021-05-27 18:09:01.030  INFO 1297 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2021-05-27 18:09:01.378  INFO 1297 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-27 18:09:01.381  INFO 1297 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-05-27 18:09:02.290  INFO 1297 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-27 18:09:02.301  INFO 1297 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-27 18:09:03.314  INFO 1297 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-27 18:09:03.326  INFO 1297 --- [main] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 7.195 seconds (JVM running for 7.769)
+2021-05-27 18:09:32.845  INFO 1297 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-27 18:09:32.847  INFO 1297 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-27 18:09:32.859  INFO 1297 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2021-05-27 18:10:05.393  WARN 1297 --- [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
+2021-05-27 18:14:20.548  INFO 1297 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-27 18:14:20.551  INFO 1297 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-27 18:14:20.552  INFO 1297 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-05-27 18:14:20.554  INFO 1297 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-05-27 18:14:25.274  INFO 1304 --- [main] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 1304 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
+2021-05-27 18:14:25.277  INFO 1304 --- [main] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
+2021-05-27 18:14:26.348  INFO 1304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-27 18:14:26.505  INFO 1304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142ms. Found 11 JPA repository interfaces.
+2021-05-27 18:14:27.352  INFO 1304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-27 18:14:27.365  INFO 1304 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-27 18:14:27.366  INFO 1304 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2021-05-27 18:14:27.487  INFO 1304 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-27 18:14:27.487  INFO 1304 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2132 ms
+2021-05-27 18:14:27.564  INFO 1304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-27 18:14:27.959  INFO 1304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-27 18:14:27.972  INFO 1304 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-05-27 18:14:28.165  INFO 1304 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-27 18:14:28.279  INFO 1304 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-27 18:14:28.308  WARN 1304 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-27 18:14:28.445  INFO 1304 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2021-05-27 18:14:28.727  INFO 1304 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-05-27 18:14:28.759  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='*.json'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.css'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.js'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/*.ico'], []
+2021-05-27 18:14:28.760  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2021-05-27 18:14:28.763  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/console/**'], []
+2021-05-27 18:14:28.826  INFO 1304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@512d6e60, org.springframework.security.web.context.SecurityContextPersistenceFilter@3aa41da1, org.springframework.security.web.header.HeaderWriterFilter@3b545206, org.springframework.security.web.authentication.logout.LogoutFilter@7afc4db9, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@1de9b505, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c83468e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17143b3b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b122839, org.springframework.security.web.session.SessionManagementFilter@267dc982, org.springframework.security.web.access.ExceptionTranslationFilter@68f0f72c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3b27b497]
+2021-05-27 18:14:29.009  INFO 1304 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-27 18:14:29.334  INFO 1304 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
+2021-05-27 18:14:29.670  INFO 1304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-27 18:14:29.674  INFO 1304 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-05-27 18:14:30.695  INFO 1304 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-27 18:14:30.704  INFO 1304 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-27 18:14:32.043  INFO 1304 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-27 18:14:32.057  INFO 1304 --- [main] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 7.519 seconds (JVM running for 8.059)
+2021-05-27 18:14:52.335  INFO 1304 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-27 18:14:52.335  INFO 1304 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-27 18:14:52.347  INFO 1304 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2021-05-27 18:15:26.811  WARN 1304 --- [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
+>>>>>>> pesquisa
