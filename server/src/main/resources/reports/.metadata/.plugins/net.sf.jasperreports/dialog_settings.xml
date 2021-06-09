@@ -15,11 +15,11 @@
 		<item value="750" key="DIALOG_WIDTH"/>
 		<item value="1|.SF NS Text|13.0|0|COCOA|1|.SFNSText" key="DIALOG_FONT_NAME"/>
 		<item value="23" key="dialogY"/>
-		<item value="251" key="dialogX"/>
+		<item value="252" key="dialogX"/>
 		<item value="680" key="dialogHeight"/>
 		<item value="750" key="dialogWidth"/>
 		<item value="680" key="DIALOG_HEIGHT"/>
-		<item value="251" key="DIALOG_X_ORIGIN"/>
+		<item value="252" key="DIALOG_X_ORIGIN"/>
 		<item value="0" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

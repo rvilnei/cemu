@@ -17,6 +17,7 @@ import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GuiasModule } from 'src/app/guias/guias.module';
 import { TransportasdorasModule } from 'src/app/transportadoras/transportadoras.module';
+import { RelatoriosModule } from 'src/app/relatorios/relatorios.module';
 //import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { TransportasdorasModule } from 'src/app/transportadoras/transportadoras.
     GuiasModule,
     TransportasdorasModule,
    // TypeaheadModule.forRoot()
+    RelatoriosModule
   ],
   providers: [{provide: ErrorHandler, useClass: AppGlobalErrorhandler}],
   bootstrap: [AppComponent]

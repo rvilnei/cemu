@@ -154,3 +154,25 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data @noDefault -key
 
 !ENTRY com.jaspersoft.studio 1 0 2021-05-27 09:19:13.572
 !MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-28 17:22:27.946
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2021-05-28 17:22:38.071 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=pt_BR
+Framework arguments:  -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data @noDefault -keyring /Users/vilnei.adm/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-28 17:22:40.897
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2021-05-28 17:22:41.274
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.jaspersoft.studio 1 0 2021-05-28 17:22:43.876
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.1.final
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-05-29 14:51:35.059
+!MESSAGE The workspace will exit with unsaved changes in this session.

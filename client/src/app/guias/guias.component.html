@@ -32,14 +32,14 @@
                                             currentPage: currentPage,
                                             totalItems: guias_async.lenght }">
                <!--   <th scope="row">{{guia.id}}</th>  -->
-               <td> <a [routerLink]="['/reports', guia.id, 'pdf']" > {{guia.id}} </a></td>
+               <td> <a [routerLink]="['/relatorioGuia', guia.id ]" > {{guia.id}} </a></td>
                 <td> <a [routerLink]="['/guiaDetail', guia.id, false ]"> {{guia.numeroGuia}}</a></td>
                 <td  align="center" >  <input type="checkbox"  [ngModel]="guia.dataRecebimento" disabled >  </td>
                 <td> <a [routerLink]="['/movimentacaoDetail', guia?.movimentacao?.id ]"> {{guia?.movimentacao?.id}} / {{guia?.movimentacao?.status}}  </a></td>
-                <td>{{guia.dataCriacao | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
-                <td>{{guia.nomeCondutor}}</td> 
-                <td>{{guia.rgCondutor }}</td>
-                <td>{{guia.placaVeiculo }}</td>
+                <td>{{guia?.dataCriacao | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+                <td>{{guia?.nomeCondutor}}</td> 
+                <td>{{guia?.rgCondutor }}</td>
+                <td>{{guia?.placaVeiculo }}</td>
                 <td> {{ guia.transportadora?.nome}} </td>
                 <td>
                   <span class="float-right">

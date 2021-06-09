@@ -76,8 +76,9 @@ public class ReportsService {
 	    	
 			    JRPdfExporter exporter = new JRPdfExporter();
 			    exporter.setExporterInput(new SimpleExporterInput(rJasperPrintRsult));
-			    exporter.setExporterOutput( new SimpleOutputStreamExporterOutput(outputStream));
-		
+			//    exporter.setExporterOutput( new SimpleOutputStreamExporterOutput(outputStream));
+			    exporter.setExporterOutput( new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+			    
 			   SimplePdfReportConfiguration reportConfig= new SimplePdfReportConfiguration();
 			   reportConfig.setSizePageToContent(true);
 			   reportConfig.setForceLineBreakPolicy(false);
@@ -147,7 +148,9 @@ public class ReportsService {
      
 	private OutputStream  getOutputStream( HttpServletResponse response, String type, String arquivoNome  ) throws IOException {
 		response.setContentType(type);
-		response.setHeader("Content-disposition", "inline; filename="+arquivoNome);
+//		response.setHeader("Content-disposition", "inline; filename="+arquivoNome);
+		response.setHeader("Content-Disposition", "inline;filename="+arquivoNome);
+//		response.setHeader("Content-Disposition", "attachment;filename=somefile.ext");
 		OutputStream outputStream = response.getOutputStream();
 		return outputStream;
 	}

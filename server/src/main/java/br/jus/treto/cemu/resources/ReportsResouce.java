@@ -1,6 +1,7 @@
 package br.jus.treto.cemu.resources;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,20 +45,6 @@ public class ReportsResouce {
 		 return ResponseEntity.status(HttpStatus.OK).body( listGuiaReportDto );
 	}
 	
-	@GetMapping("/{format}")		
-	public void generateReportGuias( HttpServletResponse response, @PathVariable String format ) throws JRException, IOException {
-				List<Guia> guias = reportsService.listar();
-				List<GuiaReportDto> listGuiaReportDto =  GuiaReportDto.converter( guias, guiasService );
-				String arquivoJxml = "classpath:reports/MyReports/guias.jrxml"; 
-     			Map<String, Object> parametros = parametroInicial();
-     		//	String (startDate, endDate) = params.dt_inicio_dt_fim.tokenize( '-' )
-    	        parametros.put( "date", new java.util.Date() );
-//     	        parametros.put( "dataInicial", new SimpleDateFormat('dd/MM/yyyy').parse(startDate) );
-//  	        parametros.put( "dataFinal", new SimpleDateFormat('dd/MM/yyyy').parse(endDate) );     
-    		//	parametros.put("SUBREPORT_DATA", guias.getMovimentacao().getItens());
-    	        reportsService.generateReporGuias( listGuiaReportDto, parametros, format, arquivoJxml ,response);
-	}
- 
 	@GetMapping("/itens/{format}")		
 	public void generateReportItens( HttpServletResponse response, @PathVariable String format ) throws JRException, IOException {
 				Guia guia = guiasService.buscar(1L) ;
@@ -71,25 +58,39 @@ public class ReportsResouce {
     	        reportsService.generateReporItemMovimentacao( listItemMovimentacao, parametros, format, arquivoJxml ,response);
 	}
 
+	
+	@GetMapping("/guias/{format}")		
+	public void imprimeGuias( HttpServletResponse response, @PathVariable String format ) throws JRException, IOException {
+					List<Guia> listGuias = reportsService.listar();		
+					gerarImpressaoGuia(  listGuias, format,  guiasService, response );
+	}
+	
 	@GetMapping("/{id}/{format}")		
-	public void generateReportGuia(  @PathVariable Long id, @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException {
-					String REPORTS_PATH = "classpath:reports/MyReports/";
+	public void imprimeGuia( @PathVariable Long id, @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
+					System.out.println( "id ** "+id+"format **  "+format );
 					Guia guia = guiasService.buscar(id) ;			
 					List<Guia> listGuia = new ArrayList<Guia>();
 					listGuia.add(guia);
+					gerarImpressaoGuia(  listGuia, format,  guiasService, response );
+	}
+	
+	private void gerarImpressaoGuia( List<Guia> listGuia, String format, GuiasService guiasService, HttpServletResponse response  ) throws JRException, IOException {	
+					String REPORTS_PATH = "classpath:reports/MyReports/";
 					List<GuiaReportDto> listGuiaReportDto =  GuiaReportDto.converter( listGuia, guiasService );
 					
 			    	String subReportJxml = REPORTS_PATH+ "itensMovimentacao.jrxml"; 
 					File fileSubReportile = ResourceUtils.getFile(subReportJxml );
-					JasperCompileManager.compileReportToFile(fileSubReportile.getPath());
+					//JasperCompileManager.compileReportToFile(fileSubReportile.getPath());
+					JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileSubReportile.getPath());
 					
-					String arquivoJxml = REPORTS_PATH+"guia.jrxml"; 
+					String nomeArquivoJxml = REPORTS_PATH+"guia.jrxml"; 
          			Map<String, Object> parametros = parametroInicial();
         	        parametros.put( "date", new java.util.Date() );
 //        	        parametros.put( "dataInicial", new SimpleDateFormat('dd/MM/yyyy').parse(startDate) );
 //        	        parametros.put( "dataFinal", new SimpleDateFormat('dd/MM/yyyy').parse(endDate) );     
         	        parametros.put("REPORTS_JASPER_PATH", REPORTS_PATH);
-        	        reportsService.generateReportGuia( listGuiaReportDto, parametros, format,  arquivoJxml, response);
+        	        parametros.put("REPORTS_COMPILED_FILE_JASPER", jasperReportCompiled);
+        	        reportsService.generateReportGuia( listGuiaReportDto, parametros, format,  nomeArquivoJxml, response);
 	}
 
       // Parametros iniciais para o relat[orios
