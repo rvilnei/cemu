@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2021-05-28T17:41:46 -->
+<!-- 2021-05-28T17:23:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guia" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="28cf76ee-b4e0-480f-9123-46fbaa598748">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="SUBREPORT_DATA" class="java.util.List"/>
 	<parameter name="SUBREPORT_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="REPORTS_JASPER_PATH" class="java.lang.String"/>
-	<parameter name="REPORTS_COMPILED_FILE_JASPER" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="REPORTS_COMPILED_FILE_JASPER" class="String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -130,7 +130,7 @@
 			<subreport>
 				<reportElement x="0" y="90" width="555" height="50" uuid="406c9014-e74b-42d9-b9e1-4af106bfb779"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{itensMovimentacao})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{REPORTS_COMPILED_FILE_JASPER}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{REPORTS_JASPER_PATH}+"itensMovimentacao.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

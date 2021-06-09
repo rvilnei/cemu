@@ -24,5 +24,11 @@ export class GuiasComponent implements OnInit {
   ngOnInit() {
     this.guias$ = this.guiasService.getGuias();
   }
+    
+  openNewWindowForJasperWithCharts(){
+    var url  = "/localhost:8080/reports/1/pdf";
+    var strWindowFeatures = "menubar=no,location=no,width=800,height=500";
+    window.open(url,"_blank", "location=0,height=500,width=800");
+  }
 
 }

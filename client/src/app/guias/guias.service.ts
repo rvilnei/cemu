@@ -42,7 +42,7 @@ export class GuiasService {
       return this.http.put<Guia>( url, guia, httpOptions  );
     }
 
-    getGuia(id: number) {
+    getGuia(id: number): Observable<Guia> {
       const url = `${this.API}guias/${id}`;
       return this.http.get<Guia>( url );
     }
