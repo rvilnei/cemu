@@ -38,6 +38,8 @@ public class ReportsResouce {
 	@Autowired
 	private GuiasService guiasService;
 	
+	private String REPORTS_PATH = "classpath:reports/MyReports/";
+	
 	@GetMapping
 	public ResponseEntity<List<GuiaReportDto>> listar() {
 		List<Guia> guias = reportsService.listar();
@@ -67,7 +69,6 @@ public class ReportsResouce {
 	
 	@GetMapping("/{id}/{format}")		
 	public void imprimeGuia( @PathVariable Long id, @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
-					System.out.println( "id ** "+id+"format **  "+format );
 					Guia guia = guiasService.buscar(id) ;			
 					List<Guia> listGuia = new ArrayList<Guia>();
 					listGuia.add(guia);
@@ -75,7 +76,6 @@ public class ReportsResouce {
 	}
 	
 	private void gerarImpressaoGuia( List<Guia> listGuia, String format, GuiasService guiasService, HttpServletResponse response  ) throws JRException, IOException {	
-					String REPORTS_PATH = "classpath:reports/MyReports/";
 					List<GuiaReportDto> listGuiaReportDto =  GuiaReportDto.converter( listGuia, guiasService );
 					
 			    	String subReportJxml = REPORTS_PATH+ "itensMovimentacao.jrxml"; 
@@ -97,9 +97,9 @@ public class ReportsResouce {
      private Map<String, Object> parametroInicial(){
          	Map<String, Object> parametros = new HashMap<String, Object>();
          	//    parametros.put( "login", session?.login );
-         	parametros.put( "nomeTribunal", "Tribunal Regional Eleitoral" );
+         	parametros.put( "nomeTribunal", "Tribunal Regional Eleitora do Tocantinsl" );
          	parametros.put( "nomeSecretariaTribunal", "Secretaria de Tecnologia da Informaçäo" );
-         	// parametros.put( "pathBrasao",   grailsApplication.mainContext.getResource('MyReports/brasao.gif').file.getPath()   );
+         	parametros.put( "pathBrasao",    REPORTS_PATH+"brasao.gif"  );
          return parametros;
      }
       

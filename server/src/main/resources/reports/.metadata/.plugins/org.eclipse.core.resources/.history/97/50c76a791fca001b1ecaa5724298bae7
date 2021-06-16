@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-06-10T15:59:02 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estoque" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72ec5115-c467-4ad9-9325-12c5e48d04b2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="IlBVQkxJQyIuIlVOSURBREUiIEFTICw0MzAsNzcsMTI2OGJhMWQtM2E0Zi00YmZkLTgzMjgtYmZm&#xA;ZTFjNDczNjA1OyJQVUJMSUMiLiJFU1RPUVVFIiBBUyAsNjYsODIsNWEwMWM5NTktZWU0NC00OGU2&#xA;LTgxNjktMDA1NTQ3Nzk0ZTUyOyJQVUJMSUMiLiJNQVRFUklBTCIgQVMgLDI1NSw3OCwyNjMyMThi&#xA;OS04NzQ2LTQyZjYtOWVhMi03MTgxNjcwMTNlNmY7"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="284"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="706"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CEMU-H2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT "PUBLIC"."UNIDADE"."SIGLA",
+	"PUBLIC"."MATERIAL"."NOME",
+	"PUBLIC"."ESTOQUE"."QUANTIDADE"
+FROM "PUBLIC"."ESTOQUE",
+	"PUBLIC"."UNIDADE",
+	"PUBLIC"."MATERIAL"]]>
+	</queryString>
+	<field name="SIGLA" class="java.lang.String"/>
+	<field name="NOME" class="java.lang.String"/>
+	<field name="QUANTIDADE" class="java.lang.Integer"/>
+	<group name="SIGLA">
+		<groupExpression><![CDATA[$F{SIGLA}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

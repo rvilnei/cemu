@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>CEMU-H2</name><driver>org.h2.Driver</driver><username>sa</username><password/><savePassword>true</savePassword><url>jdbc:h2:file:~/testdb</url><database/><serverAddress/><properties><key>AUTO_SERVER</key><value>TRUE</value></properties></jdbcDataAdapter>
