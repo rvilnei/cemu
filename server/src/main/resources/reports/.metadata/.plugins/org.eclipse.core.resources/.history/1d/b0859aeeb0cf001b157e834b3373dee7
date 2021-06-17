@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-06-17T18:13:58 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estoque" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72ec5115-c467-4ad9-9325-12c5e48d04b2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="284"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="706"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CEMU-H2"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="unidadeSigla" class="java.lang.String"/>
+	<field name="materialNome" class="java.lang.String"/>
+	<field name="quantidade" class="java.lang.Integer"/>
+	<field name="materialCodigobarras" class="java.lang.String"/>
+	<field name="unidadeNome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="11" width="181" height="21" uuid="d77f3115-1c6e-4d0c-a51b-771dcb173e80"/>
+				<text><![CDATA[teste]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-3" width="131" height="20" uuid="36b32024-2d44-4fad-b19e-2024abc5fc16"/>
+				<text><![CDATA[Unidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="130" height="20" uuid="2c4879cb-0b6d-4e6d-a662-59082ed3d944"/>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="100" height="20" uuid="b2db33f9-4fbc-4e5c-a789-840898fdbc5e"/>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="100" height="20" uuid="50be06cc-4835-4948-8f38-7828475a69e9"/>
+				<text><![CDATA[Código barras]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="141" height="24" uuid="ae215b22-a856-4033-bb29-1cbe0045692f"/>
+				<textFieldExpression><![CDATA[$F{unidadeSigla}+"-"+$F{materialNome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="2" width="159" height="24" uuid="fc1e87e5-c104-47e2-9cbc-8a1050b80334"/>
+				<textFieldExpression><![CDATA[$F{materialNome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="2" width="87" height="24" uuid="72ca432a-5955-4760-bdf5-80ffb047e188"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="2" width="105" height="24" uuid="5faea58d-df10-486a-8760-5cb7c550029a"/>
+				<textFieldExpression><![CDATA[$F{materialCodigobarras}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

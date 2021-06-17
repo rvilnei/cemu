@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import br.jus.treto.cemu.domain.Guia;
 import br.jus.treto.cemu.domain.ItemMovimentacao;
+import br.jus.treto.cemu.resources.dto.EstoqueReportDto;
 import br.jus.treto.cemu.resources.dto.GuiaReportDto;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -54,6 +55,13 @@ public class ReportsService {
         generateOut( rJasperPrintRsult, format, response );
     }
 
+   	public void generateReportEstoque(  List<EstoqueReportDto> estoqueReportDto,Map<String, Object> parametros, String format, String  arquivoJxml, HttpServletResponse response  ) throws JRException, IOException {
+		List<EstoqueReportDto> listestoqueReportDto = estoqueReportDto;
+		JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( listestoqueReportDto );
+        JasperPrint rJasperPrintRsult = generator( arquivoJxml, parametros, datasource );
+        generateOut( rJasperPrintRsult, format, response );
+    }
+	
 	private JasperPrint generator( String nomeArquivo, Map<String, Object> parameters, JRBeanCollectionDataSource dataSource) throws JRException, FileNotFoundException{
         // ler datasource json
 		JRBeanCollectionDataSource datasource =dataSource;
