@@ -8349,6 +8349,7 @@ Caused by: java.net.UnknownHostException: ws2.tre-to.jus.br
 2021-06-09 18:21:06.170  WARN 869 --- [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
 2021-06-09 18:21:06.186  WARN 869 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
 >>>>>>> pesquisa
+<<<<<<< HEAD
 2021-06-09 18:37:23.899  INFO 869 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Starting CemuApplication on MacSEDSA02.local with PID 869 (/Users/vilnei.adm/cemu/server/target/classes started by vilnei.adm in /Users/vilnei.adm/cemu/server)
 2021-06-09 18:37:23.899  INFO 869 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : The following profiles are active: dev
 2021-06-09 18:37:24.734  INFO 869 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
@@ -8424,3 +8425,5 @@ Caused by: java.net.UnknownHostException: ws2.tre-to.jus.br
 2021-06-09 18:37:30.495  INFO 869 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
 2021-06-09 18:37:30.500  INFO 869 --- [restartedMain] br.jus.treto.cemu.CemuApplication        : Started CemuApplication in 1.604 seconds (JVM running for 7880.351)
 2021-06-09 18:37:30.503  INFO 869 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+=======
+>>>>>>> fe90851e1b43f70b2245518a4c48cfe45217ed83
