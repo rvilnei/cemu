@@ -14,7 +14,7 @@ export class RelatoriosService {
   ) { }
 
   imprimeGuia(id: number): any {
-    const url = `${this.API}reports/${id}/pdf`;
+    const url = `${this.API}reports/guias/${id}/pdf`;
     const fileName = "report.pdf";
     this.http.get( url, { responseType: 'blob' })
       .subscribe((blob: Blob) => {

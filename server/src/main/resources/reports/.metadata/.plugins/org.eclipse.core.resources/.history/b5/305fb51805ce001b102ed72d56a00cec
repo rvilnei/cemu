@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-06-15T15:11:24 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="itensMovimentacao" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0a9aa19-6690-4307-a35c-a899c1c18364">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="SUBREPORT_DATA" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="material.nome" class="java.lang.String"/>
+	<field name="quantidadeItem" class="java.lang.Integer"/>
+	<field name="material.codigobarras" class="java.lang.String"/>
+	<pageHeader>
+		<band height="4">
+			<frame>
+				<reportElement x="0" y="-20" width="580" height="20" uuid="9734b8d3-8e1c-4746-b3cf-246de2f6b86f"/>
+				<staticText>
+					<reportElement x="200" y="0" width="160" height="20" uuid="c765d842-40d1-4160-9385-74670885d060"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Itens de materiais]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="11" y="3" width="100" height="18" uuid="d2998078-36b0-4762-977c-6b88b41b04e4"/>
+				<text><![CDATA[Nome material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="4" width="95" height="15" uuid="13689c1f-e047-4ff2-8981-c93c2b49caf8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="4" width="100" height="13" uuid="40a9f3a7-2784-47dd-9b6d-6842a49021e2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="4" width="100" height="18" uuid="ca8d6591-9d7a-4fca-99c8-be2b38cba50f"/>
+				<text><![CDATA[Código barras]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="340" y="2" width="119" height="20" uuid="0c3e31d3-e013-4ba7-9123-481278880663"/>
+				<textFieldExpression><![CDATA[$F{situacao}.substring( 5, $F{situacao}.length() )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="1" width="101" height="21" uuid="1f73d4a5-c8a2-4470-a3c5-ff5d9d260239"/>
+				<textFieldExpression><![CDATA[$F{material.nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="2" width="99" height="20" uuid="d0141a1b-7b4f-44c5-9dea-e9d1bc220eaa"/>
+				<textFieldExpression><![CDATA[$F{quantidadeItem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="3" width="100" height="18" uuid="79a67e3c-5525-4535-afe2-f41832a18bfc"/>
+				<textFieldExpression><![CDATA[$F{material.codigobarras}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+	<summary>
+		<band height="59">
+			<staticText>
+				<reportElement x="30" y="-37" width="134" height="16" uuid="acc5e799-88d6-42ed-8964-09191bd1b7d5"/>
+				<text><![CDATA[Assinatura transportador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="-37" width="134" height="16" uuid="d7fa96c4-cb0e-4ec4-bcf3-0c7b41fa7107"/>
+				<text><![CDATA[Assinatura servidor]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

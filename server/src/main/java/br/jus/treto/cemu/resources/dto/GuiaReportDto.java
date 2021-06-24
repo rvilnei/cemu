@@ -46,7 +46,9 @@ public class GuiaReportDto {
 	private Long unidadeorigemId;
 	private Long unidadedestinoId;
 	private String unidadeorigem;
+	private String dsUnidadeorigem;
 	private String unidadedestino;
+	private String dsUnidadedestino;
 	private LocalDateTime datacriacaoMovimentacao;
 	private String statusMovimentacao;
 	
@@ -71,10 +73,14 @@ public class GuiaReportDto {
 		this.movimentacaoId = guia.getMovimentacao().getId() ;
 		this.unidadeorigemId = guia.getMovimentacao().getUnidadedestinoId() ;
 		this.unidadedestinoId = guia.getMovimentacao().getUnidadeorigemId();
-		if ( this.unidadeorigemId  != null )
+		if ( this.unidadeorigemId  != null ) {
 			this.unidadeorigem  = guiasService.getUnidade(unidadeorigemId).getSigla();
-		if ( this.unidadedestinoId  != null )
+			this.dsUnidadeorigem  = guiasService.getUnidade(unidadeorigemId).getDescricao() ;
+		}
+		if ( this.unidadedestinoId  != null ) {
 			this.unidadedestino  = guiasService.getUnidade(unidadedestinoId).getSigla();
+		   this.dsUnidadedestino  = guiasService.getUnidade(unidadeorigemId).getDescricao();
+		}
 		this.statusMovimentacao = guia.getMovimentacao().getStatus();
 		this.datacriacaoMovimentacao = guia.getMovimentacao().getDatacriacao();
 		this.itensMovimentacao = guia.getMovimentacao().getItens();
@@ -114,6 +120,14 @@ public class GuiaReportDto {
 		this.unidadeorigem = origem;
 	}
 	
+	public String getDsUnidadeorigem() {
+		return dsUnidadeorigem;
+	}
+
+	public String getDsUnidadedestino() {
+		return dsUnidadedestino;
+	}
+
 	public String getUnidadedestino() {
 		return this.unidadedestino;
 	}

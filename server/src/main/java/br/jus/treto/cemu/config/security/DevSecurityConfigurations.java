@@ -38,6 +38,7 @@ public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 	@Bean
 	protected AuthenticationManager authenticationManager() throws Exception  {
 		return super.authenticationManager();
+	//	return super.authenticationManagerBean();
 	}
 	
 	//Configuracoes de autenticacao

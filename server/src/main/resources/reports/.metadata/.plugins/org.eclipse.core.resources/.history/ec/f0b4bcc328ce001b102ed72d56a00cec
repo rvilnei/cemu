@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-04T13:11:17 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="diarias_por_servidor_periodo_sgp" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80ab4454-2288-445f-bbf1-beba73fac4e5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BANCO ADMDIARIASGRAILS"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="254"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="739"/>
+	<parameter name="dataInicial" class="java.util.Date"/>
+	<parameter name="dataFinal" class="java.util.Date"/>
+	<parameter name="Parameter3" class="java.lang.String"/>
+	<parameter name="Parameter4" class="java.lang.String"/>
+	<parameter name="date" class="java.util.Date" isForPrompting="false"/>
+	<parameter name="login" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="nomeTribunal" class="java.lang.String"/>
+	<parameter name="nomeSecretariaTribunal" class="java.lang.String"/>
+	<parameter name="pathBrasao" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT "SOLICITACAO"."DATAREALIZADA",
+     "PAGAMENTO"."DATAPAGAMENTO" ,
+	"SOLICITACAO"."NUMERO" AS numero,
+	"SOLICITACAO"."TIPOSITUACAO" tiposituacao,
+	"FUNCIONARIO"."NOME" AS nome,
+	"FUNCIONARIO"."CPF" AS cpf,
+	"PAGAMENTO"."VALORPAGAMENTO" valorpagamento ,
+    NVL(   "VW_SERVIDOR_FOLHA"."MATRICULA" ,   'colaborador'  ) AS MATRICULA
+FROM "PAGAMENTO"
+	INNER JOIN "SOLICITACAO_PROPOSTO" ON 
+	 "PAGAMENTO"."SOLICITACAOPROPOSTO_ID" = "SOLICITACAO_PROPOSTO"."ID" 
+	INNER JOIN "SOLICITACAO" ON 
+	 "SOLICITACAO_PROPOSTO"."SOLICITACAO_ID" = "SOLICITACAO"."ID" 
+	INNER JOIN "FUNCIONARIO" ON 
+	 "SOLICITACAO_PROPOSTO"."FAVORECIDO_ID" = "FUNCIONARIO"."ID" 
+	LEFT  JOIN "VW_SERVIDOR_FOLHA" ON 
+	 "FUNCIONARIO"."CPF"  = "VW_SERVIDOR_FOLHA"."CPF"  
+WHERE 
+	 "PAGAMENTO"."DATAPAGAMENTO" BETWEEN $P{dataInicial} AND $P{dataFinal} 
+	 AND   "SOLICITACAO"."TIPOSITUACAO" IN ('VERIFICADA','COMPROVADA','RATIFICADA','PAGA') 
+	       AND "PAGAMENTO"."DATAPAGAMENTO" = 
+       ( 
+        SELECT MAX(PG.DATAPAGAMENTO)
+        FROM
+         PAGAMENTO PG
+        WHERE
+        PG.SOLICITACAOPROPOSTO_ID = "SOLICITACAO_PROPOSTO"."ID"  
+       )
+	 
+ORDER BY "FUNCIONARIO"."NOME",   "PAGAMENTO"."DATAPAGAMENTO" ASC]]>
+	</queryString>
+	<field name="numero" class="java.lang.String"/>
+	<field name="tiposituacao" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="valorpagamento" class="java.math.BigDecimal"/>
+	<field name="matricula" class="java.lang.String"/>
+	<field name="datarealizada" class="java.util.Date"/>
+	<field name="datapagamento" class="java.util.Date"/>
+	<variable name="valorpagamento1" class="java.math.BigDecimal" resetType="Group" resetGroup="Group1" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorpagamento}]]></variableExpression>
+	</variable>
+	<variable name="valorpagamento2" class="java.math.BigDecimal" resetType="Group" resetGroup="por_mes" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorpagamento}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{cpf}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="por_mes">
+		<groupExpression><![CDATA[$F{datapagamento}.getMonth()]]></groupExpression>
+		<groupFooter>
+			<band height="18">
+				<textField pattern="#,##0.00;¤-#,##0.00">
+					<reportElement x="410" y="0" width="60" height="18" uuid="a1f6e5e0-887d-4f24-a2ff-3f09254defe4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{valorpagamento2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="230" y="0" width="180" height="18" uuid="6f83ce00-72ee-43ef-a21a-004b2956d35a"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{nome}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="170" y="0" width="60" height="18" uuid="b35f379d-02eb-425e-a513-218825b17ad4"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="90" y="0" width="80" height="18" uuid="75b95677-13d9-4009-ad81-29db6eb71d45"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{dataFinal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="20" y="0" width="70" height="18" uuid="83a849dd-3168-4111-b1f7-f9e2a9090501"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$P{dataInicial}]]></textFieldExpression>
+				</textField>
+				<textField pattern="MM/yyyy">
+					<reportElement x="470" y="0" width="79" height="18" uuid="cefd87aa-7dc7-4e6e-8ceb-f62bd9863c0f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{datapagamento}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement key="staticText-45" x="19" y="63" width="535" height="20" backcolor="#FCFCFC" uuid="97735f90-eac2-42e6-b274-39fc8e202289"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Diárias pagas por servidor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-56" x="339" y="42" width="57" height="16" uuid="4d807804-00cd-4ff4-ba08-6185d859889b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Período:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-16" x="396" y="41" width="74" height="16" uuid="a311afb6-b565-4d8f-81a9-57c212cb6a22"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataInicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-57" x="470" y="41" width="10" height="16" uuid="589094d2-0b56-48ef-8bd8-010b412bf107"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[a Estático]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField-17" x="484" y="42" width="76" height="16" uuid="f9782bb1-0594-48c0-a989-c7a68f647c07"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataFinal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy hh:mm:ss" isBlankWhenNull="false">
+				<reportElement key="textField-19" x="400" y="26" width="154" height="16" uuid="028cae3b-6de7-4131-8ef0-fc3b72ce9872"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-20" x="397" y="10" width="152" height="16" uuid="5d737b29-503f-4cec-a161-6d0785225a3d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{login}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-62" x="341" y="26" width="57" height="16" uuid="e514c57f-5c2f-4f3a-9af1-b5f9d1dde454"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-65" x="340" y="10" width="57" height="16" uuid="091c1834-d50b-48af-b2ae-e86f8a975441"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Login:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-47" x="72" y="42" width="248" height="15" uuid="81252169-519b-48f2-b97d-0c6d2141e4c6"/>
+				<box>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomeSecretariaTribunal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-44" stretchType="RelativeToBandHeight" x="72" y="8" width="245" height="19" uuid="736e456f-c291-4ee8-aa14-4409e6846b65"/>
+				<box>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PODER JUDICIÁRIO
+]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-47" x="72" y="26" width="245" height="15" uuid="98849ece-4bda-4d80-9fcf-10597777befa"/>
+				<box>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomeTribunal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="90" width="81" height="18" uuid="4dc44d88-797b-4451-8c87-8dae5fb663c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="90" width="170" height="18" uuid="201bf09b-da1f-44ab-979a-6c83bad36855"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Servidor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="90" width="70" height="18" uuid="0d75ca4f-af98-4d41-bb44-c75cd1096458"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor/Mês]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="90" width="70" height="18" uuid="2eb772be-3486-4afe-b233-b98c85e57607"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matrícula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="90" width="60" height="18" uuid="c351e055-9f16-45f3-926c-7e19c5bc5fdc"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Fim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="90" width="69" height="18" uuid="84ae5fcb-8989-4a45-b1f3-38ef735c15fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mês/Ano]]></text>
+			</staticText>
+			<image>
+				<reportElement key="image-1" x="17" y="5" width="52" height="51" uuid="93e443c6-5366-4f24-9364-f231aef05776"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[$P{pathBrasao}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</detail>
+</jasperReport>

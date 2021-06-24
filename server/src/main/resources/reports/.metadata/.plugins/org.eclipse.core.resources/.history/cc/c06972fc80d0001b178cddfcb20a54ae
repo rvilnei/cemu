@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-06-18T18:21:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="materiais" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b144dcbf-e51a-4fc6-b022-c5ae553d5a4d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CEMU-H2"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="546"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="440"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 	
+	M."NOME" AS materialNome,
+	S."NOME" AS statusNome,
+	T."NOME" AS tipoNome,
+	M."CATEGORIA" AS materialCategoria,
+	M."CODIGOBARRAS" AS codigoBarras,
+	M."DESCRICAO" AS materialDescricao,
+	M."MODELO" AS materialModelo,
+	M."STATUS_ID" AS statusId,
+	M."TEM_DEVOLUCAO" AS materialTemDevolucao,
+	M."TIPO_ID" AS tipoId
+FROM "PUBLIC"."MATERIAL" AS M,
+	"PUBLIC"."STATUS" AS S,
+	"PUBLIC"."TIPO" AS T
+WHERE 
+	 M."STATUS_ID" = S.ID 
+	 AND M."TIPO_ID" = T.ID]]>
+	</queryString>
+	<field name="materialNome" class="java.lang.String"/>
+	<field name="statusNome" class="java.lang.String"/>
+	<field name="materialCategoria" class="java.lang.String"/>
+	<field name="codigoBarras" class="java.lang.String"/>
+	<field name="materialDescricao" class="java.lang.String"/>
+	<field name="materialModelo" class="java.lang.String"/>
+	<field name="statusId" class="java.lang.String"/>
+	<field name="materialTemDevolucao" class="java.lang.Boolean"/>
+	<field name="tipoId" class="java.lang.String"/>
+	<field name="tipoNome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="47" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import br.jus.treto.cemu.domain.Guia;
 import br.jus.treto.cemu.domain.ItemMovimentacao;
+import br.jus.treto.cemu.resources.dto.EstoqueReportDto;
 import br.jus.treto.cemu.resources.dto.GuiaReportDto;
+import br.jus.treto.cemu.resources.dto.MaterialReportDto;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -54,6 +56,21 @@ public class ReportsService {
         generateOut( rJasperPrintRsult, format, response );
     }
 
+   	public void generateReportEstoque(  List<EstoqueReportDto> estoqueReportDto,Map<String, Object> parametros, String format, String  arquivoJxml, HttpServletResponse response  ) throws JRException, IOException {
+		List<EstoqueReportDto> listestoqueReportDto = estoqueReportDto;
+		JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource( listestoqueReportDto );
+        JasperPrint rJasperPrintRsult = generator( arquivoJxml, parametros, datasource );
+        generateOut( rJasperPrintRsult, format, response );
+    }
+	
+	public void generateReportMaterial(List<MaterialReportDto> lmaterialReportDto, Map<String, Object> parametros,
+			String format, String nomeArquivoJxml, HttpServletResponse response) throws JRException, IOException {
+			List<MaterialReportDto> listaMaterialReportDto = lmaterialReportDto;
+			JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource(listaMaterialReportDto  );
+			JasperPrint jasperPrintResul = generator( nomeArquivoJxml, parametros, datasource );
+			generateOut( jasperPrintResul, format, response );
+	}
+   	
 	private JasperPrint generator( String nomeArquivo, Map<String, Object> parameters, JRBeanCollectionDataSource dataSource) throws JRException, FileNotFoundException{
         // ler datasource json
 		JRBeanCollectionDataSource datasource =dataSource;
@@ -73,37 +90,30 @@ public class ReportsService {
 	 			String mimeType = "application/pdf" ;
 	 			String arquivoNome = "reportGuias.pdf";
 	 			OutputStream outputStream = getOutputStream( response, mimeType, arquivoNome );
-	    	
 			    JRPdfExporter exporter = new JRPdfExporter();
 			    exporter.setExporterInput(new SimpleExporterInput(rJasperPrintRsult));
-			//    exporter.setExporterOutput( new SimpleOutputStreamExporterOutput(outputStream));
+		//     exporter.setExporterOutput( new SimpleOutputStreamExporterOutput(outputStream));
 			    exporter.setExporterOutput( new SimpleOutputStreamExporterOutput(response.getOutputStream()));
-			    
 			   SimplePdfReportConfiguration reportConfig= new SimplePdfReportConfiguration();
 			   reportConfig.setSizePageToContent(true);
 			   reportConfig.setForceLineBreakPolicy(false);
-		
 			   SimplePdfExporterConfiguration exportConfig= new SimplePdfExporterConfiguration();
 			    exportConfig.setMetadataAuthor("baeldung");
 			    exportConfig.setEncrypted(true);
 			    exportConfig.setAllowedPermissionsHint("PRINTING");
-		
 			    exporter.setConfiguration(reportConfig);
 			    exporter.setConfiguration(exportConfig);
-		
 				 try {
 				   	exporter.exportReport();
 				 } catch (JRException e) {
 				     throw new RuntimeException(e);
 				 }
-		    
 		}
 	    	    
          if ( reportFormat.equalsIgnoreCase( "xls" ) ){
 	  			String mimeType = "aapplication/vnd.ms-excel" ;
 	  			String arquivoNome = "reportGuias.xls";
 	  			OutputStream outputStream = getOutputStream( response, mimeType, arquivoNome );
-
         	   JRXlsxExporter exporter = new JRXlsxExporter(); // initialize exporter 
         	   exporter.setExporterInput(new SimpleExporterInput(rJasperPrintRsult)); // set compiled report as input
         	   exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream)); // set output file via path with filename
@@ -121,17 +131,14 @@ public class ReportsService {
         	    		exporter.exportReport();
         	    } catch (JRException e) {
         	        	throw new RuntimeException(e);
-        	    }
-        	         	 
+        	    }	 
         }
      	if ( reportFormat.equalsIgnoreCase( "html" ) ){
   			String mimeType = "text/htmll" ;
   			String arquivoNome = "reportGuias.html";
   			OutputStream outputStream = getOutputStream( response, mimeType, arquivoNome );
-     		
         	 HtmlExporter exporter = new HtmlExporter();
         	 exporter.setExporterInput(new SimpleExporterInput(rJasperPrintRsult)); // set compiled report as input
-         	 // Set input ...
          	// exporter.setExporterOutput( new SimpleHtmlExporterOutput("employeeReport.html"));  // set output file via path with filename
          	 exporter.setExporterOutput( new SimpleHtmlExporterOutput(outputStream));  // set output file via path with filename
     	     try {
@@ -139,16 +146,12 @@ public class ReportsService {
     	     } catch (JRException e) {
 	        		throw new RuntimeException(e);
     	     }
-	      		
         }
-         
-         return byteArrayOutputStream;
-         		
+         return byteArrayOutputStream;		
 	}
      
 	private OutputStream  getOutputStream( HttpServletResponse response, String type, String arquivoNome  ) throws IOException {
 		response.setContentType(type);
-//		response.setHeader("Content-disposition", "inline; filename="+arquivoNome);
 		response.setHeader("Content-Disposition", "inline;filename="+arquivoNome);
 //		response.setHeader("Content-Disposition", "attachment;filename=somefile.ext");
 		OutputStream outputStream = response.getOutputStream();

@@ -16,11 +16,20 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.jus.treto.cemu.domain.Estoque;
 import br.jus.treto.cemu.domain.Guia;
 import br.jus.treto.cemu.domain.ItemMovimentacao;
+import br.jus.treto.cemu.domain.Material;
+import br.jus.treto.cemu.resources.dto.EstoqueDto;
+import br.jus.treto.cemu.resources.dto.EstoqueReportDto;
 import br.jus.treto.cemu.resources.dto.GuiaReportDto;
+import br.jus.treto.cemu.resources.dto.MaterialReportDto;
+import br.jus.treto.cemu.services.EstoqueService;
 import br.jus.treto.cemu.services.GuiasService;
+import br.jus.treto.cemu.services.MateriaisService;
 import br.jus.treto.cemu.services.ReportsService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -37,6 +46,14 @@ public class ReportsResouce {
 	
 	@Autowired
 	private GuiasService guiasService;
+	
+	@Autowired
+	private EstoqueService estoqueService;
+	
+	@Autowired
+	private MateriaisService materiaisService;
+	
+	private String REPORTS_PATH = "classpath:reports/MyReports/";
 	
 	@GetMapping
 	public ResponseEntity<List<GuiaReportDto>> listar() {
@@ -65,9 +82,9 @@ public class ReportsResouce {
 					gerarImpressaoGuia(  listGuias, format,  guiasService, response );
 	}
 	
-	@GetMapping("/{id}/{format}")		
+	//GERA GUIAS//
+	@GetMapping("/guias/{id}/{format}")		
 	public void imprimeGuia( @PathVariable Long id, @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
-					System.out.println( "id ** "+id+"format **  "+format );
 					Guia guia = guiasService.buscar(id) ;			
 					List<Guia> listGuia = new ArrayList<Guia>();
 					listGuia.add(guia);
@@ -75,7 +92,6 @@ public class ReportsResouce {
 	}
 	
 	private void gerarImpressaoGuia( List<Guia> listGuia, String format, GuiasService guiasService, HttpServletResponse response  ) throws JRException, IOException {	
-					String REPORTS_PATH = "classpath:reports/MyReports/";
 					List<GuiaReportDto> listGuiaReportDto =  GuiaReportDto.converter( listGuia, guiasService );
 					
 			    	String subReportJxml = REPORTS_PATH+ "itensMovimentacao.jrxml"; 
@@ -93,13 +109,55 @@ public class ReportsResouce {
         	        reportsService.generateReportGuia( listGuiaReportDto, parametros, format,  nomeArquivoJxml, response);
 	}
 
-      // Parametros iniciais para o relat[orios
+	//GERA ESTOQUES//
+	@GetMapping("/estoques/{format}")		
+	public void imprimeEstoques( @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
+		List<Estoque> listaEstoque = estoqueService.listar();
+		gerarImpressaoEstoque(  listaEstoque, format,  guiasService, response );
+	}
+	
+      private void gerarImpressaoEstoque(List<Estoque> listaEstoque, String format,
+			GuiasService guiasService, HttpServletResponse response) throws JRException, IOException {
+    	  	List<EstoqueReportDto> listaEstoqueReportDto =  EstoqueReportDto.converter(  listaEstoque, materiaisService );
+	    	String nomeArquivoJxml = REPORTS_PATH+"estoque.jrxml"; 
+			File fileSubReportile = ResourceUtils.getFile(nomeArquivoJxml );
+			//JasperCompileManager.compileReportToFile(fileSubReportile.getPath());
+			JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileSubReportile.getPath());
+ 			Map<String, Object> parametros = parametroInicial();
+	        parametros.put( "date", new java.util.Date() );    
+	        parametros.put("REPORTS_JASPER_PATH", REPORTS_PATH);
+	        parametros.put("REPORTS_COMPILED_FILE_JASPER", jasperReportCompiled);
+	        reportsService.generateReportEstoque( listaEstoqueReportDto, parametros, format,  nomeArquivoJxml, response);
+	}
+
+  	//GERA MATERIAIS//
+  	@GetMapping("/materiais/{format}")		
+  	public void imprimeMateriais( @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
+  		List<Material> listaMateriais = materiaisService.listar();
+  		gerarImpressaoMateriais(  listaMateriais, format,  materiaisService, response );
+  	}
+  	
+        private void gerarImpressaoMateriais(List<Material> listaMaterial, String format,
+        	MateriaisService materiaisService, HttpServletResponse response) throws JRException, IOException {
+      	  	List<MaterialReportDto> listaMaterialReportDto =  MaterialReportDto.converter(  listaMaterial, materiaisService );
+  	    	String nomeArquivoJxml = REPORTS_PATH+"materiais.jrxml"; 
+  			File fileSubReportile = ResourceUtils.getFile(nomeArquivoJxml );
+  			//JasperCompileManager.compileReportToFile(fileSubReportile.getPath());
+  			JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileSubReportile.getPath());
+   			Map<String, Object> parametros = parametroInicial();
+  	        parametros.put( "date", new java.util.Date() );    
+  	        parametros.put("REPORTS_JASPER_PATH", REPORTS_PATH);
+  	        parametros.put("REPORTS_COMPILED_FILE_JASPER", jasperReportCompiled);
+  	        reportsService.generateReportMaterial( listaMaterialReportDto, parametros, format,  nomeArquivoJxml, response);
+  	}
+      
+	// Parametros iniciais para o relat[orios
      private Map<String, Object> parametroInicial(){
          	Map<String, Object> parametros = new HashMap<String, Object>();
          	//    parametros.put( "login", session?.login );
-         	parametros.put( "nomeTribunal", "Tribunal Regional Eleitoral" );
+         	parametros.put( "nomeTribunal", "Tribunal Regional Eleitora do Tocantins" );
          	parametros.put( "nomeSecretariaTribunal", "Secretaria de Tecnologia da Informaçäo" );
-         	// parametros.put( "pathBrasao",   grailsApplication.mainContext.getResource('MyReports/brasao.gif').file.getPath()   );
+         	parametros.put( "pathBrasao",    REPORTS_PATH+"brasao.gif"  );
          return parametros;
      }
       
