@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-06-23T16:54:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="materiais" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b144dcbf-e51a-4fc6-b022-c5ae553d5a4d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CEMU-H2"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="546"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="440"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="statusNome" class="java.lang.String"/>
+	<field name="categoria" class="java.lang.String"/>
+	<field name="codigoBarras" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="statusId" class="java.lang.String"/>
+	<field name="materialTemDevolucao" class="java.lang.Boolean"/>
+	<field name="tipoId" class="java.lang.String"/>
+	<field name="tipoNome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="5" width="116" height="16" uuid="ed144fc1-0605-4aa1-a19f-a19eb02388af"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="5" width="114" height="16" uuid="2cc6f580-e69a-4f50-85a1-e256a12ccb47"/>
+				<textFieldExpression><![CDATA[$F{codigoBarras}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="5" width="114" height="16" uuid="1dbd4733-6b94-4277-b409-1c11a1f32205"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="5" width="114" height="16" uuid="6cd73f1f-1773-4751-a72d-ea101662508f"/>
+				<textFieldExpression><![CDATA[$F{materialTemDevolucao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="5" width="114" height="13" uuid="07e5f830-c861-43ba-b66c-db3bcd8255d0"/>
+				<textFieldExpression><![CDATA[$F{tipoNome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="35" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="25" splitType="Stretch"/>
+	</summary>
+</jasperReport>

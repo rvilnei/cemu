@@ -26,6 +26,7 @@ import br.jus.treto.cemu.domain.Material;
 import br.jus.treto.cemu.resources.dto.EstoqueDto;
 import br.jus.treto.cemu.resources.dto.EstoqueReportDto;
 import br.jus.treto.cemu.resources.dto.GuiaReportDto;
+import br.jus.treto.cemu.resources.dto.MaterialReportDto;
 import br.jus.treto.cemu.services.EstoqueService;
 import br.jus.treto.cemu.services.GuiasService;
 import br.jus.treto.cemu.services.MateriaisService;
@@ -81,6 +82,7 @@ public class ReportsResouce {
 					gerarImpressaoGuia(  listGuias, format,  guiasService, response );
 	}
 	
+	//GERA GUIAS//
 	@GetMapping("/guias/{id}/{format}")		
 	public void imprimeGuia( @PathVariable Long id, @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
 					Guia guia = guiasService.buscar(id) ;			
@@ -107,6 +109,7 @@ public class ReportsResouce {
         	        reportsService.generateReportGuia( listGuiaReportDto, parametros, format,  nomeArquivoJxml, response);
 	}
 
+	//GERA ESTOQUES//
 	@GetMapping("/estoques/{format}")		
 	public void imprimeEstoques( @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
 		List<Estoque> listaEstoque = estoqueService.listar();
@@ -127,6 +130,27 @@ public class ReportsResouce {
 	        reportsService.generateReportEstoque( listaEstoqueReportDto, parametros, format,  nomeArquivoJxml, response);
 	}
 
+  	//GERA MATERIAIS//
+  	@GetMapping("/materiais/{format}")		
+  	public void imprimeMateriais( @PathVariable String format, HttpServletResponse response  ) throws JRException, IOException{
+  		List<Material> listaMateriais = materiaisService.listar();
+  		gerarImpressaoMateriais(  listaMateriais, format,  materiaisService, response );
+  	}
+  	
+        private void gerarImpressaoMateriais(List<Material> listaMaterial, String format,
+        	MateriaisService materiaisService, HttpServletResponse response) throws JRException, IOException {
+      	  	List<MaterialReportDto> listaMaterialReportDto =  MaterialReportDto.converter(  listaMaterial, materiaisService );
+  	    	String nomeArquivoJxml = REPORTS_PATH+"materiais.jrxml"; 
+  			File fileSubReportile = ResourceUtils.getFile(nomeArquivoJxml );
+  			//JasperCompileManager.compileReportToFile(fileSubReportile.getPath());
+  			JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileSubReportile.getPath());
+   			Map<String, Object> parametros = parametroInicial();
+  	        parametros.put( "date", new java.util.Date() );    
+  	        parametros.put("REPORTS_JASPER_PATH", REPORTS_PATH);
+  	        parametros.put("REPORTS_COMPILED_FILE_JASPER", jasperReportCompiled);
+  	        reportsService.generateReportMaterial( listaMaterialReportDto, parametros, format,  nomeArquivoJxml, response);
+  	}
+      
 	// Parametros iniciais para o relat[orios
      private Map<String, Object> parametroInicial(){
          	Map<String, Object> parametros = new HashMap<String, Object>();

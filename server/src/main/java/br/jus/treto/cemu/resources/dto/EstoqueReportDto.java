@@ -32,9 +32,10 @@ public class EstoqueReportDto {
 			this.materialCodigobarras =  materiaisService.buscar( estoque.getMaterialId()  ).getCodigobarras();
 		}
 		this.unidadeId = estoque.getUnidadeId();
-		if( unidadeId != null )
+		if( unidadeId != null ) {
 			this.unidadeNome =  materiaisService.getUnidade(unidadeId).getDescricao();
 			this.unidadeSigla =  materiaisService.getUnidade(unidadeId).getSigla();
+		}
 		this.quantidade = estoque.getQuantidade();
 		this.data = estoque.getData();
 		this.dataAlteracao = estoque.getDataAlteracao();	

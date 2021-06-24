@@ -35,16 +35,10 @@ public class Material {
 	@NotNull @NotEmpty  @Length( min = 2 )
 	private String nome;
 	private String descricao;
-//	@ManyToOne(  optional= true ,   fetch = FetchType.EAGER)
-//	@JoinColumn(name = "TIPO_ID", nullable= true)
-//	private Tipo tipo;
 	private Long tipoId;
 	private String codigobarras;
 	private Long categoria;
 	private String modelo;
-//	@ManyToOne( optional= true , fetch = FetchType.EAGER)
-//	@JoinColumn(name = "STATUS_ID" , nullable= true )
-//	private Status status;
 	private Long statusId;
 	private Boolean temDevolucao;
 	@Transient
@@ -54,11 +48,10 @@ public class Material {
 	private List<Lancamento> lancamentos;
 	
 	@OneToMany( mappedBy = "material" , cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
-	@JsonIgnore // 
+	@JsonIgnore  
   	private  List<ItemMovimentacao> itens = new ArrayList<>()	;
 	
 	 public Material() {}
-	
 	
 	public List<ItemMovimentacao> getItens() {
 		return itens;
@@ -161,5 +154,4 @@ public class Material {
 		this.descricao = descricao;
 	}
 
-	
 }
