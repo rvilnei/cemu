@@ -33,7 +33,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String nome = authentication.getName();
         String password = authentication.getCredentials().toString();
            
-        System.out.println("* authenticate *name**  "+nome+"  **password**  "+password);
+        System.out.println("* authenticate *name**  "+nome);
       	Usuario usuario = Autenticacao.autenticaERetornaDados( nome ,  password , "SDU", true );
     	List<Perfil> perfis = usuario.getPerfis();
     	

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter } from 'rxjs/internal/operators/filter';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,7 +21,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MovimentacoesService {
-      private readonly API =`http://localhost:8080/`;
+     // private readonly API =`http://localhost:8080/`;
+      private readonly API = environment.Apiurl;
       movimentacao: any = {};
       listaMaterial = [] ;
       listaMaterialEstoque = [] ;

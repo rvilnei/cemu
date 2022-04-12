@@ -3,13 +3,15 @@ import { delay, tap, catchError, filter } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstoquesService {
   // private readonly API = `http://localhost:3000/`;
-  private readonly API =`http://localhost:8080/`;
+ // private readonly API =`http://localhost:8080/`;
+  private readonly API = environment.Apiurl;
 
   constructor(
     private http: HttpClient 

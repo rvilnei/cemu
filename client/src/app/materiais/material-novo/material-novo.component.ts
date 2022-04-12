@@ -18,7 +18,10 @@ import { FormGroup } from '@angular/forms';
 })
 export class MaterialNovoComponent implements OnInit {
 
-  material: any = {};
+  material: any = {
+    tipo: {id: null , nome: ''},
+    status: {id: null , nome: ''}
+  };
   materialTipo$: Observable<any[]>; // para usar | async
   materialStatu$: Observable<any[]>;
   materiais$: Observable<any[]>;
@@ -145,7 +148,8 @@ export class MaterialNovoComponent implements OnInit {
   }
 
   changeMaterialTipo(e) {
-    this.tipoMaterial = this.material.tipo == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+   // this.tipoMaterial = this.material.tipo.nome;
     if (this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
       this.material.temDevolucao = false;
@@ -155,12 +159,13 @@ export class MaterialNovoComponent implements OnInit {
   }
 
   changeTemDevolucao(e) {
-    this.tipoMaterial = this.material.tipo == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+   // this.tipoMaterial = this.material.tipo.nome;
     if (this.material.temDevolucao) {
-      this.material.tipo = 2; // SUPRIMENTO
+      this.material.tipo.id = 2; // SUPRIMENTO
     } else {
-      this.material.tipo = 1; // PEÇA_REPOSIÇÃO
-      this.material.status = null;
+      this.material.tipo.id = 1; // PEÇA_REPOSIÇÃO
+      this.material.status = null ;
       this.material.temCodigobarras = false;
     }
   }
@@ -168,7 +173,7 @@ export class MaterialNovoComponent implements OnInit {
   changeTemCodigoBarras(e) {
     if (e.value = true) {
       this.material.temDevolucao = true;
-      this.material.tipo = 2; // SUPRIMENTO
+      this.material.tipo.id = 2; // SUPRIMENTO
     }
   }
 

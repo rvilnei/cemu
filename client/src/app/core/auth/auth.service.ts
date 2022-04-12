@@ -5,8 +5,11 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const API_URL = 'http://localhost:8080/';
+import { environment } from 'src/environments/environment';
 
+//const API_URL = 'http://localhost:8080/';
+//const API_URL =  'api'; 
+const API_URL = environment.Apiurl;
 @Injectable({
   providedIn: 'root'
 })
