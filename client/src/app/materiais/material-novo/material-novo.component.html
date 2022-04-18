@@ -35,17 +35,17 @@
             <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
             <div class="col-5 col-md-3">
               <select class="form-control" [disabled]="material.temDevolucao" (change)="changeMaterialTipo($event)"
-                 id="tipo" name="tipo" [(ngModel)]="material.tipo.id">
-                 <option>...</option>
-                 <option *ngFor="let materialTipo of materialTipo$ | async" [ngValue]="materialTipo.id">{{materialTipo.nome}}</option>
+                 id="tipo" name="tipo" [(ngModel)]="material.tipo">
+                 <option  selected [value]="null" >...</option>
+                 <option *ngFor="let materialTipo of materialTipo$ | async" [ngValue]="materialTipo">{{materialTipo.nome}}</option>
               </select>
             </div>
             <label for="status" class="col-md-2 col-form-label">Status</label>
             <div class="col-5 col-md-5">
-                <select class="form-control" [disabled]="!material.temDevolucao"  name="status" id="status" [(ngModel)]="material.status.id">
-                    <option >...</option>
-                    <option *ngFor="let status of materialStatu$ | async "[ngValue]="status.id" >{{status.nome}}</option>
-                 </select>
+                 <select class="form-control"  [disabled]="!material.temDevolucao" name="status" id="status" [(ngModel)]="material.status">
+                    <option  selected [value]="null" >...</option>
+                    <option *ngFor="let status of materialStatu$ | async " [ngValue]="status" >{{status.nome}}</option>
+                  </select>                 
             </div>
         </div>
 

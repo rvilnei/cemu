@@ -62,6 +62,7 @@ public class MaterialDto {
 		this.nome = material.getNome() ;
 		this.descricao = material.getDescricao() ;
 		this.tipo  = material.getTipo();
+		if ( material.getTipo() != null )
 		this.tipoDescricao  = material.getTipo().getNome();
 		//this.tipoDescricao  = materiaisService.buscarTipo(  material.getTipo() ).getNome();
 		this.codigobarras  = material.getCodigobarras();
@@ -69,6 +70,7 @@ public class MaterialDto {
 		this.modelo  = material.getModelo();
 		//this.status = material.getStatus();
 		this.status = material.getStatus();
+		if ( this.status != null )
 		this.statusDescricao  =  this.status.getNome();
 		//this.statusDescricao  = materiaisService.buscarStatus(  material.getTipo() ).getNome();
 		this.temDevolucao = material.getTemDevolucao();

@@ -19,8 +19,9 @@ import { FormGroup } from '@angular/forms';
 export class MaterialNovoComponent implements OnInit {
 
   material: any = {
-    tipo: {id: null , nome: ''},
-    status: {id: null , nome: ''}
+   // tipo: {id: null , nome: '' },
+    tipo: null,
+    ststus: null
   };
   materialTipo$: Observable<any[]>; // para usar | async
   materialStatu$: Observable<any[]>;

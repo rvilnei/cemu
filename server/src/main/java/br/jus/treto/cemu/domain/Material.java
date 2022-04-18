@@ -40,8 +40,10 @@ public class Material {
 	private Tipo tipo;
 	private String codigobarras;
 	private Long categoria;
-	private String modelo;
-	@ManyToOne
+	private String modelo; 
+	//@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.DETACH)
+	@ManyToOne(optional = true,  cascade=CascadeType.DETACH)
+	@JoinColumn(name="STATUS_ID", referencedColumnName="ID", nullable=true)
 	private Status status;
 	private Boolean temDevolucao;
 	@Transient

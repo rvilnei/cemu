@@ -11,7 +11,10 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class MaterialEditComponent implements OnInit {
   inscricao: Subscription
-  material: any = {};
+  material: any = {
+    tipo: null,
+    ststus: null
+  };
   private paramId: Params;
   materialTipo$: Observable<any[]>; // para usar | async
   materialStatu$: Observable<any[]>;
