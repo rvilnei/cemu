@@ -24,25 +24,25 @@
                     </label>
                 </div>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" (change)="changeTemCodigoBarras($event)" class="custom-control-input" name="temCodigoBarras" id="temCodigoBarras" [(ngModel)]="material.temCodigobarras" >
+                    <input type="checkbox" (click)="changeTemCodigoBarras($event)" class="custom-control-input" name="temCodigoBarras" id="temCodigoBarras" [(ngModel)]="material.temCodigobarras" >
                     <label class="custom-control-label" for="temCodigoBarras">
                         <strong>Este material tem código de barras ?</strong>
                     </label>
                 </div>           
             </div>
-        </div>
+        </div> {{material.tipo | json}}
         <div class="form-group row">
             <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
             <div class="col-5 col-md-3">
               <select class="form-control" [disabled]="material.temDevolucao" (change)="changeMaterialTipo($event)"
-                 id="tipo" name="tipo" [(ngModel)]="material.tipo">
+              [compareWith]="compareFn" id="tipo" name="tipo" [(ngModel)]="material.tipo">
                  <option  selected [value]="null" >...</option>
                  <option *ngFor="let materialTipo of materialTipo$ | async" [ngValue]="materialTipo">{{materialTipo.nome}}</option>
               </select>
             </div>
             <label for="status" class="col-md-2 col-form-label">Status</label>
             <div class="col-5 col-md-5">
-                 <select class="form-control"  [disabled]="!material.temDevolucao" name="status" id="status" [(ngModel)]="material.status">
+                 <select class="form-control"  [disabled]="!material.temDevolucao" name="status" id="status" [(ngModel)]="material.status" [compareWith]="compareFn" >
                     <option  selected [value]="null" >...</option>
                     <option *ngFor="let status of materialStatu$ | async " [ngValue]="status" >{{status.nome}}</option>
                   </select>                 

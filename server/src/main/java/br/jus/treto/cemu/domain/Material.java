@@ -49,7 +49,7 @@ public class Material {
 	@Transient
 	private Boolean temCodigobarras;
 
-	@OneToMany( mappedBy= "material" )
+	@OneToMany( mappedBy= "material", cascade=CascadeType.DETACH)
 	private List<Lancamento> lancamentos;
 	
 	@OneToMany( mappedBy = "material" , cascade = CascadeType.ALL, fetch = FetchType.EAGER) 

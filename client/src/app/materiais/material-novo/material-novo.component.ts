@@ -10,6 +10,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-material-novo',
@@ -19,7 +20,6 @@ import { FormGroup } from '@angular/forms';
 export class MaterialNovoComponent implements OnInit {
 
   material: any = {
-   // tipo: {id: null , nome: '' },
     tipo: null,
     ststus: null
   };
@@ -160,12 +160,17 @@ export class MaterialNovoComponent implements OnInit {
   }
 
   changeTemDevolucao(e) {
-    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
-   // this.tipoMaterial = this.material.tipo.nome;
+   // if (this.material.tipo == "null" ) this.material.tipo ={} ;
     if (this.material.temDevolucao) {
-      this.material.tipo.id = 2; // SUPRIMENTO
+      this.material.tipo = {
+        id: 2,
+        nome: 'SUPRIMENTO'
+      };
     } else {
-      this.material.tipo.id = 1; // PEÇA_REPOSIÇÃO
+      this.material.tipo = {
+        id: 1,
+        nome: 'PECA_REPOSICAO'
+      };
       this.material.status = null ;
       this.material.temCodigobarras = false;
     }
@@ -217,4 +222,9 @@ export class MaterialNovoComponent implements OnInit {
         })
     });
   }
+
+  compareFn(a, b) {
+    return a && b && a.id == b.id;
+  }
+  
 }
