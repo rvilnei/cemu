@@ -1,7 +1,6 @@
 <div class="container">
     <h4>Material Form Edit</h4>
     <form (ngSubmit)="save()" #materialForm="ngForm">
-{{ this.material | json }}
         <div class="form-group row">
             <label for="nome" class="col-md-2 col-form-label">Nome</label>
             <div class="col-md-10">
@@ -29,22 +28,24 @@
             </label>
         </div>
     </div>
-        <div class="form-group row">
-            <label for="tipo" class="col-12 col-md-2 col-form-label">Tipo</label>
-            <div class="col-5 col-md-3">
-                <select class="form-control" id="tipo" name="tipo" [(ngModel)]="material.tipo.id">
-                    <option  selected [value]="null"  >...</option>
-                    <option *ngFor="let materialTipo of materialTipo$ | async" [ngValue]="materialTipo.id"  >{{materialTipo.nome}}</option>
-                </select>
-            </div>
-            <label for="status" class="col-12 col-md-2 col-form-label">Status</label>
-            <div class="col-5 col-md-5">
-                <select class="form-control" name="status" id="status" [(ngModel)]="material.status.id">
-                  <option  selected [value]="null" >...</option>
-                  <option *ngFor="let status of materialStatu$ | async " [ngValue]="status.id" >{{status.nome}}</option>
-                </select>
-            </div>
+    <div class="form-group row">
+        <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
+        <div class="col-5 col-md-3">
+          <select class="form-control" id="material.tipo" name="material.tipo" [(ngModel)]="material.tipo"
+          [compareWith]="compareFn" >
+             <option  [ngValue]="null" >...</option>
+             <option *ngFor="let materialTipo of materialTipo$ | async" [ngValue]="materialTipo">{{materialTipo.nome}}</option>
+          </select>
         </div>
+        <label for="status" class="col-md-2 col-form-label">Status</label>
+        <div class="col-5 col-md-5">
+             <select class="form-control" name="status" id="status" [(ngModel)]="material.status"
+             [compareWith]="compareFn" >
+                <option *ngFor="let status of materialStatu$ | async " [ngValue]="status" >{{status.nome}}</option>
+                <option  [ngValue]="{}" >...</option>
+              </select>                 
+        </div>
+    </div>
 
         <div class="form-group row">
             <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
