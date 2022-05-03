@@ -1,4 +1,5 @@
-2022-05-02 15:23:20.741  INFO 852 --- [main] br.jus.treto.cemu.CemuApplicationTests   : Starting CemuApplicationTests on NOTE-DATEN with PID 852 (started by rviln in D:\Usuários\rviln\cemu\server)
+<<<<<<< HEAD
+2022-05-02 15:23:20.741  INFO 852 --- [main] br.jus.treto.cemu.CemuApplicationTests   : Starting CemuApplicationTests on NOTE-DATEN with PID 852 (started by rviln in D:\Usuï¿½rios\rviln\cemu\server)
 2022-05-02 15:23:20.751  INFO 852 --- [main] br.jus.treto.cemu.CemuApplicationTests   : No active profile set, falling back to default profiles: default
 2022-05-02 15:23:21.906  INFO 852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2022-05-02 15:23:22.144  INFO 852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 219ms. Found 11 JPA repository interfaces.
@@ -22,7 +23,7 @@
 2022-05-02 15:23:24.375  INFO 852 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
 2022-05-02 15:23:24.465  INFO 852 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [public/index.html]
 2022-05-02 15:23:24.747  INFO 852 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@29bbc63c, org.springframework.security.web.context.SecurityContextPersistenceFilter@715f45c6, org.springframework.security.web.header.HeaderWriterFilter@64ae105d, org.springframework.web.filter.CorsFilter@272778ae, org.springframework.security.web.authentication.logout.LogoutFilter@39da5e49, br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter@2cccf134, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42e4e589, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22825e1e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c18942, org.springframework.security.web.session.SessionManagementFilter@36c7cbe1, org.springframework.security.web.access.ExceptionTranslationFilter@198536f6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@52831a73]
-2022-05-02 15:23:25.567  INFO 852 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-05-02 15:23:25.567  INFO 852 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositoriesï¿½
 2022-05-02 15:23:26.014  INFO 852 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2022-05-02 15:23:26.030  INFO 852 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
 2022-05-02 15:23:26.900  INFO 852 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
