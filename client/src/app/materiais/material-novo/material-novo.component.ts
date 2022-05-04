@@ -10,11 +10,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
-import { Tipo } from '../tipo';
-import { Material } from '../material';
-import { tap } from 'rxjs/internal/operators/tap';
-import { map } from 'rxjs/operators';
-import { Status } from 'src/app/materiais/status';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-material-novo',
@@ -151,13 +147,10 @@ material: Material = new Material();
     this.router.navigate(['/materiais']);
   }
 
-  changeMaterialTipo(e) {  
-   this.service.getTipo(this.material.tipoId)
-    .subscribe( tipo => {
-      this.tipoMaterial  = tipo.nome;
-      this.material.tipoId = tipo.id
-    } );
-    if ( this.tipoMaterial == 'PECA_REPOSICAO') {
+  changeMaterialTipo(e) {
+    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+   // this.tipoMaterial = this.material.tipo.nome;
+    if (this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
       this.material.temDevolucao = false;
     } else if ( this.tipoMaterial == 'SUPRIMENTO') {
@@ -166,12 +159,18 @@ material: Material = new Material();
   }
 
   changeTemDevolucao(e) {
-   // this.tipoMaterial = this.material.tipoId == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+   // if (this.material.tipo == "null" ) this.material.tipo ={} ;
     if (this.material.temDevolucao) {
-      this.getTipoNome("SUPRIMENTO" );
+      this.material.tipo = {
+        id: 2,
+        nome: 'SUPRIMENTO'
+      };
     } else {
-      this.getTipoNome("PEÇA_REPOSIÇÃO" );
-      this.material.statusId = null;
+      this.material.tipo = {
+        id: 1,
+        nome: 'PECA_REPOSICAO'
+      };
+      this.material.status = null ;
       this.material.temCodigobarras = false;
     }
   }
@@ -186,8 +185,7 @@ material: Material = new Material();
   changeTemCodigoBarras(e) {
     if (e.value = true) {
       this.material.temDevolucao = true;
-     // this.material.tipo.id = 2; // SUPRIMENTO
-      this.getTipoNome("SUPRIMENTO" );
+      this.material.tipo.id = 2; // SUPRIMENTO
     }
   }
 
@@ -230,4 +228,9 @@ material: Material = new Material();
         })
     });
   }
+
+  compareFn(a, b) {
+    return a && b && a.id == b.id;
+  }
+  
 }

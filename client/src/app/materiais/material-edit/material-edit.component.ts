@@ -11,7 +11,11 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class MaterialEditComponent implements OnInit {
   inscricao: Subscription
-  material: any = {};
+  material: any = {
+    tipo: {},
+    ststus: {}
+  };
+ // material: any = {};
   private paramId: Params;
   materialTipo$: Observable<any[]>; // para usar | async
   materialStatu$: Observable<any[]>;
@@ -58,6 +62,10 @@ export class MaterialEditComponent implements OnInit {
           this.router.navigate([ '/materiais'] );
     })
   }
+}
+
+compareFn(a, b) {
+  return a && b && a.id == b.id;
 }
 
 }

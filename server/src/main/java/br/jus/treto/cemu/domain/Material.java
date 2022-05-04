@@ -38,13 +38,16 @@ public class Material {
 	private Long tipoId;
 	private String codigobarras;
 	private Long categoria;
-	private String modelo;
-	private Long statusId;
+	private String modelo; 
+	//@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.DETACH)
+	@ManyToOne(optional = true,  cascade=CascadeType.DETACH)
+	@JoinColumn(name="STATUS_ID", referencedColumnName="ID", nullable=true)
+	private Status status;
 	private Boolean temDevolucao;
 	@Transient
 	private Boolean temCodigobarras;
 
-	@OneToMany( mappedBy= "material" )
+	@OneToMany( mappedBy= "material", cascade=CascadeType.DETACH)
 	private List<Lancamento> lancamentos;
 	
 	@OneToMany( mappedBy = "material" , cascade = CascadeType.ALL, fetch = FetchType.EAGER) 

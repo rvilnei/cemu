@@ -24,6 +24,7 @@ import br.jus.treto.cemu.resources.dto.TokenDto;
 import br.jus.treto.cemu.resources.form.LoginForm;
 
 @CrossOrigin
+//@CrossOrigin(origins = "http://10.27.104.82/:8080")
 @RestController
 @RequestMapping( "user/login" )
 //@Profile("prod")
@@ -37,7 +38,7 @@ public class AutenticacaoResource {
 	
 	@PostMapping
 	public ResponseEntity<TokenDto> autenticar(@RequestBody  @Valid LoginForm	 form  ){
-			System.out.println(  " ** "   +form.getEmail()+ " ** "  +form.getSenha()  );
+			System.out.println(  " ** "   +form.getEmail() );
 			UsernamePasswordAuthenticationToken dadosLogin = form.converter();
 
 			try {

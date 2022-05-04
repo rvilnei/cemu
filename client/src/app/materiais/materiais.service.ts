@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, map, catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Tipo } from './tipo';
-import { Material } from './material';
-import { Status } from 'src/app/materiais/status';
+import { environment } from 'src/environments/environment';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,8 +25,8 @@ const httpOptions = {
 export class MateriaisService {
     materiais: any[] =  MATERIAIS;
     material: any = {};
-  // private readonly API = `http://localhost:3000/`;
-    private readonly API =`http://localhost:8080/`;
+  //  private readonly API =`http://localhost:8080/`;
+    private readonly API = environment.Apiurl;
     processHTTPMsgService: any;
 
     constructor( private http: HttpClient ) { }

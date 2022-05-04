@@ -26,7 +26,7 @@ import br.jus.treto.cemu.resources.form.LoginForm;
 
 @EnableWebSecurity
 @Configuration
-@Profile("prod")
+//@Profile("prod")
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -62,7 +62,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.sessionManagement().sessionCreationPolicy( SessionCreationPolicy .STATELESS )
 		.and().addFilterBefore(new AutenticacaoViaTokenFilter( tokenService, usuarioRepository ), UsernamePasswordAuthenticationFilter.class)
 
-		.csrf().disable()
+		//.csrf().disable()
+		.cors().and().csrf().disable()
 		.headers().frameOptions().disable();
 	}
 
