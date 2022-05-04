@@ -27,10 +27,10 @@ public class MaterialReportDto {
 	public MaterialReportDto(Material material) {
 		this.id =material.getId();
 		this.nome = material.getNome();
-		this.statusId = material.getStatusId();
+		this.statusId = material.getStatus().getId();
 		if( this.statusId  != null ) 
 			this.statusNome =  materiaisService.buscarStatus(this.statusId).getNome();
-		this.tipoId = material.getTipoId();
+		this.tipoId = material.getTipo().getId();
 		if(	this.tipoId  != null ) 
 			this.tipoNome =  materiaisService.buscarTipo(this.tipoId).getNome();
 	//	this.categoria = material.getCategoria();

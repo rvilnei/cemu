@@ -1,4 +1,3 @@
-
 import { TipoLancamento } from './../../shared/enum/tipo-lancamento';
 import { UserService } from './../../core/user/user.service';
 import { User } from './../../core/user/user';
@@ -19,15 +18,17 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class MaterialNovoComponent implements OnInit {
 
-material: Material = new Material();
-  materialTipos$: Observable<any[]>; // para usar | async
-  materialTipo: any[];
-  materialStatus$: Observable<Status[]>;
-  materiais$: Observable<Material[]>;
+  material: any = {
+    tipo: null,
+    ststus: null
+  };
+  materialTipo$: Observable<any[]>; // para usar | async
+  materialStatu$: Observable<any[]>;
+  materiais$: Observable<any[]>;
   noResult: any;
   public modalRef: BsModalRef;
   materialselect: any;
-  itemMaterial: any = {} ;
+  itemMaterial: any = {};
   user: User;
   materialForm: FormGroup;
   fieldsetDisabled: boolean = false;
@@ -49,17 +50,16 @@ material: Material = new Material();
   ) { }
 
   ngOnInit() {
-    this.materialTipos$ = this.service.getTipos();
-    this.materialStatus$ = this.service.getStatus();
+    this.materialTipo$ = this.service.getTipo();
+    this.materialStatu$ = this.service.getStatus();
     this.materiais$ = this.service.getMateriais();
     this.userService.getUser()
       .subscribe(user => {
         this.user = user;
-      });  
+      });
   }
 
-  onSubmit(fromMaterial): void {
-    console.log(" Dados do form ngForm:  ", fromMaterial.value );
+  save(): void {
     if (this.material.id) {
       this.service.updateMaterial(this.material)
         .subscribe(() => {
@@ -80,7 +80,7 @@ material: Material = new Material();
 
   limpar() {
     this.fieldsetDisabled = false;
-    this.material = new Material();
+    this.material = {};
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -143,7 +143,7 @@ material: Material = new Material();
             });
         })
     }
-    this.material = new Material();
+    this.material = {};
     this.router.navigate(['/materiais']);
   }
 
@@ -153,7 +153,7 @@ material: Material = new Material();
     if (this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
       this.material.temDevolucao = false;
-    } else if ( this.tipoMaterial == 'SUPRIMENTO') {
+    } else if (this.tipoMaterial == 'SUPRIMENTO') {
       this.material.temDevolucao = true;
     }
   }
@@ -173,13 +173,6 @@ material: Material = new Material();
       this.material.status = null ;
       this.material.temCodigobarras = false;
     }
-  }
-
-  getTipoNome( nome:string){
-   return this.service.getTipoPorNome(nome)
-      .subscribe( tipo => 
-          {this.material.tipoId = tipo.id;
-      });
   }
 
   changeTemCodigoBarras(e) {
