@@ -24,12 +24,12 @@ public class MaterialDto {
 	private Long id;				
 	private String nome;
 	private String descricao;
-	private Long tipoId;
+	private Tipo tipo;
 	private String tipoDescricao;
 	private String codigobarras;
 	private Long categoria;
 	private String modelo;
-	private Long statusId;
+	private Status status;
 	private String statusDescricao;
 	private Boolean temDevolucao;
 	private Boolean temCodigobarras;
@@ -103,8 +103,8 @@ public class MaterialDto {
 		return descricao;
 	}
 
-	public Long getTipoId() {
-		return tipoId;
+	public Tipo getTipo() {
+		return tipo;
 	}
 
 	public String getCodigobarras() {
@@ -122,8 +122,8 @@ public class MaterialDto {
 	public String getTipoDescricao() {
 		return tipoDescricao;
 	}
-	public Long getStatusId() {
-		return statusId;
+	public Status getStatus() {
+		return status;
 	}
 	public String getStatusDescricao() {
 		return statusDescricao;
@@ -153,8 +153,8 @@ public class MaterialDto {
 		this.itens = itens;
 	}
 
-	public void setStatusId(Long status) {
-		this.statusId = status;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 }

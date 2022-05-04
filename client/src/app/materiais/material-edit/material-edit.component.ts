@@ -28,7 +28,7 @@ export class MaterialEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.materialTipo$ = this.service.getTipos();
+    this.materialTipo$ = this.service.getTipo();
     this.materialStatu$ = this.service.getStatus();
     this.inscricao = this.route.params
       .pipe(switchMap( (params: Params) => this.service.getMaterial(params['id'])))

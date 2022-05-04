@@ -13,7 +13,7 @@ export class TipoMaterialPipe implements PipeTransform {
     constructor(
       private materiaisService: MateriaisService
     ){
-        this.materiaisService.getTipos()
+        this.materiaisService.getTipo()
         .subscribe( tipos => {
           this.tipos = tipos;
         }

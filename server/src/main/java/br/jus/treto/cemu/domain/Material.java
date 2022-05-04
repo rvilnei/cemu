@@ -35,7 +35,9 @@ public class Material {
 	@NotNull @NotEmpty  @Length( min = 2 )
 	private String nome;
 	private String descricao;
-	private Long tipoId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "TIPO_ID")
+	private Tipo tipo;
 	private String codigobarras;
 	private Long categoria;
 	private String modelo; 
@@ -51,10 +53,11 @@ public class Material {
 	private List<Lancamento> lancamentos;
 	
 	@OneToMany( mappedBy = "material" , cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
-	@JsonIgnore  
+	@JsonIgnore // 
   	private  List<ItemMovimentacao> itens = new ArrayList<>()	;
 	
 	 public Material() {}
+	
 	
 	public List<ItemMovimentacao> getItens() {
 		return itens;
@@ -64,12 +67,12 @@ public class Material {
 		this.itens = itens;
 	}
 
-	public Long getTipoId() {
-		return tipoId;
+	public Tipo getTipo() {
+		return tipo;
 	}
 
-	public void setTipo(Long tipo) {
-		this.tipoId = tipo;
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getCodigobarras() {
@@ -96,12 +99,12 @@ public class Material {
 		this.modelo = modelo;
 	}
 
-	public Long getStatusId() {
-		return statusId;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatus(Long status) {
-		this.statusId = status;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public Boolean getTemDevolucao() {
@@ -157,4 +160,5 @@ public class Material {
 		this.descricao = descricao;
 	}
 
+	
 }

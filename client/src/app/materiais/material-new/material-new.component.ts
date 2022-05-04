@@ -45,7 +45,7 @@ export class MaterialNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.materialTipo$ = this.service.getTipos();
+    this.materialTipo$ = this.service.getTipo();
     this.materialStatu$ = this.service.getStatus();
     this.materiais$ = this.service.getMateriais();
 
