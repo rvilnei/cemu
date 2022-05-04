@@ -1,7 +1,7 @@
 
 <div class="container col-12" ></div>
     <div *ngIf=" movimentacoes$ | async as movimentacoes_async; else loading " >
-    
+
       <div class="card col-12 ">
           <div class="card-header">
             <div class="float-left" >
@@ -97,12 +97,10 @@
     
             </div>
           </div>
+          <span *ngIf="movimentacoes_async.length < 1" style="width: 100%;text-align: center; color:brown" >OPS!! Nenhume movimentação de {{tipMovimentacao}} !! </span>
       </div>
-    
-    
-        
-    </div>
-    
+
+    </div>    
       <ng-template #loading >
           <span>Carregando ... </span>
           <div class="spinner-border spinner-border-lg"></div>

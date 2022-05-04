@@ -11,16 +11,9 @@ import { NgScrollbar } from 'ngx-scrollbar';
 export class SaidaEstoqueComponent implements OnInit {
   
   @Output() itens: EventEmitter<any[]> = new EventEmitter();
- // materiaisEstoque$: Observable<any[]>; // para materiaisEstoque$ | async
-  // materiaisEstoque =[];
   @Input() materiaisEstoque =[];
   @Input() usuario;
   constructor( private movimentacoesService: MovimentacoesService ) { }
-
-  // listaMateriaisEstoque(){
-  //   this.materiaisEstoque = this.movimentacoesService.getListaMateriaisEstoque().filter( (estque) => estque.quantidade > 0) ;
-  //   this.materiaisEstoque.sort((a, b) => a.materialId.localeCompare(b.materialId))
-  // }
 
   itemMaterialLista:Array<any>=[];
   addItemMaterial(itemMaterial){

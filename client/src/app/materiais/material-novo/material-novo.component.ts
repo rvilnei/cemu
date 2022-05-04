@@ -19,17 +19,15 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class MaterialNovoComponent implements OnInit {
 
-  material: any = {
-    tipo: null,
-    ststus: null
-  };
-  materialTipo$: Observable<any[]>; // para usar | async
-  materialStatu$: Observable<any[]>;
-  materiais$: Observable<any[]>;
+material: Material = new Material();
+  materialTipos$: Observable<any[]>; // para usar | async
+  materialTipo: any[];
+  materialStatus$: Observable<Status[]>;
+  materiais$: Observable<Material[]>;
   noResult: any;
   public modalRef: BsModalRef;
   materialselect: any;
-  itemMaterial: any = {};
+  itemMaterial: any = {} ;
   user: User;
   materialForm: FormGroup;
   fieldsetDisabled: boolean = false;
@@ -51,16 +49,17 @@ export class MaterialNovoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.materialTipo$ = this.service.getTipo();
-    this.materialStatu$ = this.service.getStatus();
+    this.materialTipos$ = this.service.getTipos();
+    this.materialStatus$ = this.service.getStatus();
     this.materiais$ = this.service.getMateriais();
     this.userService.getUser()
       .subscribe(user => {
         this.user = user;
-      });
+      });  
   }
 
-  save(): void {
+  onSubmit(fromMaterial): void {
+    console.log(" Dados do form ngForm:  ", fromMaterial.value );
     if (this.material.id) {
       this.service.updateMaterial(this.material)
         .subscribe(() => {
@@ -81,7 +80,7 @@ export class MaterialNovoComponent implements OnInit {
 
   limpar() {
     this.fieldsetDisabled = false;
-    this.material = {};
+    this.material = new Material();
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -144,7 +143,7 @@ export class MaterialNovoComponent implements OnInit {
             });
         })
     }
-    this.material = {};
+    this.material = new Material();
     this.router.navigate(['/materiais']);
   }
 
@@ -154,7 +153,7 @@ export class MaterialNovoComponent implements OnInit {
     if (this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.codigobarras = '';
       this.material.temDevolucao = false;
-    } else if (this.tipoMaterial == 'SUPRIMENTO') {
+    } else if ( this.tipoMaterial == 'SUPRIMENTO') {
       this.material.temDevolucao = true;
     }
   }
@@ -174,6 +173,13 @@ export class MaterialNovoComponent implements OnInit {
       this.material.status = null ;
       this.material.temCodigobarras = false;
     }
+  }
+
+  getTipoNome( nome:string){
+   return this.service.getTipoPorNome(nome)
+      .subscribe( tipo => 
+          {this.material.tipoId = tipo.id;
+      });
   }
 
   changeTemCodigoBarras(e) {

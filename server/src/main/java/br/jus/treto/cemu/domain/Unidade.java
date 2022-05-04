@@ -2,6 +2,8 @@ package br.jus.treto.cemu.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -9,6 +11,7 @@ public class Unidade {
 	
 	@Id
 	@Column(name="CD")
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
 	private String sigla;
 	private String descricao;

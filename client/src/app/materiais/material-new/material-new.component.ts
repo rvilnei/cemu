@@ -45,7 +45,7 @@ export class MaterialNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.materialTipo$ = this.service.getTipo();
+    this.materialTipo$ = this.service.getTipos();
     this.materialStatu$ = this.service.getStatus();
     this.materiais$ = this.service.getMateriais();
 
@@ -214,7 +214,8 @@ export class MaterialNewComponent implements OnInit {
 
   tipoMaterial: String = '';
   changeMaterialTipo(e){
-    this.tipoMaterial = this.material.tipo == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
+    console.log("**** tipochange"+this.material.tipo);
+    this.tipoMaterial = this.material.tipo.id == 2 ? 'SUPRIMENTO' : 'PECA_REPOSICAO';
     console.log("**** tipochange"+this.tipoMaterial);
     if( this.tipoMaterial == 'PECA_REPOSICAO') {
       this.material.tem_rfid = false;

@@ -1,6 +1,7 @@
 <div class="container">
     <h4>Material Form Novo</h4>
-    <form (ngSubmit)="save()" #materialForm="ngForm">
+    {{material | json}}
+    <form (ngSubmit)="onSubmit(materialForm)" #materialForm="ngForm">
       <fieldset [disabled]="fieldsetDisabled">
         <div class="form-group row">
             <label for="nome" class="col-md-2 col-form-label">Nome</label>
@@ -30,7 +31,7 @@
                     </label>
                 </div>           
             </div>
-        </div> {{material.tipo | json}}
+        </div> 
         <div class="form-group row">
             <label for="tipo" class="col-md-2 col-form-label">Tipo</label>
             <div class="col-5 col-md-3">
@@ -48,12 +49,11 @@
                   </select>                 
             </div>
         </div>
-
+    </div>
         <div class="form-group row">
             <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
             <div class="col-5 col-md-3">
                 <select class="form-control" id="categoria" name="categoria" placeholder="Categoria">
-                 <option>...</option>
                  <option>Categoria 1</option>
                  <option>Categoria 2</option>
               </select>
@@ -89,7 +89,7 @@
             <div class="offset-md-2 col-md-10">
                 <button [routerLink]="['/materialEdit', material.id]" *ngIf="fieldsetDisabled" class="btn btn-outline-warning mb-1 mr-2 btn-sm" >Editar</button>
                 <button (click)="limpar()" *ngIf="fieldsetDisabled" class="btn btn-outline-warning mb-1 btn-sm" >Limpar</button>
-                <button type="button" class="btn btn-outline-danger mb-1 mr-2 btn-sm" *ngIf=" !material.id " [disabled]="!materialForm.form.valid" (click)="openModal(template, material)">
+                <button type="button" class="btn btn-outline-danger mb-1 mr-2 btn-sm" *ngIf="!material.id" [disabled]="!materialForm.form.valid" (click)="openModal(template, material)">
                     Próximo
                </button>
                <button type="button" class="btn btn-outline-success ml-2 mb-1 btn-sm" (click)="openModal(fileTemplate, material); fileContent = []" *ngIf="material.id " >

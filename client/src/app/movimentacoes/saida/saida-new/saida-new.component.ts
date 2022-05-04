@@ -26,15 +26,7 @@ export class SaidaNewComponent implements OnInit {
   ) { 
     this.user$ = this.userService.getUser();
   }
-  // listaMateriaisEstoque(){
-  //   this.movimentacoesService.getListaMateriaisEstoque().subscribe( estoque => {
-  //     this.materiaisEstoque = estoque;
-  //     this.materiaisEstoque.filter( (estque) => estque.quantidade > 0) ;
-  //     this.materiaisEstoque.sort((a, b) => a.materialId.localeCompare(b.materialId))
-  //   } );
-  //   return this.materiaisEstoque;
-  // }
-  
+
   listaMateriaisEstoque(){
     this.movimentacoesService.getListaEstoqueUnidade( this.usuario.unidadeId ).subscribe( estoque => {
       this.materiaisEstoque = estoque;

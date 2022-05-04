@@ -32,7 +32,7 @@ export class MateriaisService {
     constructor( private http: HttpClient ) { }
 
     /** GET materiais from the server */
-    getMateriais (): Observable<any[]> {
+    getMateriais (): Observable<Material[]> {
         return this.http.get<any[]>(this.API+'materiais')
           .pipe( delay(200) ,
             tap(materiais => this.log('fetched materiais'))//,
@@ -41,7 +41,7 @@ export class MateriaisService {
       }
 
     /** GET material by id. Will 404 if id not found */
-    getMaterial(id: number): Observable<any> {
+    getMaterial(id: number): Observable<Material> {
         const url = `${this.API}materiais/${id}`;
         return this.http.get<any>(url).pipe(
             tap(_ => this.log(`fetched material id=${id}`)),
@@ -103,12 +103,20 @@ export class MateriaisService {
       );
     }
 
-    getTipo(): Observable<any[]> {
-      return this.http.get<any[]>(this.API+'materiais/tipos').pipe( delay(20));
+    getTipos(): Observable<any[]> {
+      return this.http.get<any[]>(this.API+'materiais/tipos');
     }
     
-    getStatus(): Observable<any> {
-      return this.http.get<any[]>( this.API+'materiais/status' ).pipe( delay(20) );
+    getTipo( id: number): Observable<Tipo> {
+      return this.http.get<Tipo>(this.API+`materiais/${id}/tipo`);
+    }
+
+    getTipoPorNome( nome: string): Observable<Tipo> {
+      return this.http.get<Tipo>(this.API+`materiais/${nome}/nomeTipo`);
+    }
+
+    getStatus(): Observable<Status[]> {
+      return this.http.get<Status[]>( this.API+'materiais/status' );
     }
 
     getUnidades(): Observable<any[]> {

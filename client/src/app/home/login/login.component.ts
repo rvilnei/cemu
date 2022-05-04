@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
               } ,
         err => {  console.log('** Algo deu errado !');
                 //  this.router.navigate(['/home']);
+                console.log(err);
                   this.loginForm.reset();
                   this.userNameInput.nativeElement.focus()
                 }
