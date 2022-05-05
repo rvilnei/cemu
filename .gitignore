@@ -1,14 +1,12 @@
 server/src/main/resources/reports/.*/.*
 server/itensMovimentacao.jasper
-server/logging.txt
 server/src/main/resources/reports/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 
 server/src/main/resources/reports/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmiserver/src/main/resources/reports/.metadata
 server/src/main/resources/reports/.metadata/*
 server/src/main/resources/reports/.metadata/.*
-server/logging.txt
 
-server/logging.*
+./server/logging.txt
 
 HELP.md
 target/
@@ -43,7 +41,4 @@ build/
 
 ### VS Code ###
 .vscode/
-
-
-server/logging.txt
 
