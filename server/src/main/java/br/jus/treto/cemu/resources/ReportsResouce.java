@@ -1,14 +1,18 @@
 package br.jus.treto.cemu.resources;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
@@ -40,7 +44,10 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @RestController
 @RequestMapping( value = "/reports" )
 public class ReportsResouce {
-
+	
+	@Autowired
+	private ResourceLoader resourceLoader;
+	
 	@Autowired
 	private ReportsService reportsService;
 	
@@ -94,11 +101,15 @@ public class ReportsResouce {
 	private void gerarImpressaoGuia( List<Guia> listGuia, String format, GuiasService guiasService, HttpServletResponse response  ) throws JRException, IOException {	
 					List<GuiaReportDto> listGuiaReportDto =  GuiaReportDto.converter( listGuia, guiasService );
 					
-			    	String subReportJxml = REPORTS_PATH+ "itensMovimentacao.jrxml"; 
-					File fileSubReportile = ResourceUtils.getFile(subReportJxml );
-					//JasperCompileManager.compileReportToFile(fileSubReportile.getPath());
-					JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileSubReportile.getPath());
+		    		String subReportJxml =  REPORTS_PATH+"itensMovimentacao.jrxml"; 
+					//File fileSubReportile = ResourceUtils.getFile(subReportJxml );
+
+		            Resource resource = resourceLoader.getResource(subReportJxml);
+		            InputStream fileInputStream = resource.getInputStream();
 					
+					//JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileSubReportile.getPath());
+			        JasperReport jasperReportCompiled = JasperCompileManager.compileReport(fileInputStream);
+					   
 					String nomeArquivoJxml = REPORTS_PATH+"guia.jrxml"; 
          			Map<String, Object> parametros = parametroInicial();
         	        parametros.put( "date", new java.util.Date() );

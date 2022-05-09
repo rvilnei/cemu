@@ -4,11 +4,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import br.jus.treto.cemu.domain.Guia;
@@ -35,6 +38,9 @@ import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 @Service
 public class ReportsService {
 
+	@Autowired
+	private ResourceLoader resourceLoader;
+	
 	@Autowired
 	private GuiasService guiasService;
 	
@@ -71,12 +77,18 @@ public class ReportsService {
 			generateOut( jasperPrintResul, format, response );
 	}
    	
-	private JasperPrint generator( String nomeArquivo, Map<String, Object> parameters, JRBeanCollectionDataSource dataSource) throws JRException, FileNotFoundException{
+	private JasperPrint generator( String nomeArquivo, Map<String, Object> parameters, JRBeanCollectionDataSource dataSource) throws JRException, IOException{
         // ler datasource json
 		JRBeanCollectionDataSource datasource =dataSource;
-		  File file = ResourceUtils.getFile(nomeArquivo );
+		// File file = ResourceUtils.getFile(nomeArquivo );
+		  
+        Resource resource = resourceLoader.getResource(nomeArquivo);
+        InputStream fileInputStream = resource.getInputStream();
+		  
         // Compile the Jasper report from .jrxml to .japser
-        final JasperReport jasperReport = JasperCompileManager.compileReport(file.getPath());
+        // final JasperReport jasperReport = JasperCompileManager.compileReport(file.getPath());
+        final JasperReport jasperReport = JasperCompileManager.compileReport(fileInputStream);
+        
 	    // Filling the report with the  data and additional parameters information.
 		return JasperFillManager.fillReport( jasperReport,  parameters, datasource);	
     }
