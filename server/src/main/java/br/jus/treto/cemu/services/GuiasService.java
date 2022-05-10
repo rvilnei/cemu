@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 import br.jus.treto.cemu.domain.Guia;
 import br.jus.treto.cemu.domain.Movimentacao;
+import br.jus.treto.cemu.domain.Tipo;
+import br.jus.treto.cemu.domain.Unidade;
 import br.jus.treto.cemu.repository.GuiasRespository;
+import br.jus.treto.cemu.repository.UnidadesRepository;
 import br.jus.treto.cemu.services.exceptions.MaterialNaoEncontradoException;
 
 @Service
@@ -18,6 +21,9 @@ public class GuiasService {
 	
 	@Autowired
 	private GuiasRespository guiasRespository;
+	
+	@Autowired
+	private UnidadesRepository unidadesRepository;
 	
 	public List<Guia> listar(){
 		return guiasRespository.findAll();
@@ -84,5 +90,14 @@ public class GuiasService {
 			throw new MaterialNaoEncontradoException("O guia não foi encontrado");
 		}
 	}
+	
+	public Unidade getUnidade( Long id ) {
+		Unidade unidade =  unidadesRepository.findById(id).orElse(null);
+		if(unidade == null) {
+			throw new MaterialNaoEncontradoException("A unidade não foi encontrado");
+		}
+		return unidade ;
+	}
+
 	
 }

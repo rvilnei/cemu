@@ -110,6 +110,20 @@ public class MateriaisResource {
 		List<Tipo> tipos = materiaisService.listarTipos();
 		return ResponseEntity.status(HttpStatus.OK).body(tipos);
 	}
+		
+	@RequestMapping( value = "/{id}/tipo", method = RequestMethod.GET, produces = "application/json"  )
+	public ResponseEntity<Tipo> getTipo(  @PathVariable("id") Long id  ) {
+		System.out.println("**********  "+id);
+		Tipo tipo = materiaisService.getTipo(id);
+		return ResponseEntity.status(HttpStatus.OK).body(tipo);
+	}
+	
+	@RequestMapping( value = "/{nome}/nomeTipo", method = RequestMethod.GET, produces = "application/json"  )
+	public ResponseEntity<Tipo> getTipoPorNome( @PathVariable("nome") String nome ){
+		System.out.println("******Nome****  "+nome);
+		Tipo tipo = materiaisService.getTipoPorNome(nome);
+		return ResponseEntity.status(HttpStatus.OK).body(tipo);
+	}
 	
 	@RequestMapping(value= "/status")
 	public ResponseEntity<List<Status>> status(){

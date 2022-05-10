@@ -17,7 +17,7 @@ import { TransportadorasService } from 'src/app/transportadoras/transportadoras.
 export class GuiaEditComponent implements OnInit {
 
   inscricao: Subscription;
-  @Input() guia: Guia ;
+  @Input() guia: any ;
   @Input() modal: BsModalRef;
   transportadoras$: Observable<any> = new Observable();
 

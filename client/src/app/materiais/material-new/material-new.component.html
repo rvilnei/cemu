@@ -1,6 +1,5 @@
 <div class="container col-12" >
     <h5>Formulário de Material </h5>
-
     <tabset type="pills" [justified]="true" #staticTabs>
         <tab id="semCodBarras" class="mt-2" (selectTab)="onSelectTab($event);"  [disabled]="material.codigobarras != '' && isEdit ">
             <ng-template tabHeading>
@@ -41,8 +40,7 @@
                 <div class="form-group row">
                     <label for="tipo" class="col-12 col-md-2 col-form-label">Tipo</label>
                     <div class="col-5 col-md-3">
-                        <select class="form-control" [disabled]="isEdit" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo"
-                            id="tipo" name="tipo" [(ngModel)]="material.tipo">
+                        <select class="form-control" [disabled]="isEdit" (change)="changeMaterialTipo($event)" id="tipo" name="tipo" [(ngModel)]="material.tipo" >
                       <option>...</option>
                       <option *ngFor="let materialTipo of materialTipo$ | async" [value]="materialTipo.id">{{materialTipo.nome}}</option>
                    </select>

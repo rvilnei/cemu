@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-05-14T20:50:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guias" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="28cf76ee-b4e0-480f-9123-46fbaa598748">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="numeroGuia" class="java.lang.String"/>
+	<field name="nomeCondutor" class="java.lang.String"/>
+	<field name="rgCondutor" class="java.lang.String"/>
+	<field name="placaVeiculo" class="java.lang.String"/>
+	<field name="unidadeorigem" class="java.lang.String"/>
+	<field name="unidadedestino" class="java.lang.String"/>
+	<field name="statusMovimentacao" class="java.lang.String"/>
+	<field name="itensMovimentacao" class="java.util.List"/>
+	<group name="Group1">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="293dd8e7-a343-45c8-a7ad-1666939567e1"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="a47cc004-8f80-4331-9b7a-cbf5c274156d"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[GUIA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="ebe877f0-1570-447c-89c8-0315f7e6a1cd"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Materiais da guia]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21"/>
+	</columnHeader>
+	<detail>
+		<band height="359">
+			<textField>
+				<reportElement x="101" y="10" width="109" height="20" uuid="3690f9fd-ec33-438c-9c56-89939d6c368c"/>
+				<textFieldExpression><![CDATA[$F{numeroGuia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="10" width="103" height="20" uuid="b95a3891-a4b3-4e60-b4ff-5e501a359a19"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Número da guia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="30" width="119" height="20" uuid="7eb74b8a-c440-48ab-9b25-4039932185ab"/>
+				<textFieldExpression><![CDATA[$F{nomeCondutor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="30" width="102" height="20" uuid="90595930-7dd1-4e72-8ad6-cb66d9867be8"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Nome do portador]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="50" width="97" height="20" uuid="8c490995-8ee4-4733-a461-65c2a59c224a"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{rgCondutor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="50" width="100" height="20" uuid="ec958d2c-0ff2-4071-8e01-cb824ada0d21"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[R.G do portador]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="70" width="99" height="23" uuid="b363689a-f0ea-41ee-8321-c17cb73ed355"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{placaVeiculo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="71" width="100" height="23" uuid="ec1b853c-0e01-44eb-9b03-df837fc0b87d"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Placa do veículo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="5" width="100" height="15" uuid="428317db-4707-4676-aa38-fd6b5c6a15b1"/>
+				<textFieldExpression><![CDATA[$F{unidadeorigem}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="270" y="5" width="140" height="15" uuid="85a72884-a855-4ecd-938b-544e5a580dca"/>
+				<text><![CDATA[Unidade de origem]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="23" width="95" height="15" uuid="e23b1a69-0f87-4d9b-98ec-9eae2864e084"/>
+				<textFieldExpression><![CDATA[$F{unidadedestino}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="270" y="23" width="140" height="15" uuid="eeb16d04-c15b-4c19-b023-7273be2cf479"/>
+				<text><![CDATA[Unidade de destino]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="40" width="105" height="19" uuid="01b35a3c-bc19-4b56-bcc6-ab3692219e9a"/>
+				<textFieldExpression><![CDATA[$F{statusMovimentacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="270" y="40" width="140" height="19" uuid="43df32ac-6f6c-4b51-8301-3a6c8bdef2a2"/>
+				<text><![CDATA[Status da movimentação]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="10" y="94" width="535" height="76" uuid="db4b8572-981b-4fb4-b6c7-086a27d9e9d9"/>
+				<subreportParameter name="REPORT_DATA_SOURCE">
+					<subreportParameterExpression><![CDATA[$F{itensMovimentacao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource() ]]></dataSourceExpression>
+				<subreportExpression><![CDATA["itensMovimentacao.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="099f7d0f-cfb3-401b-bcff-d094a8b891d2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="b28aa3d6-a9cb-49ac-bd8c-abea3ee4453d"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="37c082c7-2e96-42fe-8cff-acaed37180ce"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

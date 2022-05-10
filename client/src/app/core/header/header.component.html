@@ -29,12 +29,8 @@
                     <div showIfLogged class="nav-item" > <a class="nav-link" [routerLink]="['/estoques']">Estoques</a> </div>
                 </ul>
             </app-menu>
-
-            <div class="nav-item" > <a class="nav-link" [routerLink]="['/home']" routerLinkActive >Home</a> </div>
-            <div class="nav-item" > <a class="nav-link" [routerLink]="['/materiais']" >Materiais</a> </div>
-            
-            
-
+            <div class="nav-item" > <a class="nav-link" [class.active]="aba=='home'" (click)="aba = 'home'" [routerLink]="['/home']" routerLinkActive >Home</a> </div>
+            <div class="nav-item" > <a [class.active]="aba=='materiais'" (click)="aba = 'materiais'" class="nav-link" [routerLink]="['/materiais']" >Materiais</a> </div>
             <div class="nav-item" > 
                <span dropdown class="btn-group"  >
                 <a href id="basic-link" class="nav-item"  dropdownToggle (click)="false"

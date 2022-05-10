@@ -3,6 +3,7 @@ package br.jus.treto.cemu.services;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -50,6 +51,8 @@ public class MateriaisService {
 	
 	public Material salvar(Material material) {
 		material.setId(null);
+		//System.out.println( "**Status****   "+material.getStatus().getId());
+	//	material.setStatus(buscarStatus(material.getStatus().getId()));
 		return materiaisRepository.save(material);
 	}
 	
@@ -92,6 +95,10 @@ public class MateriaisService {
 		return tipoRepository.findAll();
 	}
 	
+	public  Tipo getTipo(Long id){
+		return tipoRepository.findById(id).orElse(null)  ;
+	}
+	
 	public List<Status> listarStatus(){
 		return statusRepository.findAll();
 	}
@@ -102,6 +109,14 @@ public class MateriaisService {
 
 	public Tipo buscarTipo(Long id) {
 		Tipo tipo = tipoRepository.findById(id).orElse(null);
+		if(tipo == null) {
+			throw new MaterialNaoEncontradoException("O tipo não foi encontrado");
+		}
+		return tipo;
+	}
+	
+	public Tipo getTipoPorNome(String nome) {
+		Tipo tipo = tipoRepository.findByNome(nome).orElse(null);
 		if(tipo == null) {
 			throw new MaterialNaoEncontradoException("O tipo não foi encontrado");
 		}
