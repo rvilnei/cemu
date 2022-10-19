@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import br.jus.treto.cemu.config.security.autorizador.AutenticacaoService;
 import br.jus.treto.cemu.config.security.jwt.AutenticacaoViaTokenFilter;
 import br.jus.treto.cemu.config.security.jwt.TokenService;
 import br.jus.treto.cemu.domain.User;
@@ -34,6 +35,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	@Autowired
+	private AutenticacaoService autenticacaoService;
+
+	
 	@Override
 	@Bean
 	protected AuthenticationManager authenticationManager() throws Exception  {
@@ -43,7 +48,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	//Configuracoes de autenticacao
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.authenticationProvider(new CustomAuthenticationProvider(usuarioRepository));
+		 auth.authenticationProvider(new CustomAuthenticationProvider(usuarioRepository, autenticacaoService));
 	}
   
 	//Configuracoes de autorizacao

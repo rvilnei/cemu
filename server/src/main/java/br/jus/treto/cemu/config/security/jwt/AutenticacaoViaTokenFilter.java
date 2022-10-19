@@ -14,9 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.jus.treto.treauth.Autenticacao;
-import br.jus.treto.treauth.model.Unidade;
-import br.jus.treto.treauth.model.Usuario;
+//import br.jus.treto.treauth.Autenticacao;
+//import br.jus.treto.treauth.model.Unidade;
+//import br.jus.treto.treauth.model.Usuario;
 import br.jus.treto.cemu.config.security.jwt.TokenService;
 import br.jus.treto.cemu.domain.User;
 import br.jus.treto.cemu.repository.UsuarioRepository;

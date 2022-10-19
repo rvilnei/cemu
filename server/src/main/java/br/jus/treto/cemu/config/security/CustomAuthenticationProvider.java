@@ -8,35 +8,38 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.client.RestTemplate;
 
+import br.jus.treto.cemu.config.security.autorizador.AutenticacaoService;
+import br.jus.treto.cemu.domain.Unidade;
 import br.jus.treto.cemu.domain.User;
 import br.jus.treto.cemu.domain.UserPerfil;
 import br.jus.treto.cemu.repository.UsuarioRepository;
-import br.jus.treto.treauth.Autenticacao;
-import br.jus.treto.treauth.model.Perfil;
-import br.jus.treto.treauth.model.Usuario;
+import br.jus.treto.cemu.resources.dto.AutorizadorUnidade;
+import br.jus.treto.cemu.resources.dto.AutorizadorUsuario;
+//import br.jus.treto.treauth.Autenticacao;
+//import br.jus.treto.treauth.model.Perfil;
+//import br.jus.treto.treauth.model.Usuario;
 //import br.jus.treto.treauth.model.Usuario;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-
-
+	
+	private AutenticacaoService autenticacaoService;	
 	private UsuarioRepository usuarioRepository;
-
+	
 	public CustomAuthenticationProvider( ) { 	}
 	
-	public CustomAuthenticationProvider(UsuarioRepository usuarioRepository) {
+	public CustomAuthenticationProvider(UsuarioRepository usuarioRepository, AutenticacaoService autenticacaoService) {
 			this.usuarioRepository = usuarioRepository;
+			this.autenticacaoService = autenticacaoService;
 	}
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String nome = authentication.getName();
         String password = authentication.getCredentials().toString();
-           
-        System.out.println("* authenticate *name**  "+nome);
-      	Usuario usuario = Autenticacao.autenticaERetornaDados( nome ,  password , "SDU", true );
-    	List<Perfil> perfis = usuario.getPerfis();
-    	
+        //Autenticar usuario
+        AutorizadorUsuario usuario = this.autenticacaoService.autenticar(nome, password); 
 	  	if( usuario.getEmail() != null ) {
 	  		Optional<User> user = usuarioRepository.findByEmail( usuario.getEmail()  ) ;
 	  		User userAuth ;
@@ -48,26 +51,35 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	  			userAuth = new User();
 	  		}
 	  		
-	  		userAuth.setEmail(  usuario.getEmail() );
-	  		userAuth.setNome( usuario.getNome() );
-	  		userAuth.setMatricula(usuario.getId() .toString() );
-	  		userAuth.setUnidade( usuario.getUnidade().getSigla() ); 
-	  		userAuth.setUnidadeId( usuario.getUnidade().getId() ); 
-	  		userAuth.setPerfis(usuario.getPerfis());
-	  		userAuth.setRoles(usuario.getPerfis());
+	  		userAuth = usuarioAutorizadoToUser(userAuth ,usuario);
 	        User usr = usuarioRepository.save(userAuth);  
 	        usr.getPerfis().forEach( (   p) -> {  
 	    										System.out.println("perfil authorities:  "+ p.getNome()   ) ;
 	    							});
-	        
-	        System.out.println("userAuth Unidade : "+usr.getEmail() +"  nome ; "+usr.getNome()  +"  matricula ; "+usr.getMatricula()  );
-	        System.out.println("usuario Unidade : "+usr.getUnidade()+" ID : "+usr.getId() );
-	        
-	         Authentication auth =new UsernamePasswordAuthenticationToken( usr, password );
-	         return auth;
-	  	}	
-         
-		return null;
+
+	        System.out.println("userAuth email : "+usr.getEmail() +"  nome ; "+usr.getNome()  +"  matricula ; "+usr.getMatricula()  );
+	        System.out.println("usuario Unidade : "+usr.getUnidadesigla()+" - "+usr.getUnidade()+" ID : "+usr.getId() );
+	  
+	        Authentication auth =new UsernamePasswordAuthenticationToken( usr, password );
+	        return auth;
+	  	}	 
+	 return null;
+	}
+
+	private User usuarioAutorizadoToUser(User userAuth, AutorizadorUsuario usuario) {
+		
+  		userAuth.setEmail(  usuario.getEmail() );
+  		userAuth.setNome( usuario.getNome() );
+  		userAuth.setMatricula(usuario.getMatricula() );
+  		userAuth.setUnidade( usuario.getLotacao().getNome() ); 
+  		userAuth.setUnidadesigla( usuario.getLotacao().getSigla() ); 
+  	//	userAuth.setUnidadeId( usuario.getUnidade().getId() ); 
+  		Unidade unidade = autenticacaoService.findUnidadeIdBySigla(usuario.getLotacao().getSigla());
+  		System.out.println(" unidadeId **** "+unidade.getId());
+  		userAuth.setUnidadeId(unidade.getId());
+  		userAuth.setPerfis(usuario.getPerfis());
+  	
+		return userAuth;
 	}
 
 	@Override

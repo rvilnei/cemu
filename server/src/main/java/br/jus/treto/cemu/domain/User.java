@@ -16,9 +16,11 @@ import javax.persistence.OneToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.jus.treto.treauth.model.Perfil;
-import br.jus.treto.treauth.model.Unidade;
-import br.jus.treto.treauth.model.Usuario;
+import br.jus.treto.cemu.resources.dto.AutorizadorUnidade;
+
+//import br.jus.treto.treauth.model.Perfil;
+//import br.jus.treto.treauth.model.Unidade;
+//import br.jus.treto.treauth.model.Usuario;
 
 @Entity
 public class User implements UserDetails {
@@ -27,12 +29,13 @@ public class User implements UserDetails {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String matricula;
 	private String nome;
 	private String email;
 	private String senha;
 	private String unidade;
-	private Integer unidadeId;
-	private String matricula;
+	private String unidadesigla;
+	private Long unidadeId;
 	private ArrayList<String> roles ;
 	
 	//@ManyToMany(fetch = FetchType.EAGER)
@@ -107,11 +110,11 @@ public class User implements UserDetails {
 		this.perfis.addAll(perfis);
 	}
 
-	public Integer getUnidadeId() {
+	public long getUnidadeId() {
 		return unidadeId;
 	}
 
-	public void setUnidadeId( Integer unidadeId) {
+	public void setUnidadeId( Long unidadeId) {
 		this.unidadeId = unidadeId;
 	}
 
@@ -127,14 +130,14 @@ public class User implements UserDetails {
 		if( roles == null ) roles = new ArrayList<String>();
 		return roles;
 	}
-
+/**
 	public void setRoles(List<Perfil> roles) {
 		this.getRoles().clear();
 		roles.forEach( (p) -> {   
 			this.getRoles().add( p.getNome() );
 		});
 	}
-
+**/
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.perfis;
@@ -178,15 +181,39 @@ public class User implements UserDetails {
 		return unidade;
 	}
 
+
 	public void setUnidade(String unidade) {
 		this.unidade = unidade;
 	}
 
+	public String getUnidadesigla() {
+		return unidadesigla;
+	}
+
+	public void setUnidadesigla(String unidadesigla) {
+		this.unidadesigla = unidadesigla;
+	}
+	
+	
+	
+/**
 	public void setPerfis(List<Perfil> perfis) {
 		perfis.forEach( (p) -> {   
 			this.getPerfis().add( new UserPerfil( p.getNome())  );
 			this.getRoles().add( p.getNome() );
 		});
 	}
+	**/
+	
+
+	public void setPerfis(List<String> perfis) {
+		perfis.forEach( (p) -> {   
+			this.getPerfis().add( new UserPerfil( p)  );
+			this.getRoles().add( p );
+		});
+	}
+
+	
+	
 	
 }

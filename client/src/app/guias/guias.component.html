@@ -37,13 +37,13 @@
                 <td  align="center" >  <input type="checkbox"  [ngModel]="guia.dataRecebimento" disabled >  </td>
                 <td> <a [routerLink]="['/movimentacaoDetail', guia?.movimentacao?.id ]"> {{guia?.movimentacao?.id}} / {{guia?.movimentacao?.status}}  </a></td>
                 <td>{{guia?.dataCriacao | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
-                <td>{{guia?.nomeCondutor}}</td> 
+                <td>{{guia?.nomeCondutor}}</td>
                 <td>{{guia?.rgCondutor }}</td>
                 <td>{{guia?.placaVeiculo }}</td>
                 <td> {{ guia.transportadora?.nome}} </td>
                 <td>
                   <span class="float-right">
-                            <!-- <button class="btn btn-outline-primary mb-1 btn-sm" (click)="openModal(templateMaterialSelect, material);"> 
+                            <!-- <button class="btn btn-outline-primary mb-1 btn-sm" (click)="openModal(templateMaterialSelect, material);">
                               <i class="fa fa-plus" aria-hidden="true"></i>
                             </button> -->
                             <!-- <button class="btn btn-outline-warning mr-2 btn-sm" [routerLink]="['/guiaEdit', guia.id]">
