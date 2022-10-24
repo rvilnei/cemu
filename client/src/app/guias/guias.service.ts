@@ -58,7 +58,7 @@ export class GuiasService {
       console.log( url );
       return this.http.delete<any>( url, httpOptions);
     }
- 
+
     /** Log a MaterialService message with the MessageService */
     private log(message: string) {
       //  this.messageService.add(`MaterialService: ${message}`);

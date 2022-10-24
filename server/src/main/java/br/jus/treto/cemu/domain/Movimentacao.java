@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -24,12 +25,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Movimentacao implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	//@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_MOVIMENTACAO")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_MOVIMENTACAO", sequenceName = "SEQ_MOVIMENTACAO")
 	private Long id;
 //	private Long guiaId;
 	private Long unidadeorigemId;

@@ -4,20 +4,22 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.SequenceGenerator;
 
 
 @Entity
 @IdClass(EstoqueId.class)
 public class Estoque implements Serializable  {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 59378570590427538L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_ESTOQUE")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_ESTOQUE", sequenceName = "SEQ_ESTOQUE")
 	private Long materialId;
 	@Id
 	private Long unidadeId;

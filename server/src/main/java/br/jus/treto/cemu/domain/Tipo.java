@@ -4,12 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Tipo {
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	//@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_TIPO")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_TIPO", sequenceName = "SEQ_TIPO")
 	private Long id;
 	private String nome;
 	

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
@@ -23,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 public class ItemMovimentacao {
 
 		@Id
-		@GeneratedValue( strategy = GenerationType.IDENTITY )
+		//@GeneratedValue( strategy = GenerationType.IDENTITY )
+		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_ITEMMOVIMENTACAO")
+		@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_ITEMMOVIMENTACAO", sequenceName = "SEQ_ITEMMOVIMENTACAO")
 		private Long id;
 		private Integer  quantidadeItem;
 		//private Long movimentacaoId;
@@ -35,7 +38,6 @@ public class ItemMovimentacao {
 		//@JsonProperty(access = Access.AUTO)
 		private Movimentacao movimentacao;
 		
-
 		@Column(name="material_id", updatable=false, insertable=false)
 		private Long materialId;
 		@ManyToOne( fetch = FetchType.EAGER, optional = false)

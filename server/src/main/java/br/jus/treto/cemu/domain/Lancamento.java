@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +19,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Lancamento {
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	//@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_LANCAMENTO")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_LANCAMENTO", sequenceName = "SEQ_LANCAMENTO")
 	private Long id;  
 	private LocalDate data;  
 	private Integer quantidade ;   

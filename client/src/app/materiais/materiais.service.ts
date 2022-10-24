@@ -58,19 +58,21 @@ export class MateriaisService {
          // catchError(this.handleError<any>('deleteMaterial'))
         );
     }
- 
+
     getMateriaisIds() {
       return this.getMateriais().pipe( map( materiais => materiais.map( material => material.id ) ) );
     }
 
     /** POST: add a new material to the server */
     addMaterial (material: any): Observable<any> {
+      console.log("****  ");
+      console.log(material);
       return this.http.post<any>(this.API+'materiais', material,  httpOptions).pipe(
         tap((material: any) => this.log(`added material w/ id=${material.id}`)),
        // catchError(this.handleError<any>('addMaterial'))
       );
     }
- 
+
     /** PUT: update the material on the server */
     updateMaterial( material: any): Observable<any>{
       return this.http.put<any>( this.API+'materiais/'+material.id, material, httpOptions)
@@ -97,7 +99,7 @@ export class MateriaisService {
     addLancamentoItemMaterial (material: any, itemLancado: any): Observable<any> {
       let id = material.id;
       console.log('****** addLancamentoItemMaterial *****  '+this.API+`materiais/${id}/lancamentos`);
-      return this.http.post<any>(this.API+`materiais/${id}/lancamentos` , itemLancado , httpOptions).pipe(  
+      return this.http.post<any>(this.API+`materiais/${id}/lancamentos` , itemLancado , httpOptions).pipe(
         tap((material: any) => this.log(`added material w/ id=`)),
        // catchError(this.handleError<any>('addMaterial'))
       );
@@ -106,7 +108,7 @@ export class MateriaisService {
     getTipo(): Observable<any[]> {
       return this.http.get<any[]>(this.API+'materiais/tipos').pipe( delay(20));
     }
-    
+
     getStatus(): Observable<any> {
       return this.http.get<any[]>( this.API+'materiais/status' ).pipe( delay(20) );
     }

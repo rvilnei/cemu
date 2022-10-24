@@ -31,15 +31,18 @@ export class GuiaEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inscricao = this.route.params
-    .pipe(
-          switchMap(
-              (params: Params) => 
-              this.guiasService.getGuia(params['id'])
-          ),
-          map( resp => { this.guia = resp } ) 
-        )
-    .subscribe();
+    const params =  this.route.params;
+    if(params == null){
+      this.inscricao = this.route.params
+      .pipe(
+            switchMap(
+                (params: Params) =>
+                this.guiasService.getGuia(params['id'])
+            ),
+            map( resp => { this.guia = resp } )
+          )
+      .subscribe();
+    }
     this.transportadoras$ = this.transportadorasService.getTransportadoras();
     }
 
@@ -47,12 +50,12 @@ export class GuiaEditComponent implements OnInit {
     this.guiasService.updateGuia(this.guia)
     .subscribe( ( ) =>
         {
-          if ( this.modal ) 
+          if ( this.modal )
             this.modal.hide();
           this.router.navigate([ '/guias' ] );
         }
     )
-    
+
   }
 
   voltar(): void{

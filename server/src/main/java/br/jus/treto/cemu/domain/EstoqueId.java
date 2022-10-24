@@ -6,9 +6,7 @@ import java.util.Objects;
 
 // chave composta
 public class EstoqueId  implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4476928008227826051L;
 	
 	private Long materialId;

@@ -1,5 +1,5 @@
 <div class="container">
-    <h4>Material Form Edit</h4> 
+    <h4>Material Form Edit</h4>
     <form (ngSubmit)="save()" #materialForm="ngForm">
         <div class="form-group row">
             <label for="nome" class="col-md-2 col-form-label">Nome</label>
@@ -43,17 +43,17 @@
              [compareWith]="compareFn" >
                 <option *ngFor="let status of materialStatu$ | async " [ngValue]="status" >{{status.nome}}</option>
                 <option  [ngValue]="{}" >...</option>
-              </select>                 
+              </select>
         </div>
     </div>
 
         <div class="form-group row">
             <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
             <div class="col-5 col-md-3">
-                <select class="form-control" id="categoria" name="categoria" placeholder="Categoria">
-                    <option>...</option>
-                    <option>Categoria 1</option>
-                    <option>Categoria 2</option>
+                <select class="form-control" id="categoria" name="categoria" placeholder="Categoria" [(ngModel)]="material.categoria" >
+                    <option value="0" >...</option>
+                    <option value="1">Categoria 1</option>
+                    <option value="2">Categoria 2</option>
                 </select>
             </div>
             <label for="categoria" class="col-12 col-md-2 col-form-label">Modelo</label>
@@ -105,10 +105,10 @@
                             <td> {{ item.tipo }} </td>
                             <td> {{ item.unidadeOrigem }} </td>
                             <td> {{ item.unidadeDestino }} </td>
-                            <td> 
-                                <i *ngIf="item.tipo != 'MOVI-SAÍDA'" class='fa fa-plus' style='color:green'></i>     
-                                <i *ngIf="item.tipo == 'MOVI-SAÍDA'" class='fa fa-minus' style='color:red'></i>                          
-                                <span class="badge badge-warning" >{{ item.quantidade }}</span> 
+                            <td>
+                                <i *ngIf="item.tipo != 'MOVI-SAÍDA'" class='fa fa-plus' style='color:green'></i>
+                                <i *ngIf="item.tipo == 'MOVI-SAÍDA'" class='fa fa-minus' style='color:red'></i>
+                                <span class="badge badge-warning" >{{ item.quantidade }}</span>
                             </td>
                             <td> {{ item.matricula }} </td>
                         </tr>

@@ -25,11 +25,11 @@
                 <div class="form-group row">
                     <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
                     <div class="col-5 col-md-3">
-                        <select [disabled]="isEdit" class="form-control" id="categoria" name="categoria" placeholder="Categoria">
-                     <option>...</option>
-                     <option>Categoria 1</option>
-                     <option>Categoria 2</option>
-                  </select>
+                      <select class="form-control" id="categoria" name="categoria" placeholder="Categoria" [(ngModel)]="material.categoria" >
+                        <option value="0" >...</option>
+                        <option value="1">Categoria 1</option>
+                        <option value="2">Categoria 2</option>
+                      </select>
                     </div>
                     <label for="modelo" class="col-12 col-md-2 col-form-label">Modelo</label>
                     <div class="col-5 col-md-5">
@@ -112,11 +112,11 @@
                 <div class="form-group row">
                     <label for="categoria" class="col-12 col-md-2 col-form-label">Categoria</label>
                     <div class="col-5 col-md-3">
-                        <select [disabled]="isEdit" class="form-control" id="categoria" name="categoria" placeholder="Categoria">
-                         <option>...</option>
-                         <option>Categoria 1</option>
-                         <option>Categoria 2</option>
-                      </select>
+                        <select [disabled]="isEdit" class="form-control" id="categoria" name="categoria" placeholder="Categoria" [(ngModel)]="material.categoria" >
+                         <option value="0" >...</option>
+                         <option value="1" >Categoria 1</option>
+                         <option value="2" >Categoria 2</option>
+                       </select>
                     </div>
                     <label for="modelo" class="col-12 col-md-2 col-form-label">Modelo</label>
                     <div class="col-5 col-md-5">
@@ -185,7 +185,7 @@
         </div>
         <div class="container">
 
-         <h5>OBS: Para cada código de barra será gerado um registro com os dados abaixo </h5>  
+         <h5>OBS: Para cada código de barra será gerado um registro com os dados abaixo </h5>
         <form (ngSubmit)="onSubmitMaterialCodBarrasArquivo()" #ngFormItem="ngForm">
             <div class="modal-body">
                 <div class="form-group">

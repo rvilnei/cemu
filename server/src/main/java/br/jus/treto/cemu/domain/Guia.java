@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,7 +15,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Guia {
 	 
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+//	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCIA_GUIA")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SEQUENCIA_GUIA", sequenceName = "SEQ_GUIA")
 	private Long id;
 
 	private String numeroGuia;

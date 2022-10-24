@@ -18,13 +18,13 @@ export class GuiasComponent implements OnInit {
 
 
   constructor(
-    private guiasService: GuiasService 
+    private guiasService: GuiasService
   ) { }
 
   ngOnInit() {
     this.guias$ = this.guiasService.getGuias();
   }
-    
+
   openNewWindowForJasperWithCharts(){
     var url  = "/localhost:8080/reports/1/pdf";
     var strWindowFeatures = "menubar=no,location=no,width=800,height=500";
