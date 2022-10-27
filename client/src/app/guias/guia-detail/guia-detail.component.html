@@ -9,18 +9,18 @@
             </div>
             <div class="card-body">
                     <div class="row">
-                            
+
                         <dt class="col-6">Número da Guia</dt>
                         <dd class="col-6">{{guia.numeroGuia}}</dd>
-        
+
                         <dt class="col-6">Nome do Condutor</dt>
                         <dd class="col-6">{{guia.nomeCondutor}}</dd>
-        
+
                         <dt class="col-6">R.G. do Condutor</dt>
                         <dd class="col-6">{{guia.rgCondutor}}</dd>
                         <dt class="col-6">Placa do Veículo</dt>
                         <dd class="col-6">{{guia.placaVeiculo}}</dd>
-        
+
                         <dt class="col-6">Observação</dt>
                         <dd class="col-6">{{guia.observacao}}</dd>
                         <dt class="col-6">Data da Criação</dt>
@@ -35,7 +35,7 @@
             <div class="card-footer text-muted">
               <div class="row" >
                 <button class="btn btn-primary" (click)="voltar()" >Voltar</button>
-           
+
             <form [hidden]="habilitarAutenticacao == false" [formGroup]="loginForm" class="form-inline mt-4" (submit)="login()" >
                 <input formControlName="userName" type="text" name="user" id="user" class="form-control col-md-3 offset-1" placeholder="usuário">
                 <app-vmessage *ngIf="loginForm.get('password').errors?.required" text="Usuário é obrigatório" >
@@ -43,8 +43,8 @@
                 <input formControlName="password" type="password" id="password" name="password" class="form-control col-md-3 offset-1" placeholder="senha">
                 <app-vmessage *ngIf="loginForm.get('password').errors?.required" text="Senha do usuário é obrigatório" >
                 </app-vmessage>
-                <button [disabled]="loginForm.invalid" type="submit" class="form-control btn btn-primary btn-block offset-1">Receber</button>                  
-            </form>      
+                <button [disabled]="loginForm.invalid" type="submit" class="form-control btn btn-primary btn-block offset-1">Receber</button>
+            </form>
           </div>
         </div>
           </div>

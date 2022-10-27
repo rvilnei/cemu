@@ -1,6 +1,7 @@
 package br.jus.treto.cemu.domain;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
@@ -46,6 +48,10 @@ public class ItemMovimentacao {
 		//@JsonIgnore // para evitar loop na criacao do JSON
 		private Material material;	
 		
+		@OneToOne(cascade = {CascadeType.ALL})
+		@JoinColumn(name = "pendencia_id", referencedColumnName = "id")// foreign key
+		//@XmlElement
+		private Pendencia pendencia;		
 		
 		public Movimentacao getMovimentacao() {
 			return movimentacao;
@@ -83,5 +89,12 @@ public class ItemMovimentacao {
 			public void setSituacao(String situacao) {
 				this.situacao = situacao;
 			}
+			public Pendencia getPendencia() {
+				return pendencia;
+			}
+			public void setPendencia(Pendencia pendencia) {
+				this.pendencia = pendencia;
+			}
 	
+			
 }

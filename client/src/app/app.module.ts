@@ -1,3 +1,4 @@
+import { PendenciasModule } from './pendencias/pendencias.module';
 import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { AppGlobalErrorhandler } from './core/auth/AppGlobalErrorhandler';
 import { CoreModule } from './core/core.module';
@@ -40,7 +41,8 @@ import { RelatoriosModule } from 'src/app/relatorios/relatorios.module';
     GuiasModule,
     TransportasdorasModule,
    // TypeaheadModule.forRoot()
-    RelatoriosModule
+    RelatoriosModule,
+    PendenciasModule
   ],
   providers: [{provide: ErrorHandler, useClass: AppGlobalErrorhandler}],
   bootstrap: [AppComponent]
