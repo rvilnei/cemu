@@ -63,7 +63,7 @@ export class GuiaEditComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.inscricao.unsubscribe();
+   // this.inscricao.unsubscribe();
   }
 
 }

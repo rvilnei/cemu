@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Guia } from 'src/app/guias/guia';
-import { switchMap } from 'rxjs/internal/operators/switchMap';
-import { Params, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { GuiasService } from 'src/app/guias/guias.service';
 import { map } from 'rxjs/internal/operators/map';
 import { Location } from '@angular/common';
@@ -10,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/core/user/user';
 import * as jtw_decode from 'jwt-decode';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-guia-detail',
@@ -38,17 +38,17 @@ export class GuiaDetailComponent implements OnInit {
       password: [ '', Validators.required]
     });
 
-    // this.inscricao = this.route.params
-    // .pipe(
-    //       switchMap(
-    //         (params: Params) => 
-    //         this.guiasService.getGuia( params['id'] )
-    //        ),
-    //       map( resp => {           
-    //         this.guia = resp } ) 
-    //     )
-    // .subscribe();
-
+     this.inscricao = this.route.params
+     .pipe(
+           switchMap(
+             (params: Params) =>
+             this.guiasService.getGuia( params['id'] )
+            ),
+           map( resp => {
+             this.guia = resp } )
+         )
+     .subscribe();
+/**
     this.inscricao = this.route.params.subscribe(
       ( params: any ) => {
           let hsbilitar: boolean = params['autenticar'] == "true" ? true : false ;
@@ -56,7 +56,7 @@ export class GuiaDetailComponent implements OnInit {
           this.guiasService.getGuia( params['id'] )
             .subscribe( guia => this.guia = guia  );
           });
-
+**/
     }
 
     login(){
@@ -90,7 +90,7 @@ export class GuiaDetailComponent implements OnInit {
     voltar(): void{
       this.location.back();
     }
-  
+
     ngOnDestroy(){
       this.inscricao.unsubscribe();
     }
