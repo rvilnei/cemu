@@ -48,7 +48,7 @@ export class GuiaDetailComponent implements OnInit {
              this.guia = resp } )
          )
      .subscribe();
-/**
+/** **/
     this.inscricao = this.route.params.subscribe(
       ( params: any ) => {
           let hsbilitar: boolean = params['autenticar'] == "true" ? true : false ;
@@ -56,7 +56,7 @@ export class GuiaDetailComponent implements OnInit {
           this.guiasService.getGuia( params['id'] )
             .subscribe( guia => this.guia = guia  );
           });
-**/
+
     }
 
     login(){

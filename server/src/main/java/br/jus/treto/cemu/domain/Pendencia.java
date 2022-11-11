@@ -6,10 +6,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.engine.profile.Fetch;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,7 +22,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Pendencia implements Serializable {
-	private static final long serialVersionUID = 1L;
+	private final long serialVersionUID = 1L;
 	
 	public enum PendenciaType {
 		//material foi perdido/desapareceu no local
@@ -50,8 +55,11 @@ public class Pendencia implements Serializable {
 	private Long id;
 	private String observacao;
 	
-	@OneToOne(mappedBy="pendencia")	
-	@JsonIgnore // para evitar loop na criacao do JSON
+//	@OneToOne(mappedBy="pendencia")	
+//	@JsonIgnore // para evitar loop na criacao do JSON
+	@OneToOne( fetch = FetchType.EAGER )
+	@MapsId
+	@JoinColumn( name = "item_movimentacao_id" )
 	private ItemMovimentacao itemMovimentacao;
 
 	@Enumerated(EnumType.STRING)

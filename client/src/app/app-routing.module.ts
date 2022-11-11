@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', 
+  { path: '',
     component: LoginComponent
   },
   {  path: 'login',
@@ -14,13 +14,13 @@ const routes: Routes = [
   },
   {  path:'home',
      component: HomeComponent,
-     canActivate: [AuthGuard] 
+     canActivate: [AuthGuard]
   } //,
  // { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes  //,{ enableTracing: true } // <-- debugging purposes only
+  imports: [RouterModule.forRoot(routes  ,{ enableTracing: true } // <-- debugging purposes only
            )],
   exports: [RouterModule]
 })
