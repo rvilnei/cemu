@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   aba: string = 'home';
   constructor( private userService: UserService,
                 private router: Router )
-   { 
+   {
       this.user$ = userService.getUser();
    }
 

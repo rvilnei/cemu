@@ -47,12 +47,12 @@ public class ItemMovimentacao {
 		// @OnDelete(action = OnDeleteAction.CASCADE)
 		//@JsonIgnore // para evitar loop na criacao do JSON
 		private Material material;	
-		
+	/**	
 		@OneToOne(cascade = {CascadeType.ALL})
 		@JoinColumn(name = "pendencia_id", referencedColumnName = "id")// foreign key
 		//@XmlElement
 		private Pendencia pendencia;		
-		
+	**/
 		public Movimentacao getMovimentacao() {
 			return movimentacao;
 		}
@@ -89,12 +89,13 @@ public class ItemMovimentacao {
 			public void setSituacao(String situacao) {
 				this.situacao = situacao;
 			}
+		/**	
 			public Pendencia getPendencia() {
 				return pendencia;
 			}
 			public void setPendencia(Pendencia pendencia) {
 				this.pendencia = pendencia;
 			}
-	
+		 **/
 			
 }

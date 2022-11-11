@@ -1,1 +1,40 @@
-<p>pendencias works!</p>
+<div class="container col-12" >
+ <div *ngIf=" pendencias$ | async as pendencias_async; else loading ">
+    <div class="card col-12 ">
+     <div class="card-header">
+      <div class="float-left">
+        <h4>Lista de Pendencias</h4>
+      </div>
+      <div class="float-right">
+        <button type="button" class="btn btn-primary" [routerLink]="'/pendenciaNew'">Nova Pendencia</button>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover" >
+          <head>
+            <tr>
+              <th scope="col" >Tipo</th>
+              <th scope="col" >Observação</th>
+              <th scope="col" ></th>
+            </tr>
+          </head>
+          <tbody>
+            <tr *ngFor="let perndencia of pendencias_async " >
+              <td>{{perndencia.pendenciaTipo}}</td>
+              <td>{{perndencia.observacao}}</td>
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <ng-template #loading>
+      <span>Carregando ...</span>
+      <div class="spinner-border spinner-border-1g" ></div>
+      <div class="spinner-grow spinner-grow-lg" ></div>
+    </ng-template>
+</div>

@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { PendenciasService } from './pendencias.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendenciasComponent implements OnInit {
 
-  constructor() { }
+  pendencias$: Observable<any[]>;
+
+  constructor( private pendenciasService: PendenciasService  ) { }
 
   ngOnInit(): void {
+    this.pendencias$ = this.pendenciasService.getTiposPendencias();
   }
 
 }
